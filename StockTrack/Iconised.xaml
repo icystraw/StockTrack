@@ -1,0 +1,11 @@
+﻿<Window x:Class="StockTrack.Iconised"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Iconised" Height="48" Width="48" AllowsTransparency="True" WindowStyle="None" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" Opacity="0.9" Topmost="True" MouseDoubleClick="Window_MouseDoubleClick" MouseDown="Window_MouseDown" ShowInTaskbar="False" ResizeMode="NoResize" Background="#FFDBDBDB">
+    <Image Height="48" Width="48" Source="stocktrack.ico" Stretch="Fill" />
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Name="mnExit" Click="mnExit_Click" Header="Exit"></MenuItem>
+        </ContextMenu>
+    </Window.ContextMenu>
+</Window>

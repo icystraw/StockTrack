@@ -1,0 +1,78 @@
+﻿<Window x:Class="StockTrack.Mini"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Stock Track" Height="400" Width="400" Background="#FFE1E1E1" Loaded="Window_Loaded" Closing="Window_Closing" MouseDown="Window_MouseDown" ResizeMode="CanResizeWithGrip" Opacity="0.9" AllowsTransparency="True" WindowStyle="None">
+    <Window.CommandBindings>
+        <CommandBinding Command="Save" Executed="CommandBinding_Executed"></CommandBinding>
+        <CommandBinding Command="Find" Executed="CommandBinding_Executed_1"></CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="Save" Key="S" Modifiers="Control"></KeyBinding>
+        <KeyBinding Command="Find" Key="F" Modifiers="Control"></KeyBinding>
+    </Window.InputBindings>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Button Name="btnClose" Click="btnClose_Click" DockPanel.Dock="Right" Margin="2" Width="30" VerticalAlignment="Center">X</Button>
+            <Button Name="btnShy" DockPanel.Dock="Right" Margin="2" Width="30" VerticalAlignment="Center" Click="btnShy_Click">_</Button>
+            <Button Name="btnCrazy" Click="btnCrazy_Click" DockPanel.Dock="Right" Margin="2" Width="70" VerticalAlignment="Center">Go Crazy!</Button>
+            <CheckBox Name="chkTop" DockPanel.Dock="Right" Margin="2" ToolTip="Topmost" Click="chkTop_Click" VerticalAlignment="Center"></CheckBox>
+            <Label Content="STOCK TRACK" Name="lblTitle" MouseDoubleClick="lblTitle_MouseDoubleClick"></Label>
+        </DockPanel>
+        <ComboBox Name="cbSearch" FontSize="14" DockPanel.Dock="Top" IsEditable="True" Text="Enter keyword or choose from list"></ComboBox>
+        <Expander Name="expEntry" Header="ORDER ENTRY" DockPanel.Dock="Bottom" Opacity="0" ExpandDirection="Up">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <DatePicker Name="dtEntryDate" Margin="2" />
+                <Label Content="O/N" Margin="2"></Label>
+                <TextBox Name="txtOrderNo" Width="50" Margin="2" MouseWheel="txtOrderNo_MouseWheel" VerticalAlignment="Center" />
+                <Label Content="Qty" Margin="2"></Label>
+                <TextBox Name="txtQuantity" Width="40" Text="1" Margin="2" MouseWheel="txtQuantity_MouseWheel" VerticalAlignment="Center" />
+                <Button Name="btnSave" Command="Save" IsEnabled="False" Margin="2" Width="45" VerticalAlignment="Center">Save</Button>
+            </StackPanel>
+            <Expander.Triggers>
+                <EventTrigger RoutedEvent="Expander.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation BeginTime="0:0:0.3" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Expander.Triggers>
+        </Expander>
+        <DataGrid Name="dgItems" AutoGenerateColumns="False" FontSize="14"
+                      SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+                      HeadersVisibility="None"
+                      CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgItems_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="Item Name" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Quantity" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="Copy"></MenuItem>
+                    <MenuItem Header="History" Name="mnHistory" IsEnabled="False">
+                        <DataGrid Name="dgHistory" Height="150" Width="400"
+                            AutoGenerateColumns="False" IsReadOnly="True" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+                            SelectionUnit="FullRow" MouseUp="dgHistory_MouseUp">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Date" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Action" Binding="{Binding Path=Action}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Net Change" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Order No" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <DockPanel.Triggers>
+            <EventTrigger RoutedEvent="DockPanel.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"></DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </DockPanel.Triggers>
+    </DockPanel>
+</Window>

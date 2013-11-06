@@ -1,0 +1,27 @@
+﻿<Window x:Class="StockTrack.OrderSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Order Search" Height="500" Width="750" Background="#FFE1E1E1" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <DockPanel>
+        <TextBox Name="txtKeyword" Margin="10,10" DockPanel.Dock="Top" KeyDown="txtKeyword_KeyDown"></TextBox>
+        <DataGrid Name="dgHistory"
+                  Margin="10,10" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+                  SelectionUnit="FullRow" CanUserDeleteRows="False"
+                  CanUserAddRows="False" CellEditEnding="dgHistory_CellEditEnding" SelectionChanged="dgHistory_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Item" IsReadOnly="True" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Net Change" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Undo Action" Click="mnuUndoAction_Click" />
+                    <MenuItem Command="Copy"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+    </DockPanel>
+</Window>
