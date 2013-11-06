@@ -130,7 +130,7 @@ namespace StockTrack
                     h.Action = "Adjust";
                     h.Comments = "New: " + newQuantity.ToString() + " Old: " + itemEditing.Quantity.ToString();
                     h.ItemId = itemEditing.ItemId;
-                    h.OrderNo = string.Empty;
+                    h.OrderNo = "ADJ" + DateTime.Today.ToString("ddMMyyyy");
                     h.Quantity = difference;
                     itemEditing.Quantity = newQuantity;
                     DataAccess.UpdateItem(itemEditing);
@@ -302,7 +302,10 @@ namespace StockTrack
                 History h = new History();
                 h.Comments = txtComments.Text.Trim();
                 h.ItemId = i.ItemId;
-                h.OrderNo = txtOrderNo.Text.Trim();
+                if (string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
+                    h.OrderNo = DateTime.Today.ToString("ddMMyyyy");
+                else
+                    h.OrderNo = txtOrderNo.Text.Trim();
                 h.EntryDate = DateTime.Now;
                 try
                 {
@@ -463,7 +466,7 @@ namespace StockTrack
         {
             if (null == dgHistory.SelectedItem) return;
             OrderSearch o = new OrderSearch();
-            o.OrderNumber = (dgHistory.SelectedItem as History).OrderNo;
+            o.OrderId = (dgHistory.SelectedItem as History).OrderId;
             o.MainWindow = this;
             o.PerformSearch();
             o.Show();

@@ -99,7 +99,10 @@ namespace StockTrack
                 History h = new History();
                 h.Comments = string.Empty;
                 h.ItemId = i.ItemId;
-                h.OrderNo = txtOrderNo.Text.Trim();
+                if (string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
+                    h.OrderNo = DateTime.Today.ToString("ddMMyyyy");
+                else
+                    h.OrderNo = txtOrderNo.Text.Trim();
                 h.EntryDate = DateTime.Now;
                 try
                 {

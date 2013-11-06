@@ -24,11 +24,11 @@ namespace StockTrack
             InitializeComponent();
         }
 
-        public string OrderNumber
+        public int OrderId
         {
             set
             {
-                txtKeyword.Text = value.Trim();
+                txtKeyword.Text = value.ToString();
             }
         }
 
@@ -59,7 +59,7 @@ namespace StockTrack
         {
             if (txtKeyword.Text.Trim() != string.Empty)
             {
-                hs = DataAccess.GetHistoryByOrderNo(txtKeyword.Text.Trim());
+                hs = DataAccess.GetHistoryByOrderId(Convert.ToInt32(txtKeyword.Text.Trim()));
                 dgHistory.ItemsSource = hs;
             }
         }

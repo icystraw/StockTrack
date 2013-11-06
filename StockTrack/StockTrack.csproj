@@ -89,6 +89,8 @@
     <Compile Include="Mini.xaml.cs">
       <DependentUpon>Mini.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderHistory.cs" />
     <Compile Include="Stats.xaml.cs">
       <DependentUpon>Stats.xaml</DependentUpon>
     </Compile>

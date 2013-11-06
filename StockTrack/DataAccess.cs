@@ -166,7 +166,8 @@ namespace StockTrack
         public static void InsertHistory(History h)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("insert into [history] ([itemid], [entrydate], [actiondate], [action], [quantity], [orderno], [comments]) values (@itemid, @entrydate, @actiondate, @action, @quantity, @orderno, @comments)", con);
+            SqlCommand cmd = new SqlCommand("inserthistory", con);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@itemid", h.ItemId));
             cmd.Parameters.Add(new SqlParameter("@entrydate", h.EntryDate));
             cmd.Parameters.Add(new SqlParameter("@actiondate", h.ActionDate));
@@ -204,7 +205,7 @@ namespace StockTrack
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select * from [history] where [itemid] = @itemid order by [entrydate] desc", con);
+            SqlCommand cmd = new SqlCommand("select [history].*, [order].[orderno] from [history] inner join [order] on [order].[orderid] = [history].[orderid] where [itemid] = @itemid order by [entrydate] desc", con);
             cmd.Parameters.Add(new SqlParameter("@itemid", itemId));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -218,6 +219,7 @@ namespace StockTrack
                 h.Action = rd["action"].ToString();
                 h.Comments = rd["comments"].ToString();
                 h.OrderNo = rd["orderno"].ToString();
+                h.OrderId = Convert.ToInt32(rd["orderid"]);
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
                 histories.Add(h);
             }
@@ -226,37 +228,12 @@ namespace StockTrack
             return histories;
         }
 
-        public static History GetHistoryById(int historyId)
-        {
-            History h = null;
-            SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select * from [history] where [historyid] = @historyid", con);
-            cmd.Parameters.Add(new SqlParameter("@historyid", historyId));
-            con.Open();
-            IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            if (rd.Read())
-            {
-                h = new History();
-                h.HistoryId = Convert.ToInt32(rd["historyid"]);
-                h.ItemId = Convert.ToInt32(rd["itemid"]);
-                h.EntryDate = Convert.ToDateTime(rd["entrydate"]);
-                h.ActionDate = Convert.ToDateTime(rd["actiondate"]);
-                h.Action = rd["action"].ToString();
-                h.Comments = rd["comments"].ToString();
-                h.OrderNo = rd["orderno"].ToString();
-                h.Quantity = Convert.ToDouble(rd["quantity"]);
-            }
-            rd.Close();
-
-            return h;
-        }
-
-        public static List<History> GetHistoryByOrderNo(string orderNo)
+        public static List<History> GetHistoryByOrderId(int orderId)
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select [history].*, [item].[itemname] from [history] inner join [item] on [item].[itemid] = [history].[itemid] where [history].[orderNo] like N'%' + @orderno + N'%' order by [entrydate] desc", con);
-            cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
+            SqlCommand cmd = new SqlCommand("select [history].*, [item].[itemname], [order].[orderno] from [history] inner join [item] on [item].[itemid] = [history].[itemid] inner join [order] on [order].[orderid] = [history].[orderid] where [history].[orderid] = @orderid order by [entrydate] desc", con);
+            cmd.Parameters.Add(new SqlParameter("@orderid", orderId));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (rd.Read())
@@ -269,6 +246,7 @@ namespace StockTrack
                 h.ActionDate = Convert.ToDateTime(rd["actiondate"]);
                 h.Action = rd["action"].ToString();
                 h.Comments = rd["comments"].ToString();
+                h.OrderId = Convert.ToInt32(rd["orderid"]);
                 h.OrderNo = rd["orderno"].ToString();
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
                 histories.Add(h);

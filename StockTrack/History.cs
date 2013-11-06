@@ -65,6 +65,13 @@ namespace StockTrack
             get { return orderNo; }
             set { orderNo = value; }
         }
+        private int orderId;
+
+        public int OrderId
+        {
+            get { return orderId; }
+            set { orderId = value; }
+        }
 
         private string comments;
 
