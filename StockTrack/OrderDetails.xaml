@@ -15,12 +15,12 @@
                 <ComboBoxItem>Pick up</ComboBoxItem>
                 <ComboBoxItem>Delivery</ComboBoxItem>
             </ComboBox>
-            <Label Margin="2">Total Amount:</Label>
+            <Label Margin="2">Total Amount (AUD):</Label>
             <TextBox Margin="2" Name="txtTotalAmount" TextChanged="amount_TextChanged"></TextBox>
-            <Label Margin="2">Paid Today:</Label>
+            <Label Margin="2">Paid Today (AUD):</Label>
             <TextBox Margin="2" Name="txtPaidToday" TextChanged="amount_TextChanged"></TextBox>
-            <Label Margin="2">Balance:</Label>
-            <Label Margin="2" Name="lblBalance">0</Label>
+            <Label Margin="2">Balance (AUD):</Label>
+            <TextBox Margin="2" Name="txtBalance" IsReadOnly="True">0</TextBox>
             <CheckBox Margin="2" Name="cbIsWorkOrder">Is Work Order</CheckBox>
             <Label Margin="2">Order Date:</Label>
             <DatePicker Margin="2" Name="dtOrderDate"></DatePicker>
@@ -29,9 +29,9 @@
             <Label Margin="2">Comments:</Label>
             <TextBox Margin="2" Name="txtComments" MaxLines="4" AcceptsReturn="True"></TextBox>
         </StackPanel>
-        <StackPanel>
-            <Label Margin="5">Items in order:</Label>
-            <DataGrid Name="dgHistory"
+        <DockPanel>
+            <Label Margin="5" DockPanel.Dock="Top">Items in order:</Label>
+            <DataGrid Name="dgHistory" Height="200" DockPanel.Dock="Top"
                   Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False"
                   CanUserAddRows="False" CellEditEnding="dgHistory_CellEditEnding" SelectionChanged="dgHistory_SelectionChanged">
@@ -49,9 +49,27 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-            <Label Margin="5">Order progress log:</Label>
-            <DataGrid Margin="5"></DataGrid>
-            <Button Margin="5" Name="btnDeleteOrder" Content="Delete this order" Click="btnDeleteOrder_Click"></Button>
-        </StackPanel>
+            <Label Margin="5" DockPanel.Dock="Top">Order progression:</Label>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+                <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add new progress" Click="btnAddProgress_Click"></Button>
+                <Button Margin="5" Width="150" Name="btnDeleteOrder" Content="Delete this order" Click="btnDeleteOrder_Click"></Button>
+            </StackPanel>
+            <TextBox DockPanel.Dock="Bottom" Height="40" Name="txtProgress" Margin="5" AcceptsReturn="True"></TextBox>
+            <Label Margin="5" DockPanel.Dock="Bottom">Enter new progress:</Label>
+            <DataGrid Name="dgProgression" Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+                  SelectionUnit="FullRow" CanUserDeleteRows="False"
+                  CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=HistoryDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="mnuDeleteEntry" IsEnabled="False" Header="Delete" Click="mnuDeleteEntry_Click" />
+                        <MenuItem Command="Copy"></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </DockPanel>
     </DockPanel>
 </Window>

@@ -314,6 +314,61 @@ namespace StockTrack
             con.Close();
         }
 
+        public static void InsertOrderHistory(OrderHistory h)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("insert into [orderhistory] ([orderid], [historydate], [comments]) values (@orderid, @historydate, @comments)", con);
+            cmd.Parameters.Add(new SqlParameter("@orderid", h.OrderId));
+            cmd.Parameters.Add(new SqlParameter("@historydate", h.HistoryDate));
+            cmd.Parameters.Add(new SqlParameter("@comments", h.Comments));
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public static void UpdateOrderHistoryComments(OrderHistory h)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("update [orderhistory] set [comments] = @comments where [orderhistoryid] = @orderhistoryid", con);
+            cmd.Parameters.Add(new SqlParameter("@comments", h.Comments));
+            cmd.Parameters.Add(new SqlParameter("@orderhistoryid", h.OrderHistoryId));
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public static void DeleteOrderHistoryById(int orderHistoryId)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("delete from [orderhistory] where [orderhistoryid] = @orderhistoryid", con);
+            cmd.Parameters.Add(new SqlParameter("@orderhistoryid", orderHistoryId));
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public static List<OrderHistory> GetOrderHistoryByOrderId(int orderId)
+        {
+            List<OrderHistory> histories = new List<OrderHistory>();
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("select * from [orderhistory] where [orderid] = @orderid order by [historydate] desc", con);
+            cmd.Parameters.Add(new SqlParameter("@orderid", orderId));
+            con.Open();
+            IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (rd.Read())
+            {
+                OrderHistory h = new OrderHistory();
+                h.OrderHistoryId = Convert.ToInt32(rd["orderhistoryid"]);
+                h.OrderId = Convert.ToInt32(rd["orderid"]);
+                h.HistoryDate = Convert.ToDateTime(rd["historydate"]);
+                h.Comments = rd["comments"].ToString();
+                histories.Add(h);
+            }
+            rd.Close();
+
+            return histories;
+        }
+
         public static List<History> GetHistoricSales(DateTime dt1, DateTime dt2, Category c)
         {
             List<History> histories = new List<History>();

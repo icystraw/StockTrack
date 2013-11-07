@@ -29,6 +29,7 @@ namespace StockTrack
         }
 
         private List<History> hs = new List<History>();
+        private List<OrderHistory> ohs = new List<OrderHistory>();
         private Order o = null;
         private DateTime nullDate = new DateTime(1970, 1, 1);
         private bool needSaveOrder = true;
@@ -100,6 +101,12 @@ namespace StockTrack
             dgHistory.ItemsSource = hs;
         }
 
+        private void getOrderProgression()
+        {
+            ohs = DataAccess.GetOrderHistoryByOrderId(orderId);
+            dgProgression.ItemsSource = ohs;
+        }
+
         private void mnuUndoAction_Click(object sender, RoutedEventArgs e)
         {
             if (dgHistory.SelectedItem == null) return;
@@ -124,17 +131,18 @@ namespace StockTrack
         {
             getOrderDetails();
             getOrderHistory();
+            getOrderProgression();
         }
 
         private void amount_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                lblBalance.Content = Convert.ToDouble(txtTotalAmount.Text.Trim()) - Convert.ToDouble(txtPaidToday.Text.Trim());
+                txtBalance.Text = (Convert.ToDouble(txtTotalAmount.Text.Trim()) - Convert.ToDouble(txtPaidToday.Text.Trim())).ToString();
             }
             catch
             {
-                lblBalance.Content = string.Empty;
+                txtBalance.Text = string.Empty;
             }
         }
 
@@ -162,6 +170,47 @@ namespace StockTrack
                     this.Close();
                 }
             }
+        }
+
+        private void dgProgression_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                string newComments = (e.EditingElement as TextBox).Text.Trim();
+                OrderHistory h = e.Row.Item as OrderHistory;
+                h.Comments = newComments;
+                DataAccess.UpdateOrderHistoryComments(h);
+            }
+        }
+
+        private void mnuDeleteEntry_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                return;
+            foreach (OrderHistory h in dgProgression.SelectedItems)
+            {
+                DataAccess.DeleteOrderHistoryById(h.OrderHistoryId);
+            }
+            getOrderProgression();
+        }
+
+        private void btnAddProgress_Click(object sender, RoutedEventArgs e)
+        {
+            if (o != null)
+            {
+                OrderHistory h = new OrderHistory();
+                h.OrderId = orderId;
+                h.HistoryDate = DateTime.Now;
+                h.Comments = txtProgress.Text.Trim();
+                if (string.IsNullOrEmpty(h.Comments)) return;
+                DataAccess.InsertOrderHistory(h);
+                getOrderProgression();
+            }
+        }
+
+        private void dgProgression_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mnuDeleteEntry.IsEnabled = !(null == dgProgression.SelectedItem);
         }
     }
 }
