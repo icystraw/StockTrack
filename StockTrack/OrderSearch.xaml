@@ -1,9 +1,8 @@
 ﻿<Window x:Class="StockTrack.OrderSearch"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Order Search" Height="500" Width="750" Background="#FFE1E1E1" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Order Search" Height="500" Width="750" Background="#FFE1E1E1" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
-        <TextBox Name="txtKeyword" Margin="10,10" DockPanel.Dock="Top" KeyDown="txtKeyword_KeyDown"></TextBox>
         <DataGrid Name="dgHistory"
                   Margin="10,10" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False"
@@ -13,7 +12,6 @@
                 <DataGridTextColumn Header="Item" IsReadOnly="True" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Net Change" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>

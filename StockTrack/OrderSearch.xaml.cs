@@ -23,22 +23,17 @@ namespace StockTrack
         {
             InitializeComponent();
         }
+        private int orderId;
 
         public int OrderId
         {
             set
             {
-                txtKeyword.Text = value.ToString();
+                orderId = value;
             }
-        }
-
-        private MainWindow mainWindow;
-
-        public MainWindow MainWindow
-        {
-            set
+            get
             {
-                mainWindow = value;
+                return orderId;
             }
         }
 
@@ -55,21 +50,20 @@ namespace StockTrack
             }
         }
 
-        public void PerformSearch()
+        private void getOrderDetails()
         {
-            if (txtKeyword.Text.Trim() != string.Empty)
-            {
-                hs = DataAccess.GetHistoryByOrderId(Convert.ToInt32(txtKeyword.Text.Trim()));
-                dgHistory.ItemsSource = hs;
-            }
+
         }
 
-        private void txtKeyword_KeyDown(object sender, KeyEventArgs e)
+        private void saveOrderDetails()
         {
-            if (e.Key == Key.Enter)
-            {
-                PerformSearch();
-            }
+
+        }
+
+        private void getOrderHistory()
+        {
+            hs = DataAccess.GetHistoryByOrderId(orderId);
+            dgHistory.ItemsSource = hs;
         }
 
         private void mnuUndoAction_Click(object sender, RoutedEventArgs e)
@@ -84,7 +78,7 @@ namespace StockTrack
                 DataAccess.DeleteHistoryById(h.HistoryId);
                 DataAccess.UpdateItem(i);
             }
-            PerformSearch();
+            getOrderHistory();
         }
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,8 +88,13 @@ namespace StockTrack
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            mainWindow.RefreshItems();
-            mainWindow.Show();
+            saveOrderDetails();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            getOrderDetails();
+            getOrderHistory();
         }
     }
 }

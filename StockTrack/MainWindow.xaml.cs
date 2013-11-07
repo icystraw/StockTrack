@@ -268,12 +268,9 @@ namespace StockTrack
             }
         }
 
-        private void btnOrderSearch_Click(object sender, RoutedEventArgs e)
+        private void btnOrders_Click(object sender, RoutedEventArgs e)
         {
-            OrderSearch o = new OrderSearch();
-            o.MainWindow = this;
-            o.Show();
-            this.Hide();
+
         }
 
         private void btnStats_Click(object sender, RoutedEventArgs e)
@@ -345,11 +342,11 @@ namespace StockTrack
             if (MessageBox.Show("Sure to delete " + i.ItemName + "?", "Please confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 DataAccess.DeleteItem(i.ItemId);
-                RefreshItems();
+                refreshItems();
             }
         }
 
-        public void RefreshItems()
+        private void refreshItems()
         {
             if (dgCats.SelectedItem == null)
             {
@@ -383,7 +380,7 @@ namespace StockTrack
                 i.CategoryId = c.CategoryId;
                 DataAccess.UpdateItem(i);
             }
-            RefreshItems();
+            refreshItems();
         }
 
         private void btnMini_Click(object sender, RoutedEventArgs e)
@@ -467,10 +464,9 @@ namespace StockTrack
             if (null == dgHistory.SelectedItem) return;
             OrderSearch o = new OrderSearch();
             o.OrderId = (dgHistory.SelectedItem as History).OrderId;
-            o.MainWindow = this;
-            o.PerformSearch();
-            o.Show();
-            this.Hide();
+            o.Owner = this;
+            o.ShowDialog();
+            refreshItems();
         }
     }
 }

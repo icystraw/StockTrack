@@ -46,11 +46,11 @@
             <Expander Header="More Options" Margin="0,10,0,0">
                 <StackPanel>
                     <Button Name="btnStats" Margin="0,10,0,0" Click="btnStats_Click">Sales Report</Button>
-                    <Button Name="btnOrderSearch" Margin="0,10,0,0" Click="btnOrderSearch_Click">Order Search</Button>
                     <Button Name="btnExport" Margin="0,10,0,0" Click="btnExport_Click">Export Items...</Button>
                     <Button Name="btnAdvanced" Margin="0,10,0,0" Click="btnAdvanced_Click">Advanced</Button>
                 </StackPanel>
             </Expander>
+            <Button Name="btnOrders" Margin="0,10,0,0" Click="btnOrders_Click">Manage Orders</Button>
             <Button Name="btnMini" Margin="0,10,0,0" Click="btnMini_Click">Go Normal</Button>
         </StackPanel>
         <DockPanel>
