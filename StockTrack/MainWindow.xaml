@@ -76,7 +76,7 @@
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Undo Action" Click="mnuUndoAction_Click" />
-                        <MenuItem Name="mnuOrderSearch" IsEnabled="False" Header="What else in this order?" Click="mnuOrderSearch_Click"></MenuItem>
+                        <MenuItem Name="mnuOrderSearch" IsEnabled="False" Header="Order Details" Click="mnuOrderSearch_Click"></MenuItem>
                         <MenuItem Command="Copy"></MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>

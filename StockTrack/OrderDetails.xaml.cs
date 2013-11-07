@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace StockTrack
 {
@@ -37,7 +28,10 @@ namespace StockTrack
             }
         }
 
-        List<History> hs = new List<History>();
+        private List<History> hs = new List<History>();
+        private Order o = null;
+        private DateTime nullDate = new DateTime(1970, 1, 1);
+        private bool needSaveOrder = true;
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -52,12 +46,52 @@ namespace StockTrack
 
         private void getOrderDetails()
         {
-
+            o = DataAccess.GetOrderById(orderId);
+            if (o != null)
+            {
+                txtOrderNo.Text = o.OrderNo;
+                txtCustomerName.Text = o.CustomerName;
+                txtContactNo.Text = o.ContactNo;
+                cbShipping.Text = o.Shipping;
+                txtTotalAmount.Text = o.TotalAmount.ToString();
+                txtPaidToday.Text = o.PaidToday.ToString();
+                cbIsWorkOrder.IsChecked = o.IsWorkOrder;
+                if (o.OrderDate != nullDate) dtOrderDate.SelectedDate = o.OrderDate;
+                else dtOrderDate.SelectedDate = null;
+                if (o.ShippingDate != nullDate) dtShippingDate.SelectedDate = o.ShippingDate;
+                else dtShippingDate.SelectedDate = null;
+                txtComments.Text = o.Comments;
+            }
         }
 
-        private void saveOrderDetails()
+        private bool saveOrderDetails()
         {
+            if (o != null)
+            {
+                o.OrderNo = txtOrderNo.Text.Trim();
+                o.CustomerName = txtCustomerName.Text.Trim();
+                o.ContactNo = txtContactNo.Text.Trim();
+                o.Shipping = cbShipping.Text.Trim();
+                try
+                {
+                    o.TotalAmount = Convert.ToDouble(txtTotalAmount.Text.Trim());
+                    o.PaidToday = Convert.ToDouble(txtPaidToday.Text.Trim());
+                }
+                catch
+                {
+                    MessageBox.Show("Check.", "Please", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                o.IsWorkOrder = (bool)cbIsWorkOrder.IsChecked;
+                if (null == dtOrderDate.SelectedDate) o.OrderDate = nullDate;
+                else o.OrderDate = (DateTime)dtOrderDate.SelectedDate;
+                if (null == dtShippingDate.SelectedDate) o.ShippingDate = nullDate;
+                else o.ShippingDate = (DateTime)dtShippingDate.SelectedDate;
+                o.Comments = txtComments.Text.Trim();
 
+                DataAccess.UpdateOrder(o);
+            }
+            return true;
         }
 
         private void getOrderHistory()
@@ -86,15 +120,48 @@ namespace StockTrack
             mnuUndoAction.IsEnabled = !(null == dgHistory.SelectedItem);
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            saveOrderDetails();
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             getOrderDetails();
             getOrderHistory();
+        }
+
+        private void amount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                lblBalance.Content = Convert.ToDouble(txtTotalAmount.Text.Trim()) - Convert.ToDouble(txtPaidToday.Text.Trim());
+            }
+            catch
+            {
+                lblBalance.Content = string.Empty;
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (needSaveOrder)
+            {
+                e.Cancel = !saveOrderDetails();
+            }
+        }
+
+        private void btnDeleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgHistory.HasItems)
+            {
+                MessageBox.Show("As a preventative measure, please undo all the items before attempting to delete this order.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            if (MessageBox.Show("This will delete all related information about this order. Continue?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                if (o != null)
+                {
+                    DataAccess.DeleteOrderById(o.OrderId);
+                    needSaveOrder = false;
+                    this.Close();
+                }
+            }
         }
     }
 }

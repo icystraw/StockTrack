@@ -256,6 +256,64 @@ namespace StockTrack
             return histories;
         }
 
+        public static Order GetOrderById(int orderId)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("select * from [order] where [orderid] = @orderid", con);
+            cmd.Parameters.Add(new SqlParameter("@orderid", orderId));
+            con.Open();
+            IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            Order o = null;
+            if (rd.Read())
+            {
+                o = new Order();
+                o.OrderId = Convert.ToInt32(rd["orderid"]);
+                o.OrderNo = rd["orderno"].ToString();
+                o.CustomerName = rd["customername"].ToString();
+                o.ContactNo = rd["contactno"].ToString();
+                o.Shipping = rd["shipping"].ToString();
+                o.TotalAmount = Convert.ToDouble(rd["totalamount"]);
+                o.PaidToday = Convert.ToDouble(rd["paidtoday"]);
+                o.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
+                o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
+                o.Comments = rd["comments"].ToString();
+            }
+            rd.Close();
+
+            return o;
+        }
+
+        public static void UpdateOrder(Order o)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("update [order] set [orderno] = @orderno, [customername] = @customername, [contactno] = @contactno, [shipping] = @shipping, [totalamount] = @totalamount, [paidtoday] = @paidtoday, [isworkorder] = @isworkorder, [orderdate] = @orderdate, [shippingdate] = @shippingdate, [comments] = @comments where [orderid] = @orderid", con);
+            cmd.Parameters.Add(new SqlParameter("@orderno", o.OrderNo));
+            cmd.Parameters.Add(new SqlParameter("@customername", o.CustomerName));
+            cmd.Parameters.Add(new SqlParameter("@contactno", o.ContactNo));
+            cmd.Parameters.Add(new SqlParameter("@shipping", o.Shipping));
+            cmd.Parameters.Add(new SqlParameter("@totalamount", o.TotalAmount));
+            cmd.Parameters.Add(new SqlParameter("@paidtoday", o.PaidToday));
+            cmd.Parameters.Add(new SqlParameter("@isworkorder", o.IsWorkOrder));
+            cmd.Parameters.Add(new SqlParameter("@orderdate", o.OrderDate));
+            cmd.Parameters.Add(new SqlParameter("@shippingdate", o.ShippingDate));
+            cmd.Parameters.Add(new SqlParameter("@comments", o.Comments));
+            cmd.Parameters.Add(new SqlParameter("@orderid", o.OrderId));
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public static void DeleteOrderById(int orderId)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("delete from [order] where [orderid] = @orderid", con);
+            cmd.Parameters.Add(new SqlParameter("@orderid", orderId));
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
         public static List<History> GetHistoricSales(DateTime dt1, DateTime dt2, Category c)
         {
             List<History> histories = new List<History>();
