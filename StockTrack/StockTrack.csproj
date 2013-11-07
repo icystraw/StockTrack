@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="Order.cs" />
     <Compile Include="OrderHistory.cs" />
+    <Compile Include="OrderSearch.xaml.cs">
+      <DependentUpon>OrderSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Stats.xaml.cs">
       <DependentUpon>Stats.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -193,5 +193,12 @@ namespace StockTrack
             this.Hide();
             i.Show();
         }
+
+        private void btnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            OrderSearch o = new OrderSearch();
+            o.Show();
+            this.Close();
+        }
     }
 }
