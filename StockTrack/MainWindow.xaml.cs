@@ -462,7 +462,7 @@ namespace StockTrack
         private void mnuOrderSearch_Click(object sender, RoutedEventArgs e)
         {
             if (null == dgHistory.SelectedItem) return;
-            OrderSearch o = new OrderSearch();
+            OrderDetails o = new OrderDetails();
             o.OrderId = (dgHistory.SelectedItem as History).OrderId;
             o.Owner = this;
             o.ShowDialog();

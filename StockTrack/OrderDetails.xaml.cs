@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace StockTrack
 {
     /// <summary>
-    /// Interaction logic for OrderSearch.xaml
+    /// Interaction logic for OrderDetails.xaml
     /// </summary>
-    public partial class OrderSearch : Window
+    public partial class OrderDetails : Window
     {
-        public OrderSearch()
+        public OrderDetails()
         {
             InitializeComponent();
         }
