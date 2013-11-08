@@ -291,8 +291,37 @@ namespace StockTrack
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = "select * from [order] where 1 = 1";
-
-
+            if (!string.IsNullOrEmpty(orderNo))
+            {
+                cmd.CommandText += " and [orderno] like N'%' + @orderno + N'%'";
+                cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
+            }
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                cmd.CommandText += " and ([customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%')";
+                cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
+            }
+            if (!string.IsNullOrEmpty(shipping))
+            {
+                cmd.CommandText += " and [shipping] like N'%' + @shipping + N'%'";
+                cmd.Parameters.Add(new SqlParameter("@shipping", shipping));
+            }
+            if (startDate != null)
+            {
+                cmd.CommandText += " and [orderdate] >= @startdate";
+                cmd.Parameters.Add(new SqlParameter("@startdate", startDate));
+            }
+            if (endDate != null)
+            {
+                cmd.CommandText += " and [orderdate] < @enddate";
+                cmd.Parameters.Add(new SqlParameter("@enddate", ((DateTime)endDate).AddDays(1)));
+            }
+            if (isWorkOrder != null)
+            {
+                cmd.CommandText += " and [isworkorder] = @isworkorder";
+                cmd.Parameters.Add(new SqlParameter("@isworkorder", isWorkOrder));
+            }
+            cmd.CommandText += " order by [orderdate] desc";
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (rd.Read())
