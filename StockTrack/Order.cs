@@ -85,5 +85,10 @@ namespace StockTrack
             get { return comments; }
             set { comments = value; }
         }
+
+        public double Balance
+        {
+            get { return totalAmount - paidToday; }
+        }
     }
 }

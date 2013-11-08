@@ -57,10 +57,8 @@ namespace StockTrack
                 txtTotalAmount.Text = o.TotalAmount.ToString();
                 txtPaidToday.Text = o.PaidToday.ToString();
                 cbIsWorkOrder.IsChecked = o.IsWorkOrder;
-                if (o.OrderDate != nullDate) dtOrderDate.SelectedDate = o.OrderDate;
-                else dtOrderDate.SelectedDate = null;
-                if (o.ShippingDate != nullDate) dtShippingDate.SelectedDate = o.ShippingDate;
-                else dtShippingDate.SelectedDate = null;
+                dtOrderDate.SelectedDate = o.OrderDate;
+                dtShippingDate.SelectedDate = o.ShippingDate;
                 txtComments.Text = o.Comments;
             }
         }
@@ -84,10 +82,13 @@ namespace StockTrack
                     return false;
                 }
                 o.IsWorkOrder = (bool)cbIsWorkOrder.IsChecked;
-                if (null == dtOrderDate.SelectedDate) o.OrderDate = nullDate;
-                else o.OrderDate = (DateTime)dtOrderDate.SelectedDate;
-                if (null == dtShippingDate.SelectedDate) o.ShippingDate = nullDate;
-                else o.ShippingDate = (DateTime)dtShippingDate.SelectedDate;
+                if (null == dtOrderDate.SelectedDate || null == dtShippingDate.SelectedDate)
+                {
+                    MessageBox.Show("Check.", "Please", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                o.OrderDate = (DateTime)dtOrderDate.SelectedDate;
+                o.ShippingDate = (DateTime)dtShippingDate.SelectedDate;
                 o.Comments = txtComments.Text.Trim();
 
                 DataAccess.UpdateOrder(o);

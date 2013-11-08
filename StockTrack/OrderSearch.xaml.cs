@@ -23,5 +23,15 @@ namespace StockTrack
         {
             InitializeComponent();
         }
+
+        private void dgOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

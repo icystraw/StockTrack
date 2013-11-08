@@ -14,6 +14,8 @@
             <ComboBox Margin="2" Name="cbShipping" IsEditable="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
                 <ComboBoxItem>Delivery</ComboBoxItem>
+                <ComboBoxItem>Pick up on-call</ComboBoxItem>
+                <ComboBoxItem>Delivery on-call</ComboBoxItem>
             </ComboBox>
             <Label Margin="2">Total Amount (AUD):</Label>
             <TextBox Margin="2" Name="txtTotalAmount" TextChanged="amount_TextChanged"></TextBox>
