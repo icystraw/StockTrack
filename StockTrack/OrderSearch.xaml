@@ -38,7 +38,7 @@
                 <DataGridTextColumn Header="Total" IsReadOnly="True" Binding="{Binding Path=TotalAmount}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Paid" IsReadOnly="True" Binding="{Binding Path=PaidToday}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Balance" IsReadOnly="True" Binding="{Binding Path=Balance}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Work Order" IsReadOnly="True" Binding="{Binding Path=IsWorkOrder}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Work Order" IsReadOnly="True" Binding="{Binding Path=IsWorkOrder}"></DataGridCheckBoxColumn>
                 <DataGridTextColumn Header="Order Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comments" IsReadOnly="True" Binding="{Binding Path=Comments}"></DataGridTextColumn>
