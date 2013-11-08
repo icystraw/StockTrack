@@ -287,6 +287,31 @@ namespace StockTrack
         public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, bool? isWorkOrder)
         {
             List<Order> orders = new List<Order>();
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "select * from [order] where 1 = 1";
+
+
+            con.Open();
+            IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (rd.Read())
+            {
+                Order o = new Order();
+                o.OrderId = Convert.ToInt32(rd["orderid"]);
+                o.OrderNo = rd["orderno"].ToString();
+                o.CustomerName = rd["customername"].ToString();
+                o.ContactNo = rd["contactno"].ToString();
+                o.Shipping = rd["shipping"].ToString();
+                o.TotalAmount = Convert.ToDouble(rd["totalamount"]);
+                o.PaidToday = Convert.ToDouble(rd["paidtoday"]);
+                o.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
+                o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
+                o.Comments = rd["comments"].ToString();
+                orders.Add(o);
+            }
+            rd.Close();
 
             return orders;
         }
