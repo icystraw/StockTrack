@@ -130,5 +130,53 @@ namespace StockTrack.Properties {
                 this["miniTopmost"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int osXpos {
+            get {
+                return ((int)(this["osXpos"]));
+            }
+            set {
+                this["osXpos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int osYpos {
+            get {
+                return ((int)(this["osYpos"]));
+            }
+            set {
+                this["osYpos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int osWidth {
+            get {
+                return ((int)(this["osWidth"]));
+            }
+            set {
+                this["osWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("660")]
+        public int osHeight {
+            get {
+                return ((int)(this["osHeight"]));
+            }
+            set {
+                this["osHeight"] = value;
+            }
+        }
     }
 }

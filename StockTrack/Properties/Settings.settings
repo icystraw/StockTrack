@@ -29,5 +29,17 @@
     <Setting Name="miniTopmost" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="osXpos" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="osYpos" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="osWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="osHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">660</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
