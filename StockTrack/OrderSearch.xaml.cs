@@ -48,7 +48,10 @@ namespace StockTrack
 
         private void performSearch()
         {
-
+            bool? isWorkOrder = null;
+            if (cbIsWorkOrder.SelectedIndex == 0) isWorkOrder = true;
+            else if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = false;
+            dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, isWorkOrder);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

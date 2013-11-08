@@ -284,6 +284,13 @@ namespace StockTrack
             return o;
         }
 
+        public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, bool? isWorkOrder)
+        {
+            List<Order> orders = new List<Order>();
+
+            return orders;
+        }
+
         public static void UpdateOrder(Order o)
         {
             SqlConnection con = new SqlConnection(conStr);
