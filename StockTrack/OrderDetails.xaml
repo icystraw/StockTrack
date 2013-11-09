@@ -11,7 +11,7 @@
             <Label Margin="2">Contact Number:</Label>
             <TextBox Margin="2" Name="txtContactNo"></TextBox>
             <Label Margin="2">Shipping Method:</Label>
-            <ComboBox Margin="2" Name="cbShipping" IsEditable="True" IsTextSearchEnabled="True">
+            <ComboBox Margin="2" Name="cbShipping" IsEditable="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
                 <ComboBoxItem>Delivery</ComboBoxItem>
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
