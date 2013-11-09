@@ -12,18 +12,18 @@
     </Window.InputBindings>
     <DockPanel>
         <DockPanel DockPanel.Dock="Left" Width="200">
-            <Label DockPanel.Dock="Top" Margin="10,10,10,0">Categories:</Label>
-            <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="10,5" Click="btnDeleteCat_Click">Delete Category</Button>
-            <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="10,5" Click="btnAddCat_Click">Add New Category</Button>
-            <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="10,5" Click="btnAddItem_Click">Add Item</Button>
-            <DataGrid Name="dgCats" Margin="10,10" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
+            <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
+            <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="5" Click="btnAddCat_Click">Add New Category</Button>
+            <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="5" Click="btnAddItem_Click">Add Item</Button>
+            <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                       CanUserDeleteRows="False" CanUserAddRows="False" CellEditEnding="dgCats_CellEditEnding" SelectionChanged="dgCats_SelectionChanged" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Path=CategoryName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
-        <StackPanel DockPanel.Dock="Right" Margin="10,0" Width="150">
+        <StackPanel DockPanel.Dock="Right" Margin="5" Width="150">
+            <Label Margin="0,5,0,0">Order details:</Label>
             <Label Margin="0,5,0,0">Comments:</Label>
             <TextBox Name="txtComments" Margin="0,5,0,0" />
             <Label Margin="0,5,0,0">Date:</Label>
@@ -34,28 +34,29 @@
                 <Button Name="btnOup" Width="75" Click="btnOup_Click">Up</Button>
                 <Button Name="btnOdown" Width="75" Click="btnOdown_Click">Down</Button>
             </StackPanel>
-            <Label Margin="0,5,0,0">Search Items:</Label>
-            <TextBox Name="txtSearch" Margin="0,5,0,0" TextChanged="txtSearch_TextChanged" />
             <Label Margin="0,5,0,0">Purchase quantity:</Label>
             <TextBox Name="txtQuantity" Text="1" Margin="0,5,0,0" MouseWheel="txtQuantity_MouseWheel" />
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <Button Name="btnQup" Width="75" Click="btnQup_Click">Up</Button>
                 <Button Name="btnQdown" Width="75" Click="btnQdown_Click">Down</Button>
             </StackPanel>
-            <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="0,10,0,0" Height="50">Save</Button>
-            <Expander Header="More Options" Margin="0,10,0,0">
+            <Label Margin="0,5,0,0">Item quick search:</Label>
+            <Label>(Select from left)</Label>
+            <TextBox Name="txtSearch" Margin="0,5,0,0" TextChanged="txtSearch_TextChanged" />
+            <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="0,5,0,0" Height="50">Save Details</Button>
+            <Expander Header="More Options" Margin="0,5,0,0">
                 <StackPanel>
-                    <Button Name="btnStats" Margin="0,10,0,0" Click="btnStats_Click">Sales Report</Button>
-                    <Button Name="btnExport" Margin="0,10,0,0" Click="btnExport_Click">Export Items...</Button>
-                    <Button Name="btnAdvanced" Margin="0,10,0,0" Click="btnAdvanced_Click">Advanced</Button>
+                    <Button Name="btnStats" Margin="0,5,0,0" Click="btnStats_Click">Sales Report</Button>
+                    <Button Name="btnExport" Margin="0,5,0,0" Click="btnExport_Click">Export Items...</Button>
+                    <Button Name="btnAdvanced" Margin="0,5,0,0" Click="btnAdvanced_Click">Advanced</Button>
                 </StackPanel>
             </Expander>
-            <Button Name="btnMini" Margin="0,10,0,0" Click="btnMini_Click">Go Normal</Button>
+            <Button Name="btnMini" Margin="0,5,0,0" Click="btnMini_Click">Go Normal</Button>
         </StackPanel>
         <DockPanel>
-            <Label DockPanel.Dock="Top" Margin="10,10,10,0" Name="lblItemCount"></Label>
+            <Label DockPanel.Dock="Top" Margin="5" Name="lblItemCount">0 item(s):</Label>
             <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="175"
-                      Margin="10,0,10,10" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+                      Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgHistory_SelectionChanged">
                 <DataGrid.Columns>
@@ -80,7 +81,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-            <DataGrid Name="dgItems" Margin="10,5" AutoGenerateColumns="False"
+            <DataGrid Name="dgItems" Margin="5" AutoGenerateColumns="False"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       CellEditEnding="dgItems_CellEditEnding"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgItems_SelectionChanged">
