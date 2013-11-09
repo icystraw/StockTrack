@@ -16,6 +16,7 @@
                 <ComboBoxItem>Delivery</ComboBoxItem>
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
+                <ComboBoxItem>To be advised</ComboBoxItem>
             </ComboBox>
             <Label Margin="2">Total Amount (AUD):</Label>
             <TextBox Margin="2" Name="txtTotalAmount" TextChanged="amount_TextChanged"></TextBox>

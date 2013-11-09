@@ -74,5 +74,27 @@ namespace StockTrack
         {
             performSearch();
         }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            Name n = new Name();
+            n.Owner = this;
+            if (n.ShowDialog() == true)
+            {
+                if (string.IsNullOrEmpty(n.Input))
+                {
+                    return;
+                }
+                int orderId = DataAccess.AddNewWorkOrder(n.Input);
+                if (orderId > 0)
+                {
+                    OrderDetails od = new OrderDetails();
+                    od.OrderId = orderId;
+                    od.Owner = this;
+                    od.ShowDialog();
+                    performSearch();
+                }
+            }
+        }
     }
 }

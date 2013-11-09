@@ -418,6 +418,18 @@ namespace StockTrack
             con.Close();
         }
 
+        public static int AddNewWorkOrder(string orderNo)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments]) values (@orderno, N'', N'', N'', 0, 0, 1, GETDATE(), GETDATE(), N''); select @@identity;", con);
+            cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
+            con.Open();
+            int retVal = 0;
+            retVal = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            return retVal;
+        }
+
         public static List<OrderHistory> GetOrderHistoryByOrderId(int orderId)
         {
             List<OrderHistory> histories = new List<OrderHistory>();

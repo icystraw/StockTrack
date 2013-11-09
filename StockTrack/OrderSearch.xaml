@@ -14,6 +14,7 @@
                 <ComboBoxItem>Delivery</ComboBoxItem>
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
+                <ComboBoxItem>To be advised</ComboBoxItem>
             </ComboBox>
             <Label>Is Work Order:</Label>
             <ComboBox Name="cbIsWorkOrder">
@@ -32,6 +33,7 @@
             <Label>to</Label>
             <DatePicker Name="dtShippingDate2"></DatePicker>
             <Button Name="btnSearch" Width="80" Click="btnSearch_Click" IsDefault="True">Search</Button>
+            <Button Name="btnNew" Width="120" Click="btnNew_Click">New Work Order</Button>
         </WrapPanel>
         <Button Name="btnNormal" DockPanel.Dock="Bottom" Margin="3" Click="btnNormal_Click">Go Normal</Button>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
