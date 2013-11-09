@@ -194,26 +194,6 @@ namespace StockTrack
             }
         }
 
-        private void btnQup_Click(object sender, RoutedEventArgs e)
-        {
-            Utilities.ChangeTextFieldNumber(txtQuantity, 1);
-        }
-
-        private void btnQdown_Click(object sender, RoutedEventArgs e)
-        {
-            Utilities.ChangeTextFieldNumber(txtQuantity, -1);
-        }
-
-        private void btnOup_Click(object sender, RoutedEventArgs e)
-        {
-            Utilities.ChangeTextFieldNumber(txtOrderNo, 1);
-        }
-
-        private void btnOdown_Click(object sender, RoutedEventArgs e)
-        {
-            Utilities.ChangeTextFieldNumber(txtOrderNo, -1);
-        }
-
         private void dgItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgItems.SelectedItem == null)
@@ -298,6 +278,7 @@ namespace StockTrack
                     h.OrderNo = DateTime.Today.ToString("ddMMyyyy");
                 else
                     h.OrderNo = txtOrderNo.Text.Trim();
+                if (dgOrders.SelectedItem != null) h.OrderId = (dgOrders.SelectedItem as Order).OrderId;
                 h.EntryDate = DateTime.Now;
                 try
                 {
@@ -468,6 +449,11 @@ namespace StockTrack
                 if (i.ItemId == selectedItemId)
                     dgItems.SelectedItem = i;
             }
+        }
+
+        private void txtOrderNo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), string.Empty, string.Empty, null, null, null, null, null);
         }
     }
 }

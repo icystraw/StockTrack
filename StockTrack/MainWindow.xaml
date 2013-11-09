@@ -29,19 +29,17 @@
             <Label Margin="0,5,0,0">Date:</Label>
             <DatePicker Name="dtEntryDate" Margin="0,5,0,0"/>
             <Label Margin="0,5,0,0">Order No:</Label>
-            <TextBox Name="txtOrderNo" Margin="0,5,0,0" MouseWheel="txtOrderNo_MouseWheel" />
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <Button Name="btnOup" Width="75" Click="btnOup_Click">Up</Button>
-                <Button Name="btnOdown" Width="75" Click="btnOdown_Click">Down</Button>
-            </StackPanel>
+            <TextBox Name="txtOrderNo" Margin="0,5,0,0" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
+            <DataGrid Name="dgOrders" Margin="0,5,0,0" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
+                       HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="NO" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
             <Label Margin="0,5,0,0">Purchase quantity:</Label>
             <TextBox Name="txtQuantity" Text="1" Margin="0,5,0,0" MouseWheel="txtQuantity_MouseWheel" />
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <Button Name="btnQup" Width="75" Click="btnQup_Click">Up</Button>
-                <Button Name="btnQdown" Width="75" Click="btnQdown_Click">Down</Button>
-            </StackPanel>
             <Label Margin="0,5,0,0">Item quick search:</Label>
-            <Label>(Select from left)</Label>
             <TextBox Name="txtSearch" Margin="0,5,0,0" TextChanged="txtSearch_TextChanged" />
             <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="0,5,0,0" Height="50">Save Details</Button>
             <Expander Header="More Options" Margin="0,5,0,0">
