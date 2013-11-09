@@ -9,7 +9,7 @@
             <Label>Keyword:</Label>
             <TextBox Name="txtKeyword" Width="130"></TextBox>
             <Label>Shipping:</Label>
-            <ComboBox Name="cbShipping" IsEditable="True" Width="120">
+            <ComboBox Name="cbShipping" IsEditable="True" Width="120" IsTextSearchEnabled="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
                 <ComboBoxItem>Delivery</ComboBoxItem>
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
