@@ -457,11 +457,17 @@ namespace StockTrack
         private void mnuOrderSearch_Click(object sender, RoutedEventArgs e)
         {
             if (null == dgHistory.SelectedItem) return;
+            int selectedItemId = (dgItems.SelectedItem as Item).ItemId;
             OrderDetails o = new OrderDetails();
             o.OrderId = (dgHistory.SelectedItem as History).OrderId;
             o.Owner = this;
             o.ShowDialog();
             refreshItems();
+            foreach (Item i in dgItems.Items)
+            {
+                if (i.ItemId == selectedItemId)
+                    dgItems.SelectedItem = i;
+            }
         }
     }
 }
