@@ -284,7 +284,7 @@ namespace StockTrack
             return o;
         }
 
-        public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, bool? isWorkOrder)
+        public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, bool? isWorkOrder)
         {
             List<Order> orders = new List<Order>();
             SqlConnection con = new SqlConnection(conStr);
@@ -315,6 +315,16 @@ namespace StockTrack
             {
                 cmd.CommandText += " and [orderdate] < @enddate";
                 cmd.Parameters.Add(new SqlParameter("@enddate", ((DateTime)endDate).AddDays(1)));
+            }
+            if (startSDate != null)
+            {
+                cmd.CommandText += " and [shippingdate] >= @startsdate";
+                cmd.Parameters.Add(new SqlParameter("@startsdate", startSDate));
+            }
+            if (endSDate != null)
+            {
+                cmd.CommandText += " and [shippingdate] < @endsdate";
+                cmd.Parameters.Add(new SqlParameter("@endsdate", ((DateTime)endSDate).AddDays(1)));
             }
             if (isWorkOrder != null)
             {

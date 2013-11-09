@@ -5,9 +5,9 @@
     <DockPanel>
         <WrapPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
             <Label>Order No:</Label>
-            <TextBox Name="txtOrderNo" Width="50"></TextBox>
+            <TextBox Name="txtOrderNo" Width="100"></TextBox>
             <Label>Keyword:</Label>
-            <TextBox Name="txtKeyword" Width="100"></TextBox>
+            <TextBox Name="txtKeyword" Width="130"></TextBox>
             <Label>Shipping:</Label>
             <ComboBox Name="cbShipping" IsEditable="True" Width="120">
                 <ComboBoxItem>Pick up</ComboBoxItem>
@@ -15,16 +15,22 @@
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
             </ComboBox>
-            <Label>Order Date:</Label>
-            <DatePicker Name="dtOrderDate1"></DatePicker>
-            <Label>to</Label>
-            <DatePicker Name="dtOrderDate2"></DatePicker>
             <Label>Is Work Order:</Label>
             <ComboBox Name="cbIsWorkOrder">
                 <ComboBoxItem>All</ComboBoxItem>
                 <ComboBoxItem IsSelected="True">Yes</ComboBoxItem>
                 <ComboBoxItem>No</ComboBoxItem>
             </ComboBox>
+        </WrapPanel>
+        <WrapPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
+             <Label>Order Date:</Label>
+            <DatePicker Name="dtOrderDate1"></DatePicker>
+            <Label>to</Label>
+            <DatePicker Name="dtOrderDate2"></DatePicker>
+            <Label>Shipping Date:</Label>
+            <DatePicker Name="dtShippingDate1"></DatePicker>
+            <Label>to</Label>
+            <DatePicker Name="dtShippingDate2"></DatePicker>
             <Button Name="btnSearch" Width="80" Click="btnSearch_Click" IsDefault="True">Search</Button>
         </WrapPanel>
         <Button Name="btnNormal" DockPanel.Dock="Bottom" Margin="3" Click="btnNormal_Click">Go Normal</Button>
