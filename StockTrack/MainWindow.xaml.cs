@@ -262,7 +262,7 @@ namespace StockTrack
             if (10 == clickCount)
             {
                 btnDeleteCat.Visibility = System.Windows.Visibility.Visible;
-                MessageBox.Show("This program, as its name suggests, is not meant for ordinary store with ordinary staff.\n\nIf you are in the market for a stock tracking software that makes sense, look elsewhere.\n\nDuring the making of this program, the author received valuable feedback from his colleagues and friends. They are all as crazy as - if not crazier than - the author.\n\nNo support will be provided. You are on your own.", "About");
+                MessageBox.Show("This program is not meant for ordinary store with ordinary staff.\n\nIf you are in the market for a stock tracking software that makes sense, look elsewhere.\n\nDuring the making of this program, the author received valuable feedback from his colleagues and friends. They are all as crazy as - if not crazier than - the author.\n\nNo support will be provided. You are on your own.", "About");
             }
         }
 

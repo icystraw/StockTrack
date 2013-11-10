@@ -49,7 +49,7 @@
                     <Button Name="btnAdvanced" Margin="0,5,0,0" Click="btnAdvanced_Click">Advanced</Button>
                 </StackPanel>
             </Expander>
-            <Button Name="btnMini" Margin="0,5,0,0" Click="btnMini_Click">Go Normal</Button>
+            <Button Name="btnMini" Margin="0,5,0,0" Click="btnMini_Click">Go Mini</Button>
         </StackPanel>
         <DockPanel>
             <Label DockPanel.Dock="Top" Margin="5" Name="lblItemCount">0 item(s):</Label>

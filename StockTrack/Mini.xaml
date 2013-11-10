@@ -14,8 +14,8 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Name="btnClose" Click="btnClose_Click" DockPanel.Dock="Right" Margin="2" Width="30" VerticalAlignment="Center">X</Button>
             <Button Name="btnShy" DockPanel.Dock="Right" Margin="2" Width="30" VerticalAlignment="Center" Click="btnShy_Click">_</Button>
-            <Button Name="btnCrazy" Click="btnCrazy_Click" DockPanel.Dock="Right" Margin="2" Width="70" VerticalAlignment="Center">ITEMS</Button>
             <Button Name="btnOrders" DockPanel.Dock="Right" Margin="2" Width="70" VerticalAlignment="Center" Click="btnOrders_Click">ORDERS</Button>
+            <Button Name="btnCrazy" Click="btnCrazy_Click" DockPanel.Dock="Right" Margin="2" Width="70" VerticalAlignment="Center">ITEMS</Button>
             <CheckBox Name="chkTop" DockPanel.Dock="Right" Margin="2" ToolTip="Topmost" Click="chkTop_Click" VerticalAlignment="Center"></CheckBox>
             <Label Content="STOCK TRACK" Name="lblTitle" MouseDoubleClick="lblTitle_MouseDoubleClick"></Label>
         </DockPanel>
