@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,6 +101,12 @@ namespace StockTrack
                     performSearch();
                 }
             }
+        }
+
+        private void hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = (Hyperlink)e.OriginalSource;
+            Process.Start(link.NavigateUri.AbsoluteUri);
         }
     }
 }

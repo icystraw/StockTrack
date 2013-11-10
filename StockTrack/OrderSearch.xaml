@@ -24,7 +24,7 @@
             </ComboBox>
         </WrapPanel>
         <WrapPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
-             <Label>Order Date:</Label>
+            <Label>Order Date:</Label>
             <DatePicker Name="dtOrderDate1"></DatePicker>
             <Label>to</Label>
             <DatePicker Name="dtOrderDate2"></DatePicker>
@@ -50,7 +50,13 @@
                 <DataGridTextColumn Header="Order Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comments" IsReadOnly="True" Binding="{Binding Path=Comments}"></DataGridTextColumn>
-                <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}"></DataGridHyperlinkColumn>
+                <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}">
+                    <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                            <EventSetter Event="Hyperlink.Click" Handler="hyperlink_Click"></EventSetter>
+                        </Style>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
