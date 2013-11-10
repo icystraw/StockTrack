@@ -279,6 +279,7 @@ namespace StockTrack
                 o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
+                o.Folder = rd["folder"].ToString();
             }
             rd.Close();
 
@@ -307,6 +308,7 @@ namespace StockTrack
                 o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
+                o.Folder = rd["folder"].ToString();
             }
             rd.Close();
 
@@ -377,6 +379,7 @@ namespace StockTrack
                 o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
+                o.Folder = rd["folder"].ToString();
                 orders.Add(o);
             }
             rd.Close();
@@ -387,7 +390,7 @@ namespace StockTrack
         public static void UpdateOrder(Order o)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("update [order] set [orderno] = @orderno, [customername] = @customername, [contactno] = @contactno, [shipping] = @shipping, [totalamount] = @totalamount, [paidtoday] = @paidtoday, [isworkorder] = @isworkorder, [orderdate] = @orderdate, [shippingdate] = @shippingdate, [comments] = @comments where [orderid] = @orderid", con);
+            SqlCommand cmd = new SqlCommand("update [order] set [orderno] = @orderno, [customername] = @customername, [contactno] = @contactno, [shipping] = @shipping, [totalamount] = @totalamount, [paidtoday] = @paidtoday, [isworkorder] = @isworkorder, [orderdate] = @orderdate, [shippingdate] = @shippingdate, [comments] = @comments, [folder] = @folder where [orderid] = @orderid", con);
             cmd.Parameters.Add(new SqlParameter("@orderno", o.OrderNo));
             cmd.Parameters.Add(new SqlParameter("@customername", o.CustomerName));
             cmd.Parameters.Add(new SqlParameter("@contactno", o.ContactNo));
@@ -398,6 +401,7 @@ namespace StockTrack
             cmd.Parameters.Add(new SqlParameter("@orderdate", o.OrderDate));
             cmd.Parameters.Add(new SqlParameter("@shippingdate", o.ShippingDate));
             cmd.Parameters.Add(new SqlParameter("@comments", o.Comments));
+            cmd.Parameters.Add(new SqlParameter("@folder", o.Folder));
             cmd.Parameters.Add(new SqlParameter("@orderid", o.OrderId));
             con.Open();
             cmd.ExecuteNonQuery();
@@ -450,7 +454,7 @@ namespace StockTrack
         public static int AddNewWorkOrder(string orderNo)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments]) values (@orderno, N'', N'', N'', 0, 0, 1, GETDATE(), GETDATE(), N''); select @@identity;", con);
+            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments], [folder]) values (@orderno, N'', N'', N'', 0, 0, 1, GETDATE(), GETDATE(), N'', N''); select @@identity;", con);
             cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
             con.Open();
             int retVal = 0;

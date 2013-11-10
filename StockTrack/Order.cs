@@ -85,6 +85,13 @@ namespace StockTrack
             get { return comments; }
             set { comments = value; }
         }
+        private string folder;
+
+        public string Folder
+        {
+            get { return folder; }
+            set { folder = value; }
+        }
 
         public double Balance
         {

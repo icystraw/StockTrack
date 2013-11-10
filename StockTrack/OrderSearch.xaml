@@ -50,6 +50,7 @@
                 <DataGridTextColumn Header="Order Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comments" IsReadOnly="True" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}"></DataGridHyperlinkColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

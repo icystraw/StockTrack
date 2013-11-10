@@ -31,6 +31,8 @@
             <DatePicker Margin="2" Name="dtShippingDate"></DatePicker>
             <Label Margin="2">Comments:</Label>
             <TextBox Margin="2" Name="txtComments" MaxLines="4" AcceptsReturn="True"></TextBox>
+            <Label Margin="2">Folder:</Label>
+            <TextBox Margin="2" Name="txtFolder"></TextBox>
         </StackPanel>
         <DockPanel>
             <Label Margin="5" DockPanel.Dock="Top">Items in order:</Label>

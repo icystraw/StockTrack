@@ -60,6 +60,7 @@ namespace StockTrack
                 dtOrderDate.SelectedDate = o.OrderDate;
                 dtShippingDate.SelectedDate = o.ShippingDate;
                 txtComments.Text = o.Comments;
+                txtFolder.Text = o.Folder;
             }
         }
 
@@ -90,6 +91,7 @@ namespace StockTrack
                 o.OrderDate = (DateTime)dtOrderDate.SelectedDate;
                 o.ShippingDate = (DateTime)dtShippingDate.SelectedDate;
                 o.Comments = txtComments.Text.Trim();
+                o.Folder = txtFolder.Text.Trim();
 
                 DataAccess.UpdateOrder(o);
             }
