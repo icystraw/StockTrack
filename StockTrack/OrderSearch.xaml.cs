@@ -85,6 +85,11 @@ namespace StockTrack
                 {
                     return;
                 }
+                if (DataAccess.GetOrderByNo(n.Input) != null)
+                {
+                    if (MessageBox.Show("The order already exists. Do you want to add another order under the same order number?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                        return;
+                }
                 int orderId = DataAccess.AddNewWorkOrder(n.Input);
                 if (orderId > 0)
                 {
