@@ -174,6 +174,7 @@ namespace StockTrack
             cmd.Parameters.Add(new SqlParameter("@action", h.Action));
             cmd.Parameters.Add(new SqlParameter("@quantity", h.Quantity));
             cmd.Parameters.Add(new SqlParameter("@orderno", h.OrderNo));
+            cmd.Parameters.Add(new SqlParameter("@orderid", h.OrderId));
             cmd.Parameters.Add(new SqlParameter("@comments", h.Comments));
             con.Open();
             cmd.ExecuteNonQuery();

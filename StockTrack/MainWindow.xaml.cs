@@ -279,6 +279,7 @@ namespace StockTrack
                 else
                     h.OrderNo = txtOrderNo.Text.Trim();
                 if (dgOrders.SelectedItem != null) h.OrderId = (dgOrders.SelectedItem as Order).OrderId;
+                else h.OrderId = 0;
                 h.EntryDate = DateTime.Now;
                 try
                 {

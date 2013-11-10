@@ -103,6 +103,7 @@ namespace StockTrack
                     h.OrderNo = DateTime.Today.ToString("ddMMyyyy");
                 else
                     h.OrderNo = txtOrderNo.Text.Trim();
+                h.OrderId = 0;
                 h.EntryDate = DateTime.Now;
                 try
                 {
