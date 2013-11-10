@@ -431,7 +431,7 @@ namespace StockTrack
         private void txtOrderNo_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
-                dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), string.Empty, string.Empty, null, null, null, null, null);
+                dgOrders.ItemsSource = DataAccess.GetOrderByNo(txtOrderNo.Text.Trim());
         }
     }
 }

@@ -286,17 +286,17 @@ namespace StockTrack
             return o;
         }
 
-        public static Order GetOrderByNo(string orderNo)
+        public static List<Order> GetOrderByNo(string orderNo)
         {
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand("select * from [order] where [orderno] = @orderno", con);
             cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            Order o = null;
-            if (rd.Read())
+            List<Order> os = new List<Order>();
+            while (rd.Read())
             {
-                o = new Order();
+                Order o = new Order();
                 o.OrderId = Convert.ToInt32(rd["orderid"]);
                 o.OrderNo = rd["orderno"].ToString();
                 o.CustomerName = rd["customername"].ToString();
@@ -309,10 +309,11 @@ namespace StockTrack
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
+                os.Add(o);
             }
             rd.Close();
 
-            return o;
+            return os;
         }
 
         public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, bool? isWorkOrder)

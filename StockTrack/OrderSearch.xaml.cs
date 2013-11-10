@@ -86,7 +86,7 @@ namespace StockTrack
                 {
                     return;
                 }
-                if (DataAccess.GetOrderByNo(n.Input) != null)
+                if (DataAccess.GetOrderByNo(n.Input).Count > 0)
                 {
                     if (MessageBox.Show("The order already exists. Do you want to add another order under the same order number?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                         return;
