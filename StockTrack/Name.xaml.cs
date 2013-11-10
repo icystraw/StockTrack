@@ -30,6 +30,11 @@ namespace StockTrack
             set { txtInput.Text = value; }
         }
 
+        public string CustomTitle
+        {
+            set { this.Title = value; }
+        }
+
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;

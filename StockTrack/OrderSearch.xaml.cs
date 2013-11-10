@@ -80,6 +80,7 @@ namespace StockTrack
         {
             Name n = new Name();
             n.Owner = this;
+            n.CustomTitle = "Enter New Order Number:";
             if (n.ShowDialog() == true)
             {
                 if (string.IsNullOrEmpty(n.Input))

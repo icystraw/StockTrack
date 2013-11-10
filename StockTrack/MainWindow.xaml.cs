@@ -31,6 +31,7 @@ namespace StockTrack
             if (dgCats.SelectedItem == null) return;
             Name n = new Name();
             n.Owner = this;
+            n.CustomTitle = "Enter Item Name:";
             Category c = dgCats.SelectedItem as Category;
             if (n.ShowDialog() == true)
             {
@@ -47,6 +48,7 @@ namespace StockTrack
         {
             Name n = new Name();
             n.Owner = this;
+            n.CustomTitle = "Enter Category Name:";
             if (n.ShowDialog() == true)
             {
                 Category c = new Category();
