@@ -433,5 +433,28 @@ namespace StockTrack
             if (!string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
                 dgOrders.ItemsSource = DataAccess.GetOrderByNo(txtOrderNo.Text.Trim());
         }
+
+        private void dgOrders_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (null == dgOrders.SelectedItem) return;
+            int selectedItemId = 0;
+            if (dgItems.SelectedItem != null)
+            {
+                selectedItemId = (dgItems.SelectedItem as Item).ItemId;
+            }
+            OrderDetails o = new OrderDetails();
+            o.OrderId = (dgOrders.SelectedItem as Order).OrderId;
+            o.Owner = this;
+            o.ShowDialog();
+            refreshItems();
+            if (selectedItemId > 0)
+            {
+                foreach (Item i in dgItems.Items)
+                {
+                    if (i.ItemId == selectedItemId)
+                        dgItems.SelectedItem = i;
+                }
+            }
+        }
     }
 }

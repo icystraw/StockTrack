@@ -34,7 +34,7 @@
             <Label Margin="0,5,0,0">Order No:</Label>
             <TextBox Name="txtOrderNo" Margin="0,5,0,0" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
             <DataGrid Name="dgOrders" MaxHeight="150" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
-                       HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None">
+                       HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="NO" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
