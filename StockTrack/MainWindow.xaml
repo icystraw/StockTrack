@@ -11,7 +11,7 @@
         <KeyBinding Command="Find" Key="F" Modifiers="Control"></KeyBinding>
     </Window.InputBindings>
     <DockPanel>
-        <DockPanel DockPanel.Dock="Left" Width="200">
+        <DockPanel DockPanel.Dock="Left" Width="150">
             <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
             <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="5" Click="btnAddCat_Click">Add New Category</Button>
             <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="5" Click="btnAddItem_Click">Add Item</Button>
@@ -22,7 +22,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
-        <StackPanel DockPanel.Dock="Right" Margin="5" Width="150">
+        <StackPanel DockPanel.Dock="Right" Margin="5" Width="200">
             <Label Margin="0,5,0,0">Order details:</Label>
             <Label Margin="0,5,0,0">Comments:</Label>
             <TextBox Name="txtComments" Margin="0,5,0,0" />
@@ -30,7 +30,7 @@
             <DatePicker Name="dtEntryDate" Margin="0,5,0,0"/>
             <Label Margin="0,5,0,0">Order No:</Label>
             <TextBox Name="txtOrderNo" Margin="0,5,0,0" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
-            <DataGrid Name="dgOrders" Margin="0,5,0,0" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
+            <DataGrid Name="dgOrders" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                        HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="NO" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
