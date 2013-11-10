@@ -3,41 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Order Details" Height="690" Width="750" Background="#FFE1E1E1" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" ShowInTaskbar="False" Closing="Window_Closing">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Width="150">
-            <Label Margin="2">Order Number:</Label>
-            <TextBox Margin="2" Name="txtOrderNo"></TextBox>
-            <Label Margin="2">Customer Name:</Label>
-            <TextBox Margin="2" Name="txtCustomerName"></TextBox>
-            <Label Margin="2">Contact Number:</Label>
-            <TextBox Margin="2" Name="txtContactNo"></TextBox>
-            <Label Margin="2">Shipping Method:</Label>
-            <ComboBox Margin="2" Name="cbShipping" IsEditable="True">
+        <StackPanel DockPanel.Dock="Left" Width="150" Margin="5">
+            <Label>Order Number:</Label>
+            <TextBox Name="txtOrderNo"></TextBox>
+            <CheckBox Name="cbIsWorkOrder" Margin="0,5,0,0">Is Work Order</CheckBox>
+            <Label>Customer Name:</Label>
+            <TextBox Name="txtCustomerName"></TextBox>
+            <Label>Contact Number:</Label>
+            <TextBox Name="txtContactNo"></TextBox>
+            <Label>Shipping Method:</Label>
+            <ComboBox Name="cbShipping" IsEditable="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
                 <ComboBoxItem>Delivery</ComboBoxItem>
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
                 <ComboBoxItem>To be advised</ComboBoxItem>
             </ComboBox>
-            <Label Margin="2">Total Amount (AUD):</Label>
-            <TextBox Margin="2" Name="txtTotalAmount" TextChanged="amount_TextChanged"></TextBox>
-            <Label Margin="2">Paid Today (AUD):</Label>
-            <TextBox Margin="2" Name="txtPaidToday" TextChanged="amount_TextChanged"></TextBox>
-            <Label Margin="2">Balance (AUD):</Label>
-            <TextBox Margin="2" Name="txtBalance" IsReadOnly="True">0</TextBox>
-            <CheckBox Margin="2" Name="cbIsWorkOrder">Is Work Order</CheckBox>
-            <Label Margin="2">Order Date:</Label>
-            <DatePicker Margin="2" Name="dtOrderDate"></DatePicker>
-            <Label Margin="2">Shipping Date:</Label>
-            <DatePicker Margin="2" Name="dtShippingDate"></DatePicker>
-            <Label Margin="2">Comments:</Label>
-            <TextBox Margin="2" Name="txtComments" MaxLines="4" AcceptsReturn="True"></TextBox>
-            <Label Margin="2">Folder:</Label>
-            <TextBox Margin="2" Name="txtFolder"></TextBox>
+            <Label>Total Amount (AUD):</Label>
+            <TextBox Name="txtTotalAmount" TextChanged="amount_TextChanged"></TextBox>
+            <Label>Paid Today (AUD):</Label>
+            <TextBox Name="txtPaidToday" TextChanged="amount_TextChanged"></TextBox>
+            <Label>Balance (AUD):</Label>
+            <TextBox Name="txtBalance" IsReadOnly="True">0</TextBox>
+            <Label>Order Date:</Label>
+            <DatePicker Name="dtOrderDate"></DatePicker>
+            <Label>Shipping Date:</Label>
+            <DatePicker Name="dtShippingDate"></DatePicker>
+            <Label>Comments:</Label>
+            <TextBox Name="txtComments" MaxLines="4" AcceptsReturn="True"></TextBox>
+            <Label>Folder:</Label>
+            <TextBox Name="txtFolder"></TextBox>
         </StackPanel>
-        <DockPanel>
-            <Label Margin="5" DockPanel.Dock="Top">Items in order:</Label>
+        <DockPanel Margin="5">
+            <Label DockPanel.Dock="Top">Items in order:</Label>
             <DataGrid Name="dgHistory" Height="200" DockPanel.Dock="Top"
-                  Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+                  Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False"
                   CanUserAddRows="False" CellEditEnding="dgHistory_CellEditEnding" SelectionChanged="dgHistory_SelectionChanged">
                 <DataGrid.Columns>
@@ -49,19 +49,19 @@
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Undo Action" Click="mnuUndoAction_Click" />
+                        <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Delete Order Item" Click="mnuUndoAction_Click" />
                         <MenuItem Command="Copy"></MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-            <Label Margin="5" DockPanel.Dock="Top">Order progression:</Label>
+            <Label Margin="0,5,0,0" DockPanel.Dock="Top">Order progression:</Label>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
                 <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add new progress" Click="btnAddProgress_Click"></Button>
                 <Button Margin="5" Width="150" Name="btnDeleteOrder" Content="Delete this order" Click="btnDeleteOrder_Click"></Button>
             </StackPanel>
-            <TextBox DockPanel.Dock="Bottom" Height="40" Name="txtProgress" Margin="5" AcceptsReturn="True"></TextBox>
-            <Label Margin="5" DockPanel.Dock="Bottom">Enter new progress:</Label>
-            <DataGrid Name="dgProgression" Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+            <TextBox DockPanel.Dock="Bottom" Height="40" Name="txtProgress" Margin="0,5,0,0" AcceptsReturn="True"></TextBox>
+            <Label Margin="0,5,0,0" DockPanel.Dock="Bottom">Enter new progress:</Label>
+            <DataGrid Name="dgProgression" Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False"
                   CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
                 <DataGrid.Columns>

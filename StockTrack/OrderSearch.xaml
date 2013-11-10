@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Stock Track (Orders)" Height="660" Width="1000" Background="#FFE1E1E1" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
-        <WrapPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
+        <StackPanel Margin="3" Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
             <Label>Order No:</Label>
             <TextBox Name="txtOrderNo" Width="100"></TextBox>
             <Label>Keyword:</Label>
@@ -22,8 +22,8 @@
                 <ComboBoxItem IsSelected="True">Yes</ComboBoxItem>
                 <ComboBoxItem>No</ComboBoxItem>
             </ComboBox>
-        </WrapPanel>
-        <WrapPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
+        </StackPanel>
+        <StackPanel Margin="3" Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
             <Label>Order Date:</Label>
             <DatePicker Name="dtOrderDate1"></DatePicker>
             <Label>to</Label>
@@ -33,7 +33,7 @@
             <Label>to</Label>
             <DatePicker Name="dtShippingDate2"></DatePicker>
             <Button Name="btnSearch" Width="120" Margin="20,0,0,0" Click="btnSearch_Click" IsDefault="True">Search</Button>
-        </WrapPanel>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3">
             <Button Name="btnNew" Width="120" Click="btnNew_Click">New Work Order</Button>
             <Button Name="btnNormal" Width="120" Click="btnNormal_Click">Go Mini</Button>
