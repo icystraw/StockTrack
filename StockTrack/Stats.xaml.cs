@@ -1,18 +1,7 @@
-﻿using Microsoft.Win32;
-using OfficeOpenXml;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace StockTrack
 {
@@ -43,29 +32,6 @@ namespace StockTrack
             cbCategories.ItemsSource = cats;
             cbCategories.DisplayMemberPath = "CategoryName";
             cbCategories.SelectedIndex = 0;
-        }
-
-        private void btnExport_Click(object sender, RoutedEventArgs e)
-        {
-            if (!dgHistory.HasItems) return;
-
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Microsoft Excel Workbook|*.xlsx";
-            saveFileDialog1.Title = "Export to";
-            saveFileDialog1.ShowDialog();
-            if (saveFileDialog1.FileName != string.Empty)
-            {
-                List<History> hs = dgHistory.ItemsSource as List<History>;
-                ExcelPackage p = new ExcelPackage();
-                p.File = new System.IO.FileInfo(saveFileDialog1.FileName);
-                p.Workbook.Worksheets.Add("Report");
-                for (int i = 0; i < hs.Count; i++)
-                {
-                    p.Workbook.Worksheets["Report"].Cells[i + 1, 1].Value = hs[i].ItemName;
-                    p.Workbook.Worksheets["Report"].Cells[i + 1, 2].Value = hs[i].Quantity;
-                }
-                p.Save();
-            }
         }
     }
 }

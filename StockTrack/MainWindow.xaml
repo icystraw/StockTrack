@@ -45,7 +45,6 @@
             <Expander Header="More Options" Margin="0,5,0,0">
                 <StackPanel>
                     <Button Name="btnStats" Margin="0,5,0,0" Click="btnStats_Click">Sales Report</Button>
-                    <Button Name="btnExport" Margin="0,5,0,0" Click="btnExport_Click">Export Items...</Button>
                     <Button Name="btnAdvanced" Margin="0,5,0,0" Click="btnAdvanced_Click">Advanced</Button>
                 </StackPanel>
             </Expander>

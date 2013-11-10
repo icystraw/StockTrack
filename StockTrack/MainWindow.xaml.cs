@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using OfficeOpenXml;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -223,29 +222,6 @@ namespace StockTrack
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             mnuOrderSearch.IsEnabled = mnuUndoAction.IsEnabled = !(null == dgHistory.SelectedItem);
-        }
-
-        private void btnExport_Click(object sender, RoutedEventArgs e)
-        {
-            if (!dgItems.HasItems) return;
-
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Microsoft Excel Workbook|*.xlsx";
-            saveFileDialog1.Title = "Export to";
-            saveFileDialog1.ShowDialog();
-            if (saveFileDialog1.FileName != string.Empty)
-            {
-                List<Item> items = dgItems.ItemsSource as List<Item>;
-                ExcelPackage p = new ExcelPackage();
-                p.File = new System.IO.FileInfo(saveFileDialog1.FileName);
-                p.Workbook.Worksheets.Add("Items");
-                for (int i = 0; i < items.Count; i++)
-                {
-                    p.Workbook.Worksheets["Items"].Cells[i + 1, 1].Value = items[i].ItemName;
-                    p.Workbook.Worksheets["Items"].Cells[i + 1, 2].Value = items[i].Quantity;
-                }
-                p.Save();
-            }
         }
 
         private void btnStats_Click(object sender, RoutedEventArgs e)
