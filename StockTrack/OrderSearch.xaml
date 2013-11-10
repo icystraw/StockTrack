@@ -32,10 +32,12 @@
             <DatePicker Name="dtShippingDate1"></DatePicker>
             <Label>to</Label>
             <DatePicker Name="dtShippingDate2"></DatePicker>
-            <Button Name="btnSearch" Width="80" Click="btnSearch_Click" IsDefault="True">Search</Button>
-            <Button Name="btnNew" Width="120" Click="btnNew_Click">New Work Order</Button>
+            <Button Name="btnSearch" Width="120" Margin="20,0,0,0" Click="btnSearch_Click" IsDefault="True">Search</Button>
         </WrapPanel>
-        <Button Name="btnNormal" DockPanel.Dock="Bottom" Margin="3" Click="btnNormal_Click">Go Mini</Button>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3">
+            <Button Name="btnNew" Width="120" Click="btnNew_Click">New Work Order</Button>
+            <Button Name="btnNormal" Width="120" Click="btnNormal_Click">Go Mini</Button>
+        </StackPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" MouseDoubleClick="dgOrders_MouseDoubleClick" FontSize="14">
             <DataGrid.Columns>
