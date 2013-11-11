@@ -37,7 +37,7 @@
                        HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="NO" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Label Margin="0,5,0,0">Purchase quantity:</Label>
@@ -53,7 +53,7 @@
                       SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgHistory_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}">
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:dd/MM/yyyy}}">
                         <DataGridTextColumn.Header>
                             <StackPanel Orientation="Horizontal">
                                 <Label>Date</Label>
@@ -79,8 +79,8 @@
                       CellEditEnding="dgItems_CellEditEnding"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgItems_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Item Name" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Current Quantity" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>

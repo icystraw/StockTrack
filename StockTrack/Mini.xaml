@@ -55,7 +55,7 @@
                             AutoGenerateColumns="False" IsReadOnly="True" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                             SelectionUnit="FullRow" MouseUp="dgHistory_MouseUp">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Date" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Date" Binding="{Binding Path=ActionDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Action" Binding="{Binding Path=Action}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Net Change" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Order No" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>

@@ -105,13 +105,13 @@ namespace StockTrack
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 Item itemEditing = e.Row.Item as Item;
-                if (e.Column.Header.ToString() == "Item Name")
+                if (e.Column.Header.ToString() == "Name")
                 {
                     string newName = (e.EditingElement as TextBox).Text.Trim();
                     itemEditing.ItemName = newName;
                     DataAccess.UpdateItem(itemEditing);
                 }
-                else if (e.Column.Header.ToString() == "Current Quantity")
+                else if (e.Column.Header.ToString() == "Quantity")
                 {
                     double newQuantity = 0;
                     try
