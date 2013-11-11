@@ -322,48 +322,48 @@ namespace StockTrack
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "select * from [order] where 1 = 1";
+            cmd.CommandText = "select [order].*, (select top 1 isnull([comments], N'') from [orderhistory] where [orderid] = [order].[orderid] order by [historydate] desc) as [latestprogress] from [order] where 1 = 1";
             if (!string.IsNullOrEmpty(orderNo))
             {
-                cmd.CommandText += " and [orderno] like N'%' + @orderno + N'%'";
+                cmd.CommandText += " and [order].[orderno] like N'%' + @orderno + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
             }
             if (!string.IsNullOrEmpty(keyword))
             {
-                cmd.CommandText += " and ([customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%')";
+                cmd.CommandText += " and ([order].[customername] like N'%' + @keyword + N'%' or [order].[contactno] like N'%' + @keyword + N'%' or [order].[comments] like N'%' + @keyword + N'%')";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
             if (!string.IsNullOrEmpty(shipping))
             {
-                cmd.CommandText += " and [shipping] like N'%' + @shipping + N'%'";
+                cmd.CommandText += " and [order].[shipping] like N'%' + @shipping + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@shipping", shipping));
             }
             if (startDate != null)
             {
-                cmd.CommandText += " and [orderdate] >= @startdate";
+                cmd.CommandText += " and [order].[orderdate] >= @startdate";
                 cmd.Parameters.Add(new SqlParameter("@startdate", startDate));
             }
             if (endDate != null)
             {
-                cmd.CommandText += " and [orderdate] < @enddate";
+                cmd.CommandText += " and [order].[orderdate] < @enddate";
                 cmd.Parameters.Add(new SqlParameter("@enddate", ((DateTime)endDate).AddDays(1)));
             }
             if (startSDate != null)
             {
-                cmd.CommandText += " and [shippingdate] >= @startsdate";
+                cmd.CommandText += " and [order].[shippingdate] >= @startsdate";
                 cmd.Parameters.Add(new SqlParameter("@startsdate", startSDate));
             }
             if (endSDate != null)
             {
-                cmd.CommandText += " and [shippingdate] < @endsdate";
+                cmd.CommandText += " and [order].[shippingdate] < @endsdate";
                 cmd.Parameters.Add(new SqlParameter("@endsdate", ((DateTime)endSDate).AddDays(1)));
             }
             if (isWorkOrder != null)
             {
-                cmd.CommandText += " and [isworkorder] = @isworkorder";
+                cmd.CommandText += " and [order].[isworkorder] = @isworkorder";
                 cmd.Parameters.Add(new SqlParameter("@isworkorder", isWorkOrder));
             }
-            cmd.CommandText += " order by [orderdate] desc";
+            cmd.CommandText += " order by [order].[orderdate] desc, [order].[orderno] desc";
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (rd.Read())
@@ -381,6 +381,7 @@ namespace StockTrack
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
+                o.LatestProgress = rd["latestprogress"].ToString();
                 orders.Add(o);
             }
             rd.Close();

@@ -93,6 +93,14 @@ namespace StockTrack
             set { folder = value; }
         }
 
+        private string latestProgress;
+
+        public string LatestProgress
+        {
+            get { return latestProgress; }
+            set { latestProgress = value; }
+        }
+
         public double Balance
         {
             get { return totalAmount - paidToday; }
