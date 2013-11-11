@@ -111,7 +111,7 @@ namespace StockTrack
                     itemEditing.ItemName = newName;
                     DataAccess.UpdateItem(itemEditing);
                 }
-                else if (e.Column.Header.ToString() == "Quantity")
+                else if (e.Column.Header.ToString() == "Current Quantity")
                 {
                     double newQuantity = 0;
                     try
