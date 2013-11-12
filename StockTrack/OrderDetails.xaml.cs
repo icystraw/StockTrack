@@ -32,7 +32,6 @@ namespace StockTrack
         private List<OrderHistory> ohs = new List<OrderHistory>();
         private Order o = null;
         private DateTime nullDate = new DateTime(1970, 1, 1);
-        private bool needSaveOrder = true;
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -149,14 +148,6 @@ namespace StockTrack
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (needSaveOrder)
-            {
-                e.Cancel = !saveOrderDetails();
-            }
-        }
-
         private void btnDeleteOrder_Click(object sender, RoutedEventArgs e)
         {
             if (dgHistory.HasItems)
@@ -169,7 +160,6 @@ namespace StockTrack
                 if (o != null)
                 {
                     DataAccess.DeleteOrderById(o.OrderId);
-                    needSaveOrder = false;
                     this.Close();
                 }
             }
@@ -214,6 +204,12 @@ namespace StockTrack
         private void dgProgression_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             mnuDeleteEntry.IsEnabled = !(null == dgProgression.SelectedItem);
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            if (saveOrderDetails())
+                this.Close();
         }
     }
 }

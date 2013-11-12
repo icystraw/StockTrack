@@ -50,7 +50,14 @@
                 <DataGridTextColumn Header="Balance" IsReadOnly="True" Binding="{Binding Path=Balance, StringFormat={}{0:c}}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="Work Order" IsReadOnly="True" Binding="{Binding Path=IsWorkOrder}"></DataGridCheckBoxColumn>
                 <DataGridTextColumn Header="Order Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:dd/MM/yyyy}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.Background" Value="{Binding Path=ShippingDateColor}"></Setter>
+                            <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Latest News" IsReadOnly="True" Binding="{Binding Path=LatestProgress}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comments" IsReadOnly="True" Binding="{Binding Path=Comments}"></DataGridTextColumn>
                 <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}">
