@@ -106,8 +106,12 @@ namespace StockTrack
 
         private void hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            Hyperlink link = (Hyperlink)e.OriginalSource;
-            Process.Start(link.NavigateUri.AbsoluteUri);
+            try
+            {
+                Hyperlink link = (Hyperlink)e.OriginalSource;
+                Process.Start(link.NavigateUri.AbsoluteUri);
+            }
+            catch { }
         }
     }
 }
