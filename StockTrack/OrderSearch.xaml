@@ -41,15 +41,20 @@
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" MouseDoubleClick="dgOrders_MouseDoubleClick" FontSize="14">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.Background" Value="{Binding Path=OrderColor}"></Setter>
+                            <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Customer" IsReadOnly="True" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Contact" IsReadOnly="True" Binding="{Binding Path=ContactNo}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Shipping" IsReadOnly="True" Binding="{Binding Path=Shipping}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Total" IsReadOnly="True" Binding="{Binding Path=TotalAmount, StringFormat={}{0:c}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Paid" IsReadOnly="True" Binding="{Binding Path=PaidToday, StringFormat={}{0:c}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Balance" IsReadOnly="True" Binding="{Binding Path=Balance, StringFormat={}{0:c}}"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Header="Work Order" IsReadOnly="True" Binding="{Binding Path=IsWorkOrder}"></DataGridCheckBoxColumn>
-                <DataGridTextColumn Header="Order Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Shipping" IsReadOnly="True" Binding="{Binding Path=Shipping}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:dd/MM/yyyy}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style>

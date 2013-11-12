@@ -118,5 +118,15 @@ namespace StockTrack
                 return new SolidColorBrush(Colors.White);
             }
         }
+
+        public Brush OrderColor
+        {
+            get
+            {
+                if (isWorkOrder)
+                    return new SolidColorBrush(Colors.Pink);
+                return new SolidColorBrush(Colors.White);
+            }
+        }
     }
 }
