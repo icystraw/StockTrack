@@ -136,18 +136,6 @@ namespace StockTrack
             getOrderProgression();
         }
 
-        private void amount_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                txtBalance.Text = (Convert.ToDouble(txtTotalAmount.Text.Trim()) - Convert.ToDouble(txtPaidToday.Text.Trim())).ToString();
-            }
-            catch
-            {
-                txtBalance.Text = string.Empty;
-            }
-        }
-
         private void btnDeleteOrder_Click(object sender, RoutedEventArgs e)
         {
             if (dgHistory.HasItems)
@@ -198,6 +186,7 @@ namespace StockTrack
                 if (string.IsNullOrEmpty(h.Comments)) return;
                 DataAccess.InsertOrderHistory(h);
                 getOrderProgression();
+                txtProgress.Clear();
             }
         }
 

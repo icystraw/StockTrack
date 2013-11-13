@@ -7,10 +7,16 @@
             <Label>Order Number:</Label>
             <TextBox Name="txtOrderNo"></TextBox>
             <CheckBox Name="cbIsWorkOrder" Margin="0,5,0,0">Is Work Order</CheckBox>
+            <Label>Order Date:</Label>
+            <DatePicker Name="dtOrderDate"></DatePicker>
             <Label>Customer Name:</Label>
             <TextBox Name="txtCustomerName"></TextBox>
             <Label>Contact Number:</Label>
             <TextBox Name="txtContactNo"></TextBox>
+            <Label>Total Amount (AUD):</Label>
+            <TextBox Name="txtTotalAmount"></TextBox>
+            <Label>Paid Today (AUD):</Label>
+            <TextBox Name="txtPaidToday"></TextBox>
             <Label>Shipping Method:</Label>
             <ComboBox Name="cbShipping" IsEditable="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
@@ -19,21 +25,13 @@
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
                 <ComboBoxItem>To be advised</ComboBoxItem>
             </ComboBox>
-            <Label>Total Amount (AUD):</Label>
-            <TextBox Name="txtTotalAmount" TextChanged="amount_TextChanged"></TextBox>
-            <Label>Paid Today (AUD):</Label>
-            <TextBox Name="txtPaidToday" TextChanged="amount_TextChanged"></TextBox>
-            <Label>Balance (AUD):</Label>
-            <TextBox Name="txtBalance" IsReadOnly="True">0</TextBox>
-            <Label>Order Date:</Label>
-            <DatePicker Name="dtOrderDate"></DatePicker>
             <Label>Shipping Date:</Label>
             <DatePicker Name="dtShippingDate"></DatePicker>
             <Label>Comments:</Label>
-            <TextBox Name="txtComments" MaxLines="4" AcceptsReturn="True"></TextBox>
+            <TextBox Name="txtComments"></TextBox>
             <Label>Folder:</Label>
             <TextBox Name="txtFolder"></TextBox>
-            <Button Name="btnClose" Content="Save and Close" Click="btnClose_Click" Margin="0,5,0,0"></Button>
+            <Button Name="btnClose" Content="SAVE AND CLOSE" Click="btnClose_Click" Margin="0,5,0,0" Height="50"/>
         </StackPanel>
         <DockPanel Margin="5">
             <Label DockPanel.Dock="Top">Items in order:</Label>
