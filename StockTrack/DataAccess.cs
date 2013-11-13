@@ -322,16 +322,11 @@ namespace StockTrack
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "select [order].*, (select top 1 isnull([comments], N'') from [orderhistory] where [orderid] = [order].[orderid] order by [historydate] desc) as [latestprogress] from [order] where 1 = 1";
+            cmd.CommandText = "select * from (select [order].*, (select top 1 isnull([comments], N'') from [orderhistory] where [orderid] = [order].[orderid] order by [historydate] desc) as [latestprogress] from [order] where 1 = 1";
             if (!string.IsNullOrEmpty(orderNo))
             {
                 cmd.CommandText += " and [order].[orderno] like N'%' + @orderno + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
-            }
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                cmd.CommandText += " and ([order].[customername] like N'%' + @keyword + N'%' or [order].[contactno] like N'%' + @keyword + N'%' or [order].[comments] like N'%' + @keyword + N'%')";
-                cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
             if (!string.IsNullOrEmpty(shipping))
             {
@@ -363,7 +358,13 @@ namespace StockTrack
                 cmd.CommandText += " and [order].[isworkorder] = @isworkorder";
                 cmd.Parameters.Add(new SqlParameter("@isworkorder", isWorkOrder));
             }
-            cmd.CommandText += " order by [order].[orderdate] desc, [order].[orderno] desc";
+            cmd.CommandText += ") as [temptable]";
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                cmd.CommandText += " where [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [latestprogress] like N'%' + @keyword + N'%'";
+                cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
+            }
+            cmd.CommandText += " order by [orderdate] desc, [orderno] desc";
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (rd.Read())
