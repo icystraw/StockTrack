@@ -449,5 +449,12 @@ namespace StockTrack
                 }
             }
         }
+
+        private void btnGoOrders_Click(object sender, RoutedEventArgs e)
+        {
+            OrderSearch os = new OrderSearch();
+            os.Show();
+            this.Close();
+        }
     }
 }

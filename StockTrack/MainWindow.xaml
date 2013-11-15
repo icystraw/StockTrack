@@ -13,7 +13,6 @@
     </Window.InputBindings>
     <DockPanel>
         <DockPanel DockPanel.Dock="Left" Width="170">
-            <Button Name="btnMini" Margin="5" DockPanel.Dock="Bottom" Click="btnMini_Click">Go Mini</Button>
             <Button Name="btnAdvanced" Margin="5" DockPanel.Dock="Bottom" Click="btnAdvanced_Click">Advanced</Button>
             <Button Name="btnStats" Margin="5" DockPanel.Dock="Bottom" Click="btnStats_Click">Past Sales</Button>
             <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
@@ -46,6 +45,8 @@
             <Label Margin="0,5,0,0">Item quick search:</Label>
             <TextBox Name="txtSearch" Margin="0,5,0,0" TextChanged="txtSearch_TextChanged" />
             <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="0,5,0,0" Height="50">Save Details</Button>
+            <Button Name="btnMini" Margin="0,5,0,0" Click="btnMini_Click">Go Mini</Button>
+            <Button Name="btnGoOrders" Margin="0,5,0,0" Click="btnGoOrders_Click">Go Orders</Button>
         </StackPanel>
         <DockPanel>
             <Label DockPanel.Dock="Top" Margin="5" Name="lblItemCount">0 item(s):</Label>
