@@ -43,7 +43,7 @@ namespace StockTrack
         public string Shipping
         {
             get { return shipping; }
-            set { shipping = value; }
+            set { shipping = value; OnPropertyChanged("Shipping"); }
         }
         private double totalAmount;
 
@@ -71,7 +71,7 @@ namespace StockTrack
         public DateTime OrderDate
         {
             get { return orderDate; }
-            set { orderDate = value; }
+            set { orderDate = value; OnPropertyChanged("OrderDate"); }
         }
         private DateTime shippingDate;
 

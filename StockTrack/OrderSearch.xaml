@@ -50,13 +50,13 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Customer" Binding="{Binding Path=CustomerName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Contact" Binding="{Binding Path=ContactNo, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Total" Binding="{Binding Path=TotalAmount, StringFormat={}{0:c}, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Paid" Binding="{Binding Path=PaidToday, StringFormat={}{0:c}, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Balance" IsReadOnly="True" Binding="{Binding Path=Balance, StringFormat={}{0:c}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Shipping" IsReadOnly="True" Binding="{Binding Path=Shipping}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Shipping" Binding="{Binding Path=Shipping, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Shipping Date" Binding="{Binding Path=ShippingDate, StringFormat={}{0:d}, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridTextColumn.ElementStyle>
                         <Style>
