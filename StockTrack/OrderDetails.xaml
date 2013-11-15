@@ -35,10 +35,7 @@
             <Button Name="btnClose" Content="SAVE AND CLOSE" Click="btnClose_Click" Margin="0,5,0,0" Height="50"/>
         </StackPanel>
         <DockPanel Margin="5">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label>Items in order:</Label>
-                <Button Name="btnAddItems" Click="btnAddItems_Click" Width="250" Margin="10,0,0,0">Add more items to this order</Button>
-            </StackPanel>
+            <Label DockPanel.Dock="Top">Items in order:</Label>
             <DataGrid Name="dgHistory" Height="200" DockPanel.Dock="Top"
                   Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False"
