@@ -113,5 +113,10 @@ namespace StockTrack
             }
             catch { }
         }
+
+        private void dgOrders_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            MessageBox.Show((e.Row.Item as Order).Comments);
+        }
     }
 }
