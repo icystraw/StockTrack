@@ -29,19 +29,6 @@ namespace StockTrack
             this.Top = Properties.Settings.Default.osYpos;
         }
 
-        private void dgOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (dgOrders.SelectedItem != null)
-            {
-                Order o = dgOrders.SelectedItem as Order;
-                OrderDetails od = new OrderDetails();
-                od.OrderId = o.OrderId;
-                od.Owner = this;
-                od.ShowDialog();
-                performSearch();
-            }
-        }
-
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             performSearch();
@@ -114,7 +101,20 @@ namespace StockTrack
             catch { }
         }
 
-        private void dgOrders_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        private void btnEditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgOrders.SelectedItem != null)
+            {
+                Order o = dgOrders.SelectedItem as Order;
+                OrderDetails od = new OrderDetails();
+                od.OrderId = o.OrderId;
+                od.Owner = this;
+                od.ShowDialog();
+                performSearch();
+            }
+        }
+
+        private void dgOrders_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             Order o = e.Row.Item as Order;
             DataAccess.UpdateOrder(o);
