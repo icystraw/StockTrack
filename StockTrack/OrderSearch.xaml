@@ -1,6 +1,7 @@
 ﻿<Window x:Class="StockTrack.OrderSearch"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xml:lang="en-AU"
         Title="Stock Track (Orders)" Height="660" Width="1000" Background="#FFE1E1E1" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
         <StackPanel Margin="3" Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
@@ -49,13 +50,14 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:dd/MM/yyyy}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Customer" IsReadOnly="True" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Contact" IsReadOnly="True" Binding="{Binding Path=ContactNo}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Total" IsReadOnly="True" Binding="{Binding Path=TotalAmount, StringFormat={}{0:c}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Customer" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Contact" Binding="{Binding Path=ContactNo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Total" Binding="{Binding Path=TotalAmount, StringFormat={}{0:c}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Paid" Binding="{Binding Path=PaidToday, StringFormat={}{0:c}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Balance" IsReadOnly="True" Binding="{Binding Path=Balance, StringFormat={}{0:c}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Shipping" IsReadOnly="True" Binding="{Binding Path=Shipping}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Shipping Date" IsReadOnly="True" Binding="{Binding Path=ShippingDate, StringFormat={}{0:dd/MM/yyyy}}">
+                <DataGridTextColumn Header="Shipping Date" Binding="{Binding Path=ShippingDate, StringFormat={}{0:d}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style>
                             <Setter Property="TextBlock.Background" Value="{Binding Path=ShippingDateColor}"></Setter>
@@ -64,7 +66,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Latest News" IsReadOnly="True" Binding="{Binding Path=LatestProgress}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Comments" IsReadOnly="True" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
                 <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}">
                     <DataGridHyperlinkColumn.ElementStyle>
                         <Style>
