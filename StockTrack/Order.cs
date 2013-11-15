@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Windows.Media;
 
 namespace StockTrack
 {
-    class Order
+    class Order : INotifyPropertyChanged
     {
         private int orderId;
 
@@ -28,14 +29,14 @@ namespace StockTrack
         public string CustomerName
         {
             get { return customerName; }
-            set { customerName = value; }
+            set { customerName = value; OnPropertyChanged("CustomerName"); }
         }
         private string contactNo;
 
         public string ContactNo
         {
             get { return contactNo; }
-            set { contactNo = value; }
+            set { contactNo = value; OnPropertyChanged("ContactNo"); }
         }
         private string shipping;
 
@@ -49,7 +50,7 @@ namespace StockTrack
         public double TotalAmount
         {
             get { return totalAmount; }
-            set { totalAmount = value; }
+            set { totalAmount = value; OnPropertyChanged("TotalAmount"); OnPropertyChanged("Balance"); }
         }
         private double paidToday;
 
@@ -77,14 +78,14 @@ namespace StockTrack
         public DateTime ShippingDate
         {
             get { return shippingDate; }
-            set { shippingDate = value; }
+            set { shippingDate = value; OnPropertyChanged("ShippingDate"); OnPropertyChanged("ShippingDateColor"); }
         }
         private string comments;
 
         public string Comments
         {
             get { return comments; }
-            set { comments = value; }
+            set { comments = value; OnPropertyChanged("Comments"); }
         }
         private string folder;
 
@@ -126,6 +127,16 @@ namespace StockTrack
                 if (isWorkOrder)
                     return new SolidColorBrush(Colors.Pink);
                 return new SolidColorBrush(Colors.White);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
