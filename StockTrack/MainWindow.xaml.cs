@@ -23,6 +23,11 @@ namespace StockTrack
             this.Top = Properties.Settings.Default.mwYpos;
         }
 
+        public string OrderNumber
+        {
+            set { txtOrderNo.Text = value; }
+        }
+
         private List<Item> itemsDisplaying = new List<Item>();
         private List<History> historyDisplaying = new List<History>();
 
