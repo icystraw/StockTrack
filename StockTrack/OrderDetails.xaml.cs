@@ -200,5 +200,16 @@ namespace StockTrack
             if (saveOrderDetails())
                 this.Close();
         }
+
+        private void btnAddItems_Click(object sender, RoutedEventArgs e)
+        {
+            if (o != null)
+            {
+                MainWindow mw = new MainWindow();
+                mw.Show();
+                mw.OrderNumber = o.OrderNo;
+                this.Close();
+            }
+        }
     }
 }
