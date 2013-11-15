@@ -48,7 +48,7 @@
                     <DataGridTextColumn Header="Item" IsReadOnly="True" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Net Change" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -69,7 +69,7 @@
                   CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=HistoryDate, StringFormat={}{0:d}}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>

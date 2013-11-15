@@ -37,9 +37,7 @@ namespace StockTrack
         {
             if (e.EditAction == DataGridEditAction.Commit)
             {
-                string newComments = (e.EditingElement as TextBox).Text.Trim();
                 History h = e.Row.Item as History;
-                h.Comments = newComments;
                 DataAccess.UpdateHistoryComments(h);
             }
         }
@@ -157,9 +155,7 @@ namespace StockTrack
         {
             if (e.EditAction == DataGridEditAction.Commit)
             {
-                string newComments = (e.EditingElement as TextBox).Text.Trim();
                 OrderHistory h = e.Row.Item as OrderHistory;
-                h.Comments = newComments;
                 DataAccess.UpdateOrderHistoryComments(h);
             }
         }
