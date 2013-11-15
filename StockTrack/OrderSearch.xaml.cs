@@ -116,7 +116,8 @@ namespace StockTrack
 
         private void dgOrders_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            MessageBox.Show((e.Row.Item as Order).Comments);
+            Order o = e.Row.Item as Order;
+            DataAccess.UpdateOrder(o);
         }
     }
 }
