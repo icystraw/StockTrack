@@ -68,7 +68,6 @@ namespace StockTrack
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 Category c = dgCats.SelectedItem as Category;
-                c.CategoryName = (e.EditingElement as TextBox).Text.Trim();
                 DataAccess.UpdateCategory(c);
             }
         }
@@ -98,9 +97,7 @@ namespace StockTrack
         {
             if (e.EditAction == DataGridEditAction.Commit)
             {
-                string newComments = (e.EditingElement as TextBox).Text.Trim();
                 History h = e.Row.Item as History;
-                h.Comments = newComments;
                 DataAccess.UpdateHistoryComments(h);
             }
         }
@@ -112,33 +109,22 @@ namespace StockTrack
                 Item itemEditing = e.Row.Item as Item;
                 if (e.Column.Header.ToString() == "Name")
                 {
-                    string newName = (e.EditingElement as TextBox).Text.Trim();
-                    itemEditing.ItemName = newName;
                     DataAccess.UpdateItem(itemEditing);
                 }
                 else if (e.Column.Header.ToString() == "Quantity")
                 {
-                    double newQuantity = 0;
-                    try
-                    {
-                        newQuantity = Convert.ToDouble((e.EditingElement as TextBox).Text.Trim());
-                    }
-                    catch
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                    double difference = newQuantity - itemEditing.Quantity;
+                    Item i = DataAccess.GetItemById(itemEditing.ItemId);
+                    if (null == i) return;
+                    double difference = itemEditing.Quantity - i.Quantity;
                     if (0 == difference) return;
                     History h = new History();
                     h.EntryDate = DateTime.Now;
                     h.ActionDate = DateTime.Now;
                     h.Action = "Adjust";
-                    h.Comments = "New: " + newQuantity.ToString() + " Old: " + itemEditing.Quantity.ToString();
+                    h.Comments = "New: " + itemEditing.Quantity.ToString() + " Old: " + i.Quantity.ToString();
                     h.ItemId = itemEditing.ItemId;
                     h.OrderNo = "ADJ" + DateTime.Today.ToString("ddMMyyyy");
                     h.Quantity = difference;
-                    itemEditing.Quantity = newQuantity;
                     DataAccess.UpdateItem(itemEditing);
                     DataAccess.InsertHistory(h);
                     populateItemHistory(itemEditing.ItemId);

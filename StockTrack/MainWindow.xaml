@@ -22,7 +22,7 @@
             <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                       CanUserDeleteRows="False" CanUserAddRows="False" CellEditEnding="dgCats_CellEditEnding" SelectionChanged="dgCats_SelectionChanged" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
@@ -65,7 +65,7 @@
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Net Change" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -80,8 +80,8 @@
                       CellEditEnding="dgItems_CellEditEnding"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgItems_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
