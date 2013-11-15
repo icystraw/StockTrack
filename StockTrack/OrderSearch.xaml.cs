@@ -115,5 +115,20 @@ namespace StockTrack
             Order o = e.Row.Item as Order;
             DataAccess.UpdateOrder(o);
         }
+
+        private void mnuMark_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Order o in dgOrders.SelectedItems)
+            {
+                o.IsWorkOrder = false;
+                DataAccess.UpdateOrder(o);
+            }
+            performSearch();
+        }
+
+        private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mnuMark.IsEnabled = !(null == dgOrders.SelectedItem);
+        }
     }
 }

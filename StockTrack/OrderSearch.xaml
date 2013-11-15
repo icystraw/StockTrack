@@ -40,7 +40,7 @@
             <Button Name="btnNormal" Width="120" Click="btnNormal_Click">Go Mini</Button>
         </StackPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="2"
-                  SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" FontSize="14" CellEditEnding="dgOrders_CellEditEnding">
+                  SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" FontSize="14" CellEditEnding="dgOrders_CellEditEnding" SelectionChanged="dgOrders_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}">
                     <DataGridTextColumn.ElementStyle>
@@ -116,6 +116,7 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
+                    <MenuItem Name="mnuMark" IsEnabled="False" Click="mnuMark_Click" Header="Mark Complete"></MenuItem>
                     <MenuItem Command="Copy"></MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
