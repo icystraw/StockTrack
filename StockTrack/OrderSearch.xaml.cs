@@ -133,14 +133,14 @@ namespace StockTrack
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mw = new MainWindow();
+            mw.Show();
             if (dgOrders.SelectedItem != null)
             {
                 Order o = dgOrders.SelectedItem as Order;
-                MainWindow mw = new MainWindow();
-                mw.Show();
                 mw.OrderNumber = o.OrderNo;
-                this.Close();
             }
+            this.Close();
         }
     }
 }
