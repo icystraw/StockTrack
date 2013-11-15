@@ -57,7 +57,7 @@ namespace StockTrack
         public double PaidToday
         {
             get { return paidToday; }
-            set { paidToday = value; }
+            set { paidToday = value; OnPropertyChanged("PaidToday"); OnPropertyChanged("Balance"); }
         }
         private bool isWorkOrder;
 
