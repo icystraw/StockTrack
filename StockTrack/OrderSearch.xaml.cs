@@ -130,5 +130,17 @@ namespace StockTrack
         {
             mnuMark.IsEnabled = !(null == dgOrders.SelectedItem);
         }
+
+        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgOrders.SelectedItem != null)
+            {
+                Order o = dgOrders.SelectedItem as Order;
+                MainWindow mw = new MainWindow();
+                mw.Show();
+                mw.OrderNumber = o.OrderNo;
+                this.Close();
+            }
+        }
     }
 }

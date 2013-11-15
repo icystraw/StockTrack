@@ -37,6 +37,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3">
             <Button Name="btnNew" Width="120" Click="btnNew_Click">New Work Order</Button>
+            <Button Name="btnAddItem" Width="150" Click="btnAddItem_Click">Continue Order Entry</Button>
             <Button Name="btnNormal" Width="120" Click="btnNormal_Click">Go Mini</Button>
         </StackPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="2"
