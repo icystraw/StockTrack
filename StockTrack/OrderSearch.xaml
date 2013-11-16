@@ -40,25 +40,20 @@
             <Button Name="btnAddItem" Width="120" Click="btnAddItem_Click">Go Items</Button>
             <Button Name="btnNormal" Width="120" Click="btnNormal_Click">Go Mini</Button>
         </StackPanel>
-        <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="2"
+        <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="1"
                   SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" FontSize="14" CellEditEnding="dgOrders_CellEditEnding" SelectionChanged="dgOrders_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Order No" IsReadOnly="True" Binding="{Binding Path=OrderNo}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style>
-                            <Setter Property="TextBlock.Background" Value="{Binding Path=OrderColor}"></Setter>
-                            <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
+                <DataGridTemplateColumn Header="NO" CanUserSort="True" SortMemberPath="OrderNo" ClipboardContentBinding="{Binding Path=OrderNo}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Edit" Name="btnEditOrder" Click="btnEditOrder_Click"></Button>
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right" Content="Edit" Name="btnEditOrder" Click="btnEditOrder_Click"></Button>
+                                <TextBlock Text="{Binding Path=OrderNo}" Background="{Binding Path=OrderColor}" Foreground="Black"></TextBlock>
+                            </DockPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Date" CanUserSort="True" SortMemberPath="OrderDate">
+                <DataGridTemplateColumn Header="Date" CanUserSort="True" SortMemberPath="OrderDate" ClipboardContentBinding="{Binding Path=OrderDate}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=OrderDate, StringFormat={}{0:d}}"></TextBlock>
@@ -75,7 +70,7 @@
                 <DataGridTextColumn Header="Total" Binding="{Binding Path=TotalAmount, StringFormat={}{0:c}, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Paid" Binding="{Binding Path=PaidToday, StringFormat={}{0:c}, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Balance" IsReadOnly="True" Binding="{Binding Path=Balance, StringFormat={}{0:c}}"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Shipping" CanUserSort="True" SortMemberPath="Shipping">
+                <DataGridTemplateColumn Header="Shipping" CanUserSort="True" SortMemberPath="Shipping" ClipboardContentBinding="{Binding Path=Shipping}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Shipping}"></TextBlock>
@@ -93,7 +88,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Shipping Date" CanUserSort="True" SortMemberPath="ShippingDate">
+                <DataGridTemplateColumn Header="Shipping Date" CanUserSort="True" SortMemberPath="ShippingDate" ClipboardContentBinding="{Binding Path=ShippingDate}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=ShippingDate, StringFormat={}{0:d}}" Background="{Binding Path=ShippingDateColor}" Foreground="Black"></TextBlock>
@@ -105,8 +100,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Latest News" IsReadOnly="True" Binding="{Binding Path=LatestProgress}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Latest News" IsReadOnly="True" Binding="{Binding Path=LatestProgress}"></DataGridTextColumn>
                 <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}">
                     <DataGridHyperlinkColumn.ElementStyle>
                         <Style>
