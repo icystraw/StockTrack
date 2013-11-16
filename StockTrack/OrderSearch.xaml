@@ -43,7 +43,7 @@
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="1"
                   SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" FontSize="14" CellEditEnding="dgOrders_CellEditEnding" SelectionChanged="dgOrders_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="NO." CanUserSort="True" SortMemberPath="OrderNo" ClipboardContentBinding="{Binding Path=OrderNo}">
+                <DataGridTemplateColumn IsReadOnly="True" Header="NO." CanUserSort="True" SortMemberPath="OrderNo" ClipboardContentBinding="{Binding Path=OrderNo}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DockPanel>
