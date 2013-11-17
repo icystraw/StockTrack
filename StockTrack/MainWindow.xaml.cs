@@ -279,6 +279,7 @@ namespace StockTrack
             }
             populateItemHistory((dgItems.SelectedItem as Item).ItemId);
             dgItems.Items.Refresh();
+            refreshOrder();
         }
 
         private void mnuDeleteItem_Click(object sender, RoutedEventArgs e)
@@ -421,10 +422,41 @@ namespace StockTrack
             }
         }
 
+        private void refreshOrder()
+        {
+            int selectedOrderId = 0;
+            if (dgOrders.SelectedItem != null)
+            {
+                selectedOrderId = (dgOrders.SelectedItem as Order).OrderId;
+            }
+            if (!string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
+            {
+                dgOrders.ItemsSource = DataAccess.GetOrderByNo(txtOrderNo.Text.Trim());
+            }
+            else
+            {
+                dgOrders.ItemsSource = new List<Order>();
+            }
+            if (selectedOrderId > 0 && dgOrders.HasItems)
+            {
+                foreach (Order o in dgOrders.Items)
+                {
+                    if (o.OrderId == selectedOrderId)
+                    {
+                        dgOrders.SelectedItem = o;
+                        break;
+                    }
+                }
+            }
+            else if (dgOrders.HasItems)
+            {
+                dgOrders.SelectedIndex = 0;
+            }
+        }
+
         private void txtOrderNo_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
-                dgOrders.ItemsSource = DataAccess.GetOrderByNo(txtOrderNo.Text.Trim());
+            refreshOrder();
         }
 
         private void dgOrders_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
