@@ -58,7 +58,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Date" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Action" Binding="{Binding Path=Action}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Qty" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Net" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="O/N" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
                             </DataGrid.Columns>

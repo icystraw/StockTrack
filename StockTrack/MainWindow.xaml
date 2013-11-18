@@ -62,7 +62,7 @@
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Qty" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Net" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                     <DataGridTextColumn Header="O/N" IsReadOnly="True" Binding="{Binding Path=OrderNo}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
