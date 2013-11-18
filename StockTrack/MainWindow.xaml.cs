@@ -420,6 +420,7 @@ namespace StockTrack
                 if (i.ItemId == selectedItemId)
                     dgItems.SelectedItem = i;
             }
+            refreshOrder();
         }
 
         private void refreshOrder()

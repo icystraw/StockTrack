@@ -138,7 +138,7 @@ namespace StockTrack
         {
             if (dgHistory.HasItems)
             {
-                MessageBox.Show("As a preventative measure, please undo all the items before attempting to delete this order.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("As a preventative measure, please delete all the items before attempting to delete this order.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             if (MessageBox.Show("This will delete all related information about this order. Continue?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

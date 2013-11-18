@@ -49,7 +49,7 @@
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Delete Order Item" Click="mnuUndoAction_Click" />
+                        <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Delete Sales Item" Click="mnuUndoAction_Click" />
                         <MenuItem Command="Copy"></MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
