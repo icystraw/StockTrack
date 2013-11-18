@@ -44,7 +44,7 @@
                     <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Item" IsReadOnly="True" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Net Change" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Qty" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>

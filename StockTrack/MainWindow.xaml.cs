@@ -480,6 +480,7 @@ namespace StockTrack
                         dgItems.SelectedItem = i;
                 }
             }
+            refreshOrder();
         }
 
         private void btnGoOrders_Click(object sender, RoutedEventArgs e)
