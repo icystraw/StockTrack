@@ -26,7 +26,7 @@
             </DataGrid>
         </DockPanel>
         <StackPanel DockPanel.Dock="Right" Margin="5" Width="200">
-            <Label Margin="0,5,0,0">Order details:</Label>
+            <TextBlock Margin="0,5,0,0" TextWrapping="Wrap">Enter item sales here. To create new order or add to existing order, please specify order number below.</TextBlock>
             <Label Margin="0,5,0,0">Comments:</Label>
             <TextBox Name="txtComments" Margin="0,5,0,0" />
             <Label Margin="0,5,0,0">Date:</Label>
