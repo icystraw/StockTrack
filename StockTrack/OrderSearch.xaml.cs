@@ -121,6 +121,11 @@ namespace StockTrack
             foreach (Order o in dgOrders.SelectedItems)
             {
                 o.IsWorkOrder = false;
+                OrderHistory h = new OrderHistory();
+                h.OrderId = o.OrderId;
+                h.HistoryDate = DateTime.Now;
+                h.Comments = "Order marked as complete.";
+                DataAccess.InsertOrderHistory(h);
                 DataAccess.UpdateOrder(o);
             }
             performSearch();
