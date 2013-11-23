@@ -97,19 +97,6 @@ namespace StockTrack
             catch { }
         }
 
-        private void btnEditOrder_Click(object sender, RoutedEventArgs e)
-        {
-            if (dgOrders.SelectedItem != null)
-            {
-                Order o = dgOrders.SelectedItem as Order;
-                OrderDetails od = new OrderDetails();
-                od.OrderId = o.OrderId;
-                od.Owner = this;
-                od.ShowDialog();
-                performSearch();
-            }
-        }
-
         private void dgOrders_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             Order o = e.Row.Item as Order;
@@ -146,6 +133,19 @@ namespace StockTrack
                 mw.OrderNumber = o.OrderNo;
             }
             this.Close();
+        }
+
+        private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (dgOrders.SelectedItem != null)
+            {
+                Order o = dgOrders.SelectedItem as Order;
+                OrderDetails od = new OrderDetails();
+                od.OrderId = o.OrderId;
+                od.Owner = this;
+                od.ShowDialog();
+                performSearch();
+            }
         }
     }
 }

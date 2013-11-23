@@ -46,10 +46,7 @@
                 <DataGridTemplateColumn IsReadOnly="True" Header="NO." CanUserSort="True" SortMemberPath="OrderNo" ClipboardContentBinding="{Binding Path=OrderNo}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DockPanel>
-                                <Button Margin="5,0,0,0" DockPanel.Dock="Right" Content="Edit" Name="btnEditOrder" Click="btnEditOrder_Click"></Button>
-                                <TextBlock Text="{Binding Path=OrderNo}" Background="{Binding Path=OrderColor}" Foreground="Black"></TextBlock>
-                            </DockPanel>
+                            <TextBlock Text="{Binding Path=OrderNo}" Background="{Binding Path=OrderColor}" Foreground="Black" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"></TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -88,7 +85,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Shipping Date" CanUserSort="True" SortMemberPath="ShippingDate" ClipboardContentBinding="{Binding Path=ShippingDate}">
+                <DataGridTemplateColumn Header="S/Date" CanUserSort="True" SortMemberPath="ShippingDate" ClipboardContentBinding="{Binding Path=ShippingDate}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=ShippingDate, StringFormat={}{0:d}}" Background="{Binding Path=ShippingDateColor}" Foreground="Black"></TextBlock>
