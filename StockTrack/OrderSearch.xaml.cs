@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace StockTrack
 {
@@ -39,7 +32,16 @@ namespace StockTrack
             bool? isWorkOrder = null;
             if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = true;
             else if (cbIsWorkOrder.SelectedIndex == 2) isWorkOrder = false;
+            SortDescription sdPrimary = new SortDescription("TBA", ListSortDirection.Ascending);
+            if (dgOrders.Items.SortDescriptions.Count > 0)
+            {
+                sdPrimary = dgOrders.Items.SortDescriptions[0];
+            }
             dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
+            if (sdPrimary.PropertyName != "TBA")
+            {
+                dgOrders.Items.SortDescriptions.Add(sdPrimary);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
