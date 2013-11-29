@@ -37,10 +37,26 @@ namespace StockTrack
             {
                 sdPrimary = dgOrders.Items.SortDescriptions[0];
             }
+            dgOrders.CancelEdit();
+            int selectedOrderId = 0;
+            if (dgOrders.SelectedItem != null)
+            {
+                Order o = dgOrders.SelectedItem as Order;
+                selectedOrderId = o.OrderId;
+            }
             dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
             if (sdPrimary.PropertyName != "TBA")
             {
                 dgOrders.Items.SortDescriptions.Add(sdPrimary);
+            }
+            if (selectedOrderId == 0) return;
+            foreach (Order o in dgOrders.Items)
+            {
+                if (o.OrderId == selectedOrderId)
+                {
+                    dgOrders.SelectedItem = o;
+                    break;
+                }
             }
         }
 
