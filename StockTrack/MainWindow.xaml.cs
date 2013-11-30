@@ -65,11 +65,8 @@ namespace StockTrack
 
         private void dgCats_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                Category c = dgCats.SelectedItem as Category;
-                DataAccess.UpdateCategory(c);
-            }
+            Category c = dgCats.SelectedItem as Category;
+            DataAccess.UpdateCategory(c);
         }
 
         private void dgCats_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -95,40 +92,34 @@ namespace StockTrack
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                History h = e.Row.Item as History;
-                DataAccess.UpdateHistoryComments(h);
-            }
+            History h = e.Row.Item as History;
+            DataAccess.UpdateHistoryComments(h);
         }
 
         private void dgItems_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.EditAction == DataGridEditAction.Commit)
+            Item itemEditing = e.Row.Item as Item;
+            if (e.Column.Header.ToString() == "Name")
             {
-                Item itemEditing = e.Row.Item as Item;
-                if (e.Column.Header.ToString() == "Name")
-                {
-                    DataAccess.UpdateItem(itemEditing);
-                }
-                else if (e.Column.Header.ToString() == "Quantity")
-                {
-                    Item i = DataAccess.GetItemById(itemEditing.ItemId);
-                    if (null == i) return;
-                    double difference = itemEditing.Quantity - i.Quantity;
-                    if (0 == difference) return;
-                    History h = new History();
-                    h.EntryDate = DateTime.Now;
-                    h.ActionDate = DateTime.Now;
-                    h.Action = "Adjust";
-                    h.Comments = "New: " + itemEditing.Quantity.ToString() + " Old: " + i.Quantity.ToString();
-                    h.ItemId = itemEditing.ItemId;
-                    h.OrderNo = "ADJ" + DateTime.Today.ToString("ddMMyyyy");
-                    h.Quantity = difference;
-                    DataAccess.UpdateItem(itemEditing);
-                    DataAccess.InsertHistory(h);
-                    populateItemHistory(itemEditing.ItemId);
-                }
+                DataAccess.UpdateItem(itemEditing);
+            }
+            else if (e.Column.Header.ToString() == "Quantity")
+            {
+                Item i = DataAccess.GetItemById(itemEditing.ItemId);
+                if (null == i) return;
+                double difference = itemEditing.Quantity - i.Quantity;
+                if (0 == difference) return;
+                History h = new History();
+                h.EntryDate = DateTime.Now;
+                h.ActionDate = DateTime.Now;
+                h.Action = "Adjust";
+                h.Comments = "New: " + itemEditing.Quantity.ToString() + " Old: " + i.Quantity.ToString();
+                h.ItemId = itemEditing.ItemId;
+                h.OrderNo = "ADJ" + DateTime.Today.ToString("ddMMyyyy");
+                h.Quantity = difference;
+                DataAccess.UpdateItem(itemEditing);
+                DataAccess.InsertHistory(h);
+                populateItemHistory(itemEditing.ItemId);
             }
         }
 

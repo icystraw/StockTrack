@@ -35,11 +35,8 @@ namespace StockTrack
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                History h = e.Row.Item as History;
-                DataAccess.UpdateHistoryComments(h);
-            }
+            History h = e.Row.Item as History;
+            DataAccess.UpdateHistoryComments(h);
         }
 
         private void getOrderDetails()
@@ -153,11 +150,8 @@ namespace StockTrack
 
         private void dgProgression_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                OrderHistory h = e.Row.Item as OrderHistory;
-                DataAccess.UpdateOrderHistoryComments(h);
-            }
+            OrderHistory h = e.Row.Item as OrderHistory;
+            DataAccess.UpdateOrderHistoryComments(h);
         }
 
         private void mnuDeleteEntry_Click(object sender, RoutedEventArgs e)
