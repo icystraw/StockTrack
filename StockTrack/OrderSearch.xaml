@@ -98,19 +98,13 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Latest News" IsReadOnly="True" Binding="{Binding Path=LatestProgress}"></DataGridTextColumn>
-                <DataGridHyperlinkColumn Header="Folder" IsReadOnly="True" Binding="{Binding Path=Folder}">
-                    <DataGridHyperlinkColumn.ElementStyle>
-                        <Style>
-                            <EventSetter Event="Hyperlink.Click" Handler="hyperlink_Click"></EventSetter>
-                        </Style>
-                    </DataGridHyperlinkColumn.ElementStyle>
-                </DataGridHyperlinkColumn>
+                <DataGridTextColumn Header="Progress" IsReadOnly="True" Binding="{Binding Path=LatestProgress}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="mnuMark" IsEnabled="False" Click="mnuMark_Click" Header="Mark Complete"></MenuItem>
                     <MenuItem Command="Copy"></MenuItem>
+                    <MenuItem Name="mnuLink" IsEnabled="False" Click="mnuLink_Click" Header="Open Folder"></MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

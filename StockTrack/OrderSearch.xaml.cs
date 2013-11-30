@@ -105,16 +105,6 @@ namespace StockTrack
             }
         }
 
-        private void hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Hyperlink link = (Hyperlink)e.OriginalSource;
-                Process.Start(link.NavigateUri.AbsoluteUri);
-            }
-            catch { }
-        }
-
         private void dgOrders_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             Order o = e.Row.Item as Order;
@@ -138,7 +128,7 @@ namespace StockTrack
 
         private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mnuMark.IsEnabled = !(null == dgOrders.SelectedItem);
+            mnuMark.IsEnabled = mnuLink.IsEnabled = !(null == dgOrders.SelectedItem);
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
@@ -164,6 +154,16 @@ namespace StockTrack
                 od.ShowDialog();
                 performSearch();
             }
+        }
+
+        private void mnuLink_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Order o = dgOrders.SelectedItem as Order;
+                Process.Start(o.Folder);
+            }
+            catch { }
         }
     }
 }
