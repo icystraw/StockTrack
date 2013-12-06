@@ -100,6 +100,10 @@ namespace StockTrack
                 int orderId = DataAccess.AddNewWorkOrder(n.Input);
                 if (orderId > 0)
                 {
+                    OrderDetails od = new OrderDetails();
+                    od.OrderId = orderId;
+                    od.Owner = this;
+                    od.ShowDialog();
                     performSearch();
                 }
             }
