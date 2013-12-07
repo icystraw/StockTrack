@@ -244,7 +244,7 @@ namespace StockTrack
                 h.EntryDate = DateTime.Now;
                 try
                 {
-                    h.ActionDate = o.OrderDate;
+                    h.ActionDate = DateTime.Today;
                     h.Quantity = 0 - Convert.ToDouble(txtQuantity.Text.Trim());
                     if (h.Quantity == 0) return;
                 }
