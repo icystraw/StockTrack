@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace StockTrack
 {
@@ -129,6 +130,15 @@ namespace StockTrack
             getOrderDetails();
             getOrderHistory();
             getOrderProgression();
+            cbSearch.ItemsSource = DataAccess.GetAllCategories();
+            cbSearch.DisplayMemberPath = "CategoryName";
+            cbSearch.AddHandler(TextBoxBase.TextChangedEvent, new RoutedEventHandler(cbSearch_TextChanged));
+        }
+
+        private void cbSearch_TextChanged(object sender, RoutedEventArgs e)
+        {
+            dgItems.ItemsSource = DataAccess.SearchItems(cbSearch.Text);
+            if (dgItems.Items.Count > 0) dgItems.SelectedIndex = 0;
         }
 
         private void btnDeleteOrder_Click(object sender, RoutedEventArgs e)
@@ -189,6 +199,73 @@ namespace StockTrack
         {
             if (saveOrderDetails())
                 this.Close();
+        }
+
+        private void txtQuantity_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                Utilities.ChangeTextFieldNumber(txtQuantity, 1);
+            }
+            if (e.Delta < 0)
+            {
+                Utilities.ChangeTextFieldNumber(txtQuantity, -1);
+            }
+        }
+
+        private void dgItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgItems.SelectedItem == null)
+            {
+                btnSave.IsEnabled = false;
+            }
+            else
+            {
+                btnSave.IsEnabled = true;
+            }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (null == o || dgItems.SelectedItem == null) return;
+
+            foreach (Item i in dgItems.SelectedItems)
+            {
+                History h = new History();
+                h.Comments = string.Empty;
+                h.ItemId = i.ItemId;
+                h.OrderId = orderId;
+                h.OrderNo = string.Empty;
+                h.EntryDate = DateTime.Now;
+                try
+                {
+                    h.ActionDate = o.OrderDate;
+                    h.Quantity = 0 - Convert.ToDouble(txtQuantity.Text.Trim());
+                    if (h.Quantity == 0) return;
+                }
+                catch
+                {
+                    MessageBox.Show("Check.", "Please", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (h.Quantity <= 0)
+                {
+                    h.Action = "Purchase";
+                }
+                else
+                {
+                    h.Action = "Return";
+                }
+                i.Quantity += h.Quantity;
+                if (h.Quantity < 0 && i.Quantity < 0)
+                {
+                    h.Comments = "On backorder";
+                }
+                DataAccess.UpdateItem(i);
+                DataAccess.InsertHistory(h);
+            }
+            dgItems.Items.Refresh();
+            getOrderHistory();
         }
     }
 }
