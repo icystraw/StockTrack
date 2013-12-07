@@ -24,10 +24,10 @@ namespace StockTrack
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            performSearch();
+            performSearch(0);
         }
 
-        private void performSearch()
+        private void performSearch(int orderId)
         {
             bool? isWorkOrder = null;
             if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = true;
@@ -49,10 +49,10 @@ namespace StockTrack
             {
                 dgOrders.Items.SortDescriptions.Add(sdPrimary);
             }
-            if (selectedOrderId == 0) return;
+            if (selectedOrderId == 0 && orderId == 0) return;
             foreach (Order o in dgOrders.Items)
             {
-                if (o.OrderId == selectedOrderId)
+                if (o.OrderId == orderId || o.OrderId == selectedOrderId)
                 {
                     dgOrders.SelectedItem = o;
                     break;
@@ -78,7 +78,7 @@ namespace StockTrack
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            performSearch();
+            performSearch(0);
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -104,7 +104,7 @@ namespace StockTrack
                     od.OrderId = orderId;
                     od.Owner = this;
                     od.ShowDialog();
-                    performSearch();
+                    performSearch(orderId);
                 }
             }
         }
@@ -127,7 +127,7 @@ namespace StockTrack
                 DataAccess.InsertOrderHistory(h);
                 DataAccess.UpdateOrder(o);
             }
-            performSearch();
+            performSearch(0);
         }
 
         private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -156,7 +156,7 @@ namespace StockTrack
                 od.OrderId = o.OrderId;
                 od.Owner = this;
                 od.ShowDialog();
-                performSearch();
+                performSearch(0);
             }
         }
 
