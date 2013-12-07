@@ -42,7 +42,7 @@
             </StackPanel>
             <TextBox DockPanel.Dock="Bottom" Height="40" Name="txtProgress" Margin="0,5,0,0" AcceptsReturn="True"></TextBox>
             <Label Margin="0,5,0,0" DockPanel.Dock="Bottom">Enter new progress:</Label>
-            <DataGrid DockPanel.Dock="Bottom" Height="200" Name="dgProgression" Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
+            <DataGrid DockPanel.Dock="Bottom" Height="150" Name="dgProgression" Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False"
                   CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
                 <DataGrid.Columns>
