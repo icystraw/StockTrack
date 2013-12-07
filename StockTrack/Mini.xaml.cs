@@ -124,11 +124,11 @@ namespace StockTrack
                 {
                     h.Action = "Return";
                 }
-                if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity <= 0)
+                i.Quantity += h.Quantity;
+                if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity < 0)
                 {
                     h.Comments = "On backorder";
                 }
-                i.Quantity += h.Quantity;
                 DataAccess.UpdateItem(i);
                 DataAccess.InsertHistory(h);
             }
