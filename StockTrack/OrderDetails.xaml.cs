@@ -116,7 +116,12 @@ namespace StockTrack
                 i.Quantity -= h.Quantity;
                 DataAccess.DeleteHistoryById(h.HistoryId);
                 DataAccess.UpdateItem(i);
+                foreach (Item _i in dgItems.Items)
+                {
+                    if (_i.ItemId == i.ItemId) _i.Quantity = i.Quantity;
+                }
             }
+            dgItems.Items.Refresh();
             getOrderHistory();
         }
 
