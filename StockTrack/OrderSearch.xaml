@@ -4,45 +4,47 @@
         xml:lang="en-AU"
         Title="Order Tracking" Height="660" Width="1000" Background="#FFE1E1E1" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
-        <Label DockPanel.Dock="Top" Margin="3">
-            Enter search criteria below to search for orders. Click on the order number in the data grid to display and modify order item details and progression.
-        </Label>
-        <StackPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
-            <Label>Order No:</Label>
-            <TextBox Name="txtOrderNo" Width="100"></TextBox>
-            <Label>Keyword:</Label>
-            <TextBox Name="txtKeyword" Width="130"></TextBox>
-            <Label>Shipping:</Label>
-            <ComboBox Name="cbShipping" IsEditable="True" Width="120">
-                <ComboBoxItem>Pick up</ComboBoxItem>
-                <ComboBoxItem>Delivery</ComboBoxItem>
-                <ComboBoxItem>Pick up on-call</ComboBoxItem>
-                <ComboBoxItem>Delivery on-call</ComboBoxItem>
-                <ComboBoxItem>To be advised</ComboBoxItem>
-            </ComboBox>
-            <Label>Is Work Order:</Label>
-            <ComboBox Name="cbIsWorkOrder">
-                <ComboBoxItem>All</ComboBoxItem>
-                <ComboBoxItem IsSelected="True">Yes</ComboBoxItem>
-                <ComboBoxItem>No</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Margin="3" Orientation="Horizontal" DockPanel.Dock="Top">
-            <Label>Order Date:</Label>
-            <DatePicker Name="dtOrderDate1"></DatePicker>
-            <Label>to</Label>
-            <DatePicker Name="dtOrderDate2"></DatePicker>
-            <Label>Shipping Date:</Label>
-            <DatePicker Name="dtShippingDate1"></DatePicker>
-            <Label>to</Label>
-            <DatePicker Name="dtShippingDate2"></DatePicker>
-            <Button Name="btnSearch" Width="120" Margin="20,0,0,0" Click="btnSearch_Click" IsDefault="True">Search</Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3">
-            <Button Name="btnNew" Width="120" Click="btnNew_Click">New Work Order</Button>
-            <Button Name="btnAddItem" Width="120" Click="btnAddItem_Click">Go Items</Button>
-            <Button Name="btnNormal" Width="120" Click="btnNormal_Click">Go Mini</Button>
-        </StackPanel>
+        <Expander Header="Expand this to show search criteria. Click on the order number in the data grid to edit order details and progression." ExpandDirection="Down" DockPanel.Dock="Top">
+            <WrapPanel>
+                <StackPanel Margin="3" Orientation="Horizontal">
+                    <Label>Order No:</Label>
+                    <TextBox Name="txtOrderNo" Width="100"></TextBox>
+                    <Label>Keyword:</Label>
+                    <TextBox Name="txtKeyword" Width="130"></TextBox>
+                    <Label>Shipping:</Label>
+                    <ComboBox Name="cbShipping" IsEditable="True" Width="120">
+                        <ComboBoxItem>Pick up</ComboBoxItem>
+                        <ComboBoxItem>Delivery</ComboBoxItem>
+                        <ComboBoxItem>Pick up on-call</ComboBoxItem>
+                        <ComboBoxItem>Delivery on-call</ComboBoxItem>
+                        <ComboBoxItem>To be advised</ComboBoxItem>
+                    </ComboBox>
+                    <Label>Is Work Order:</Label>
+                    <ComboBox Name="cbIsWorkOrder">
+                        <ComboBoxItem>All</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">Yes</ComboBoxItem>
+                        <ComboBoxItem>No</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="3" Orientation="Horizontal">
+                    <Label>Order Date:</Label>
+                    <DatePicker Name="dtOrderDate1"></DatePicker>
+                    <Label>to</Label>
+                    <DatePicker Name="dtOrderDate2"></DatePicker>
+                    <Label>Shipping Date:</Label>
+                    <DatePicker Name="dtShippingDate1"></DatePicker>
+                    <Label>to</Label>
+                    <DatePicker Name="dtShippingDate2"></DatePicker>
+                    <Button Name="btnSearch" Width="120" Margin="20,0,0,0" Click="btnSearch_Click" IsDefault="True">Search</Button>
+                </StackPanel>
+            </WrapPanel>
+        </Expander>
+        <DockPanel DockPanel.Dock="Top">
+            <Button Name="btnNew" Width="120" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work Order</Button>
+            <Button Name="btnAddItem" Width="120" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
+            <Button Name="btnNormal" Width="120" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Go Mini</Button>
+            <Label></Label>
+        </DockPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="1"
                   SelectionUnit="FullRow" CanUserDeleteRows="False" CanUserAddRows="False" FontSize="14" CellEditEnding="dgOrders_CellEditEnding" SelectionChanged="dgOrders_SelectionChanged">
             <DataGrid.Columns>
