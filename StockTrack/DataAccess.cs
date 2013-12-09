@@ -364,7 +364,6 @@ namespace StockTrack
                 cmd.CommandText += " where [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [latestprogress] like N'%' + @keyword + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
-            cmd.CommandText += " order by [orderdate] desc, [orderno] desc";
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (rd.Read())

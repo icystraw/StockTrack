@@ -32,7 +32,7 @@ namespace StockTrack
             bool? isWorkOrder = null;
             if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = true;
             else if (cbIsWorkOrder.SelectedIndex == 2) isWorkOrder = false;
-            SortDescription sdPrimary = new SortDescription("TBA", ListSortDirection.Ascending);
+            SortDescription sdPrimary = new SortDescription("ShippingDate", ListSortDirection.Ascending);
             if (dgOrders.Items.SortDescriptions.Count > 0)
             {
                 sdPrimary = dgOrders.Items.SortDescriptions[0];
@@ -45,10 +45,7 @@ namespace StockTrack
                 selectedOrderId = o.OrderId;
             }
             dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
-            if (sdPrimary.PropertyName != "TBA")
-            {
-                dgOrders.Items.SortDescriptions.Add(sdPrimary);
-            }
+            dgOrders.Items.SortDescriptions.Add(sdPrimary);
             if (selectedOrderId == 0 && orderId == 0) return;
             foreach (Order o in dgOrders.Items)
             {
