@@ -401,6 +401,7 @@ namespace StockTrack
         {
             if (null == dgHistory.SelectedItem) return;
             int selectedItemId = (dgItems.SelectedItem as Item).ItemId;
+            int selectedHistoryId = (dgHistory.SelectedItem as History).HistoryId;
             OrderDetails o = new OrderDetails();
             o.OrderId = (dgHistory.SelectedItem as History).OrderId;
             o.Owner = this;
@@ -409,7 +410,18 @@ namespace StockTrack
             foreach (Item i in dgItems.Items)
             {
                 if (i.ItemId == selectedItemId)
+                {
                     dgItems.SelectedItem = i;
+                    break;
+                }
+            }
+            foreach (History h in dgHistory.Items)
+            {
+                if (h.HistoryId == selectedHistoryId)
+                {
+                    dgHistory.SelectedItem = h;
+                    break;
+                }
             }
             refreshOrder();
         }
@@ -455,9 +467,14 @@ namespace StockTrack
         {
             if (null == dgOrders.SelectedItem) return;
             int selectedItemId = 0;
+            int selectedHistoryId = 0;
             if (dgItems.SelectedItem != null)
             {
                 selectedItemId = (dgItems.SelectedItem as Item).ItemId;
+            }
+            if (dgHistory.SelectedItem != null)
+            {
+                selectedHistoryId = (dgHistory.SelectedItem as History).HistoryId;
             }
             OrderDetails o = new OrderDetails();
             o.OrderId = (dgOrders.SelectedItem as Order).OrderId;
@@ -469,7 +486,21 @@ namespace StockTrack
                 foreach (Item i in dgItems.Items)
                 {
                     if (i.ItemId == selectedItemId)
+                    {
                         dgItems.SelectedItem = i;
+                        break;
+                    }
+                }
+            }
+            if (selectedHistoryId > 0)
+            {
+                foreach (History h in dgHistory.Items)
+                {
+                    if (h.HistoryId == selectedHistoryId)
+                    {
+                        dgHistory.SelectedItem = h;
+                        break;
+                    }
                 }
             }
             refreshOrder();
