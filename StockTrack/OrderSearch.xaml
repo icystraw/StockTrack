@@ -28,13 +28,13 @@
                 </StackPanel>
                 <StackPanel Margin="3" Orientation="Horizontal">
                     <Label>Order Date:</Label>
-                    <DatePicker Name="dtOrderDate1"></DatePicker>
+                    <DatePicker Name="dtOrderDate1" MouseWheel="dtDate_MouseWheel"></DatePicker>
                     <Label>to</Label>
-                    <DatePicker Name="dtOrderDate2"></DatePicker>
+                    <DatePicker Name="dtOrderDate2" MouseWheel="dtDate_MouseWheel"></DatePicker>
                     <Label>Shipping Date:</Label>
-                    <DatePicker Name="dtShippingDate1"></DatePicker>
+                    <DatePicker Name="dtShippingDate1" MouseWheel="dtDate_MouseWheel"></DatePicker>
                     <Label>to</Label>
-                    <DatePicker Name="dtShippingDate2"></DatePicker>
+                    <DatePicker Name="dtShippingDate2" MouseWheel="dtDate_MouseWheel"></DatePicker>
                     <Button Name="btnSearch" Width="120" Margin="20,0,0,0" Click="btnSearch_Click" IsDefault="True">Search</Button>
                 </StackPanel>
             </WrapPanel>
@@ -63,7 +63,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Path=OrderDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                            <DatePicker SelectedDate="{Binding Path=OrderDate, UpdateSourceTrigger=PropertyChanged}" MouseWheel="dtDate_MouseWheel"></DatePicker>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -98,7 +98,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Path=ShippingDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                            <DatePicker SelectedDate="{Binding Path=ShippingDate, UpdateSourceTrigger=PropertyChanged}" MouseWheel="dtDate_MouseWheel"></DatePicker>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>

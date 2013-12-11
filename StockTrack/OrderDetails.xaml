@@ -9,7 +9,7 @@
             <TextBox Name="txtOrderNo"></TextBox>
             <CheckBox Name="cbIsWorkOrder" Margin="0,5,0,0">Is Work Order</CheckBox>
             <Label>Order Date:</Label>
-            <DatePicker Name="dtOrderDate"></DatePicker>
+            <DatePicker Name="dtOrderDate" MouseWheel="dtOrderDate_MouseWheel"></DatePicker>
             <Label>Customer Name:</Label>
             <TextBox Name="txtCustomerName"></TextBox>
             <Label>Contact Number:</Label>
@@ -27,7 +27,7 @@
                 <ComboBoxItem>To be advised</ComboBoxItem>
             </ComboBox>
             <Label>Shipping Date:</Label>
-            <DatePicker Name="dtShippingDate"></DatePicker>
+            <DatePicker Name="dtShippingDate" MouseWheel="dtShippingDate_MouseWheel"></DatePicker>
             <Label>Comments:</Label>
             <TextBox Name="txtComments"></TextBox>
             <Label>Folder:</Label>

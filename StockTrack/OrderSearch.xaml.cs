@@ -166,5 +166,11 @@ namespace StockTrack
             }
             catch { }
         }
+
+        private void dtDate_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            Utilities.ChangeDate(sender as DatePicker, e.Delta);
+            e.Handled = true;
+        }
     }
 }

@@ -30,7 +30,7 @@
             <Label Margin="0,5,0,0">Comments:</Label>
             <TextBox Name="txtComments" Margin="0,5,0,0" />
             <Label Margin="0,5,0,0">Date:</Label>
-            <DatePicker Name="dtEntryDate" Margin="0,5,0,0"/>
+            <DatePicker Name="dtEntryDate" Margin="0,5,0,0" MouseWheel="dtEntryDate_MouseWheel"/>
             <Label Margin="0,5,0,0">Order No:</Label>
             <TextBox Name="txtOrderNo" Margin="0,5,0,0" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
             <DataGrid Name="dgOrders" MaxHeight="150" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
@@ -58,7 +58,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}">
                         <DataGridTextColumn.Header>
-                            <DatePicker Name="dtHistoryDate" SelectedDateChanged="dtHistoryDate_SelectedDateChanged" />
+                            <DatePicker Name="dtHistoryDate" SelectedDateChanged="dtHistoryDate_SelectedDateChanged" MouseWheel="dtHistoryDate_MouseWheel" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>

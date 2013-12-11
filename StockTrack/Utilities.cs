@@ -9,6 +9,21 @@ namespace StockTrack
 {
     class Utilities
     {
+        public static void ChangeDate(DatePicker dp, int delta)
+        {
+            if (dp.SelectedDate != null)
+            {
+                if (delta > 0)
+                {
+                    dp.SelectedDate = ((DateTime)dp.SelectedDate).AddDays(1);
+                }
+                if (delta < 0)
+                {
+                    dp.SelectedDate = ((DateTime)dp.SelectedDate).AddDays(-1);
+                }
+            }
+        }
+
         public static void ChangeTextFieldNumber(TextBox t, double modification)
         {
             string originalText = t.Text.Trim();

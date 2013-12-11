@@ -512,5 +512,15 @@ namespace StockTrack
             os.Show();
             this.Close();
         }
+
+        private void dtEntryDate_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            Utilities.ChangeDate(dtEntryDate, e.Delta);
+        }
+
+        private void dtHistoryDate_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            Utilities.ChangeDate(dtHistoryDate, e.Delta);
+        }
     }
 }

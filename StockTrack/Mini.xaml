@@ -23,7 +23,7 @@
         <ComboBox Name="cbSearch" FontSize="14" DockPanel.Dock="Top" IsEditable="True" Text="Enter keyword or choose from list"></ComboBox>
         <Expander Name="expEntry" Header="ORDER ENTRY" DockPanel.Dock="Bottom" Opacity="0" ExpandDirection="Up">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <DatePicker Name="dtEntryDate" Margin="2" />
+                <DatePicker Name="dtEntryDate" Margin="2" MouseWheel="dtEntryDate_MouseWheel" />
                 <Label Content="O/N" Margin="2"></Label>
                 <TextBox Name="txtOrderNo" Width="50" Margin="2" MouseWheel="txtOrderNo_MouseWheel" VerticalAlignment="Center" />
                 <Label Content="Qty" Margin="2"></Label>

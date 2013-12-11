@@ -272,5 +272,15 @@ namespace StockTrack
             dgItems.Items.Refresh();
             getOrderHistory();
         }
+
+        private void dtOrderDate_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            Utilities.ChangeDate(dtOrderDate, e.Delta);
+        }
+
+        private void dtShippingDate_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            Utilities.ChangeDate(dtShippingDate, e.Delta);
+        }
     }
 }

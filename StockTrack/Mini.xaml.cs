@@ -201,5 +201,10 @@ namespace StockTrack
             o.Show();
             this.Close();
         }
+
+        private void dtEntryDate_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            Utilities.ChangeDate(dtEntryDate, e.Delta);
+        }
     }
 }
