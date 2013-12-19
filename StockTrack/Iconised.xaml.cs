@@ -67,5 +67,27 @@ namespace StockTrack
                 this.Close();
             }
         }
+
+        private void mnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderSearch o = new OrderSearch();
+            o.Show();
+            this.Close();
+            if (mini != null)
+            {
+                mini.Close();
+            }
+        }
+
+        private void mnItems_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
+            if (mini != null)
+            {
+                mini.Close();
+            }
+        }
     }
 }

@@ -7,6 +7,8 @@
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Name="mnExit" Click="mnExit_Click" Header="Exit"></MenuItem>
+            <MenuItem Name="mnOrder" Header="Orders" Click="mnOrder_Click"></MenuItem>
+            <MenuItem Name="mnItems" Header="Items" Click="mnItems_Click"></MenuItem>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>
