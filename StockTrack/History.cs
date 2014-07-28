@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace StockTrack
 {
@@ -65,6 +66,13 @@ namespace StockTrack
             get { return orderNo; }
             set { orderNo = value; }
         }
+        private bool isWorkOrder;
+
+        public bool IsWorkOrder
+        {
+            get { return isWorkOrder; }
+            set { isWorkOrder = value; }
+        }
         private int orderId;
 
         public int OrderId
@@ -79,6 +87,16 @@ namespace StockTrack
         {
             get { return comments; }
             set { comments = value; }
+        }
+
+        public Brush OrderColor
+        {
+            get
+            {
+                if (isWorkOrder)
+                    return new SolidColorBrush(Colors.Pink);
+                return new SolidColorBrush(Colors.White);
+            }
         }
     }
 }

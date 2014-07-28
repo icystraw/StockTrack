@@ -206,7 +206,7 @@ namespace StockTrack
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select [history].*, [order].[orderno] from [history] inner join [order] on [order].[orderid] = [history].[orderid] where [itemid] = @itemid order by [entrydate] desc", con);
+            SqlCommand cmd = new SqlCommand("select [history].*, [order].[orderno], [order].[isworkorder] from [history] inner join [order] on [order].[orderid] = [history].[orderid] where [itemid] = @itemid order by [entrydate] desc", con);
             cmd.Parameters.Add(new SqlParameter("@itemid", itemId));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -222,6 +222,7 @@ namespace StockTrack
                 h.OrderNo = rd["orderno"].ToString();
                 h.OrderId = Convert.ToInt32(rd["orderid"]);
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
+                h.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
                 histories.Add(h);
             }
             rd.Close();
@@ -233,7 +234,7 @@ namespace StockTrack
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select [history].*, [item].[itemname], [order].[orderno] from [history] inner join [item] on [item].[itemid] = [history].[itemid] inner join [order] on [order].[orderid] = [history].[orderid] where [history].[orderid] = @orderid order by [entrydate] desc", con);
+            SqlCommand cmd = new SqlCommand("select [history].*, [item].[itemname], [order].[orderno], [order].[isworkorder] from [history] inner join [item] on [item].[itemid] = [history].[itemid] inner join [order] on [order].[orderid] = [history].[orderid] where [history].[orderid] = @orderid order by [entrydate] desc", con);
             cmd.Parameters.Add(new SqlParameter("@orderid", orderId));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -250,6 +251,7 @@ namespace StockTrack
                 h.OrderId = Convert.ToInt32(rd["orderid"]);
                 h.OrderNo = rd["orderno"].ToString();
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
+                h.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
                 histories.Add(h);
             }
             rd.Close();
