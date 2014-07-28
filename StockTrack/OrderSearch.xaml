@@ -35,11 +35,11 @@
                     <DatePicker Name="dtShippingDate1" MouseWheel="dtDate_MouseWheel"></DatePicker>
                     <Label>to</Label>
                     <DatePicker Name="dtShippingDate2" MouseWheel="dtDate_MouseWheel"></DatePicker>
-                    <Button Name="btnSearch" Width="120" Margin="20,0,0,0" Click="btnSearch_Click" IsDefault="True">Search</Button>
                 </StackPanel>
             </WrapPanel>
         </Expander>
         <DockPanel DockPanel.Dock="Top">
+            <Button Name="btnSearch" Width="120" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Refresh</Button>
             <Button Name="btnNew" Width="120" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work Order</Button>
             <Button Name="btnAddItem" Width="120" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
             <Button Name="btnNormal" Width="120" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Go Mini</Button>
