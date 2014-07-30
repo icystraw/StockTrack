@@ -123,12 +123,16 @@ namespace StockTrack
             {
                 Item i = DataAccess.GetItemById(h.ItemId);
                 if (null == i) return;
-                i.Quantity -= h.Quantity;
+                if (o.IsWorkOrder < 2)
+                    i.Quantity -= h.Quantity;
                 DataAccess.DeleteHistoryById(h.HistoryId);
-                DataAccess.UpdateItem(i);
-                foreach (Item _i in dgItems.Items)
+                if (o.IsWorkOrder < 2)
                 {
-                    if (_i.ItemId == i.ItemId) _i.Quantity = i.Quantity;
+                    DataAccess.UpdateItem(i);
+                    foreach (Item _i in dgItems.Items)
+                    {
+                        if (_i.ItemId == i.ItemId) _i.Quantity = i.Quantity;
+                    }
                 }
             }
             dgItems.Items.Refresh();
@@ -271,12 +275,22 @@ namespace StockTrack
                 {
                     h.Action = "Return";
                 }
-                i.Quantity += h.Quantity;
-                if (h.Quantity < 0 && i.Quantity < 0)
+                if (o.IsWorkOrder < 2)
                 {
-                    h.Comments = "On backorder";
+                    i.Quantity += h.Quantity;
+                    if (h.Quantity < 0 && i.Quantity < 0)
+                    {
+                        h.Comments = "On backorder";
+                    }
+                    DataAccess.UpdateItem(i);
                 }
-                DataAccess.UpdateItem(i);
+                else
+                {
+                    if (h.Quantity < 0 && i.Quantity <= 0)
+                    {
+                        h.Comments = "On backorder";
+                    }
+                }
                 DataAccess.InsertHistory(h);
             }
             dgItems.Items.Refresh();
