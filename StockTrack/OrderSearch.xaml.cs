@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
@@ -126,24 +127,28 @@ namespace StockTrack
             DataAccess.UpdateOrder(o);
         }
 
-        private void mnuMark_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (Order o in dgOrders.SelectedItems)
-            {
-                o.IsWorkOrder = 0;
-                OrderHistory h = new OrderHistory();
-                h.OrderId = o.OrderId;
-                h.HistoryDate = DateTime.Now;
-                h.Comments = "Order marked as complete.";
-                DataAccess.InsertOrderHistory(h);
-                DataAccess.UpdateOrder(o);
-            }
-            performSearch(0);
-        }
-
         private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mnuMark.IsEnabled = mnuLink.IsEnabled = !(null == dgOrders.SelectedItem);
+            mnuConvertTentative.IsEnabled = mnuConvertWorkOrder.IsEnabled = mnuMark.IsEnabled = mnuLink.IsEnabled = false;
+            Order o = dgOrders.SelectedItem as Order;
+            if (o != null)
+            {
+                mnuLink.IsEnabled = true;
+                if (o.IsWorkOrder == 0)
+                {
+                    mnuConvertTentative.IsEnabled = true;
+                    mnuConvertWorkOrder.IsEnabled = true;
+                }
+                if (o.IsWorkOrder == 1)
+                {
+                    mnuConvertTentative.IsEnabled = true;
+                    mnuMark.IsEnabled = true;
+                }
+                if (o.IsWorkOrder == 2)
+                {
+                    mnuConvertWorkOrder.IsEnabled = true;
+                }
+            }
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
@@ -191,6 +196,73 @@ namespace StockTrack
         {
             if (this.IsLoaded)
                 performSearch(0);
+        }
+
+        private void mnuMark_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Order o in dgOrders.SelectedItems)
+            {
+                if (o.IsWorkOrder != 1) continue;
+                o.IsWorkOrder = 0;
+                OrderHistory h = new OrderHistory();
+                h.OrderId = o.OrderId;
+                h.HistoryDate = DateTime.Now;
+                h.Comments = "Order marked as complete.";
+                DataAccess.InsertOrderHistory(h);
+                DataAccess.UpdateOrder(o);
+            }
+            performSearch(0);
+        }
+
+        private void mnuConvertWorkOrder_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Order o in dgOrders.SelectedItems)
+            {
+                if (o.IsWorkOrder == 1) continue;
+                if (o.IsWorkOrder == 2)
+                {
+                    List<History> hs = DataAccess.GetHistoryByOrderId(o.OrderId);
+                    foreach (History h in hs)
+                    {
+                        Item i = DataAccess.GetItemById(h.ItemId);
+                        i.Quantity += h.Quantity;
+                        DataAccess.UpdateItem(i);
+                    }
+                }
+                o.IsWorkOrder = 1;
+                OrderHistory oh = new OrderHistory();
+                oh.OrderId = o.OrderId;
+                oh.HistoryDate = DateTime.Now;
+                oh.Comments = "Order marked as work order.";
+                DataAccess.InsertOrderHistory(oh);
+                DataAccess.UpdateOrder(o);
+            }
+            performSearch(0);
+        }
+
+        private void mnuConvertTentative_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Order o in dgOrders.SelectedItems)
+            {
+                if (o.IsWorkOrder < 2)
+                {
+                    List<History> hs = DataAccess.GetHistoryByOrderId(o.OrderId);
+                    foreach (History h in hs)
+                    {
+                        Item i = DataAccess.GetItemById(h.ItemId);
+                        i.Quantity -= h.Quantity;
+                        DataAccess.UpdateItem(i);
+                    }
+                    o.IsWorkOrder = 2;
+                    OrderHistory oh = new OrderHistory();
+                    oh.OrderId = o.OrderId;
+                    oh.HistoryDate = DateTime.Now;
+                    oh.Comments = "Order marked as tentative order.";
+                    DataAccess.InsertOrderHistory(oh);
+                    DataAccess.UpdateOrder(o);
+                }
+            }
+            performSearch(0);
         }
     }
 }

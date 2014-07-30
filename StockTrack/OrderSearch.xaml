@@ -113,8 +113,8 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="mnuMark" IsEnabled="False" Click="mnuMark_Click" Header="Mark Complete"></MenuItem>
-                    <MenuItem Name="mnuConvertWorkOrder" IsEnabled="False" Header="Convert to Work Order"></MenuItem>
-                    <MenuItem Name="mnuConvertTentative" IsEnabled="False" Header="Convert to Tentative Order"></MenuItem>
+                    <MenuItem Name="mnuConvertWorkOrder" IsEnabled="False" Header="Mark as Work Order" Click="mnuConvertWorkOrder_Click"></MenuItem>
+                    <MenuItem Name="mnuConvertTentative" IsEnabled="False" Header="Mark as Tentative Order" Click="mnuConvertTentative_Click"></MenuItem>
                     <MenuItem Command="Copy"></MenuItem>
                     <MenuItem Name="mnuLink" IsEnabled="False" Click="mnuLink_Click" Header="Open Folder"></MenuItem>
                 </ContextMenu>
