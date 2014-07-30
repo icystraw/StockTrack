@@ -187,6 +187,10 @@ namespace StockTrack
             e.Handled = true;
         }
 
-
+        private void cbIsWorkOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                performSearch(0);
+        }
     }
 }

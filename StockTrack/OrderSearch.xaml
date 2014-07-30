@@ -4,7 +4,7 @@
         xml:lang="en-AU"
         Title="Order Tracking" Height="660" Width="1000" Background="#FFE1E1E1" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
-        <Expander Header="Expand this to show search criteria. Click on the order number in the data grid to edit order details and progression." ExpandDirection="Down" DockPanel.Dock="Top">
+        <Expander Header="Expand this to show more search criteria. Click on the order number in the data grid to edit order details and progression." ExpandDirection="Down" DockPanel.Dock="Top">
             <WrapPanel>
                 <StackPanel Margin="3" Orientation="Horizontal">
                     <Label>Order No:</Label>
@@ -21,12 +21,6 @@
                         <ComboBoxItem>Taken</ComboBoxItem>
                         <ComboBoxItem>Delivered</ComboBoxItem>
                     </ComboBox>
-                    <Label>Order Type:</Label>
-                    <ComboBox Name="cbIsWorkOrder">
-                        <ComboBoxItem>All</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">Work</ComboBoxItem>
-                        <ComboBoxItem>Tentative</ComboBoxItem>
-                    </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="3" Orientation="Horizontal">
                     <Label>Order Date:</Label>
@@ -41,6 +35,12 @@
             </WrapPanel>
         </Expander>
         <DockPanel DockPanel.Dock="Top">
+            <Label DockPanel.Dock="Left">Order Type:</Label>
+            <ComboBox Name="cbIsWorkOrder" DockPanel.Dock="Left" SelectionChanged="cbIsWorkOrder_SelectionChanged">
+                <ComboBoxItem>All</ComboBoxItem>
+                <ComboBoxItem IsSelected="True">Work</ComboBoxItem>
+                <ComboBoxItem>Tentative</ComboBoxItem>
+            </ComboBox>
             <Button Name="btnSearch" Width="120" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Refresh</Button>
             <Button Name="btnNew" Width="120" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work Order</Button>
             <Button Name="btnNewTentative" Width="150" Margin="3" DockPanel.Dock="Left" Click="btnNewTentative_Click">New Tentative Order</Button>
