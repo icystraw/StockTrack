@@ -59,9 +59,9 @@ namespace StockTrack
             get { return paidToday; }
             set { paidToday = value; OnPropertyChanged("PaidToday"); OnPropertyChanged("Balance"); }
         }
-        private bool isWorkOrder;
+        private byte isWorkOrder;
 
-        public bool IsWorkOrder
+        public byte IsWorkOrder
         {
             get { return isWorkOrder; }
             set { isWorkOrder = value; }
@@ -124,8 +124,10 @@ namespace StockTrack
         {
             get
             {
-                if (isWorkOrder)
+                if (isWorkOrder == 1)
                     return new SolidColorBrush(Colors.Pink);
+                else if (isWorkOrder == 2)
+                    return new SolidColorBrush(Colors.LightGray);
                 return new SolidColorBrush(Colors.White);
             }
         }

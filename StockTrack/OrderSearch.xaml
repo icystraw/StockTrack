@@ -18,12 +18,14 @@
                         <ComboBoxItem>Pick up on-call</ComboBoxItem>
                         <ComboBoxItem>Delivery on-call</ComboBoxItem>
                         <ComboBoxItem>To be advised</ComboBoxItem>
+                        <ComboBoxItem>Taken</ComboBoxItem>
+                        <ComboBoxItem>Delivered</ComboBoxItem>
                     </ComboBox>
-                    <Label>Is Work Order:</Label>
+                    <Label>Order Type:</Label>
                     <ComboBox Name="cbIsWorkOrder">
                         <ComboBoxItem>All</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">Yes</ComboBoxItem>
-                        <ComboBoxItem>No</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">Work</ComboBoxItem>
+                        <ComboBoxItem>Tentative</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="3" Orientation="Horizontal">
@@ -41,6 +43,7 @@
         <DockPanel DockPanel.Dock="Top">
             <Button Name="btnSearch" Width="120" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Refresh</Button>
             <Button Name="btnNew" Width="120" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work Order</Button>
+            <Button Name="btnNewTentative" Width="150" Margin="3" DockPanel.Dock="Left" Click="btnNewTentative_Click">New Tentative Order</Button>
             <Button Name="btnAddItem" Width="120" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
             <Button Name="btnNormal" Width="120" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Go Mini</Button>
             <Label></Label>
@@ -86,6 +89,8 @@
                                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
                                 <ComboBoxItem>To be advised</ComboBoxItem>
+                                <ComboBoxItem>Taken</ComboBoxItem>
+                                <ComboBoxItem>Delivered</ComboBoxItem>
                             </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
@@ -108,6 +113,8 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="mnuMark" IsEnabled="False" Click="mnuMark_Click" Header="Mark Complete"></MenuItem>
+                    <MenuItem Name="mnuConvertWorkOrder" IsEnabled="False" Header="Convert to Work Order"></MenuItem>
+                    <MenuItem Name="mnuConvertTentative" IsEnabled="False" Header="Convert to Tentative Order"></MenuItem>
                     <MenuItem Command="Copy"></MenuItem>
                     <MenuItem Name="mnuLink" IsEnabled="False" Click="mnuLink_Click" Header="Open Folder"></MenuItem>
                 </ContextMenu>

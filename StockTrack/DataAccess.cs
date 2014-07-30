@@ -222,7 +222,7 @@ namespace StockTrack
                 h.OrderNo = rd["orderno"].ToString();
                 h.OrderId = Convert.ToInt32(rd["orderid"]);
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
-                h.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                h.IsWorkOrder = Convert.ToByte(rd["isworkorder"]);
                 histories.Add(h);
             }
             rd.Close();
@@ -251,7 +251,7 @@ namespace StockTrack
                 h.OrderId = Convert.ToInt32(rd["orderid"]);
                 h.OrderNo = rd["orderno"].ToString();
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
-                h.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                h.IsWorkOrder = Convert.ToByte(rd["isworkorder"]);
                 histories.Add(h);
             }
             rd.Close();
@@ -277,7 +277,7 @@ namespace StockTrack
                 o.Shipping = rd["shipping"].ToString();
                 o.TotalAmount = Convert.ToDouble(rd["totalamount"]);
                 o.PaidToday = Convert.ToDouble(rd["paidtoday"]);
-                o.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                o.IsWorkOrder = Convert.ToByte(rd["isworkorder"]);
                 o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
@@ -306,7 +306,7 @@ namespace StockTrack
                 o.Shipping = rd["shipping"].ToString();
                 o.TotalAmount = Convert.ToDouble(rd["totalamount"]);
                 o.PaidToday = Convert.ToDouble(rd["paidtoday"]);
-                o.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                o.IsWorkOrder = Convert.ToByte(rd["isworkorder"]);
                 o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
@@ -318,7 +318,7 @@ namespace StockTrack
             return os;
         }
 
-        public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, bool? isWorkOrder)
+        public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, byte? isWorkOrder)
         {
             List<Order> orders = new List<Order>();
             SqlConnection con = new SqlConnection(conStr);
@@ -378,7 +378,7 @@ namespace StockTrack
                 o.Shipping = rd["shipping"].ToString();
                 o.TotalAmount = Convert.ToDouble(rd["totalamount"]);
                 o.PaidToday = Convert.ToDouble(rd["paidtoday"]);
-                o.IsWorkOrder = Convert.ToBoolean(rd["isworkorder"]);
+                o.IsWorkOrder = Convert.ToByte(rd["isworkorder"]);
                 o.OrderDate = Convert.ToDateTime(rd["orderdate"]);
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
@@ -467,6 +467,18 @@ namespace StockTrack
             return retVal;
         }
 
+        public static int AddNewTentativeOrder(string orderNo)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments], [folder]) values (@orderno, N'', N'', N'', 0, 0, 2, GETDATE(), GETDATE(), N'', N''); select @@identity;", con);
+            cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
+            con.Open();
+            int retVal = 0;
+            retVal = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            return retVal;
+        }
+
         public static List<OrderHistory> GetOrderHistoryByOrderId(int orderId)
         {
             List<OrderHistory> histories = new List<OrderHistory>();
@@ -493,7 +505,7 @@ namespace StockTrack
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select [item].[itemname], sum(0 - [history].[quantity]) as [quantity] from [history] inner join [item] on [item].[itemid] = [history].[itemid] where [history].[action] <> N'Adjust' and [history].[actiondate] >= @dt1 and [history].[actiondate] <= @dt2", con);
+            SqlCommand cmd = new SqlCommand("select [item].[itemname], sum(0 - [history].[quantity]) as [quantity] from [history] inner join [item] on [item].[itemid] = [history].[itemid] inner join [order] on [order].[orderid] = [history].[orderid] where [history].[action] <> N'Adjust' and [history].[actiondate] >= @dt1 and [history].[actiondate] <= @dt2 and [order].[isworkorder] <> 2", con);
             if (c.CategoryId > 0)
             {
                 cmd.CommandText += " and [item].[categoryid] = " + c.CategoryId;

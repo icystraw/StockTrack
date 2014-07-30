@@ -51,7 +51,12 @@ namespace StockTrack
                 cbShipping.Text = o.Shipping;
                 txtTotalAmount.Text = o.TotalAmount.ToString();
                 txtPaidToday.Text = o.PaidToday.ToString();
-                cbIsWorkOrder.IsChecked = o.IsWorkOrder;
+                if (o.IsWorkOrder == 0)
+                    cbIsWorkOrder.IsChecked = false;
+                else if (o.IsWorkOrder == 1)
+                    cbIsWorkOrder.IsChecked = true;
+                else
+                    cbIsWorkOrder.IsEnabled = false;
                 dtOrderDate.SelectedDate = o.OrderDate;
                 dtShippingDate.SelectedDate = o.ShippingDate;
                 txtComments.Text = o.Comments;
@@ -77,7 +82,12 @@ namespace StockTrack
                     MessageBox.Show("Check.", "Please", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                o.IsWorkOrder = (bool)cbIsWorkOrder.IsChecked;
+                if (!cbIsWorkOrder.IsEnabled)
+                    o.IsWorkOrder = 2;
+                else if ((bool)cbIsWorkOrder.IsChecked)
+                    o.IsWorkOrder = 1;
+                else
+                    o.IsWorkOrder = 0;
                 if (null == dtOrderDate.SelectedDate || null == dtShippingDate.SelectedDate)
                 {
                     MessageBox.Show("Check.", "Please", MessageBoxButton.OK, MessageBoxImage.Error);

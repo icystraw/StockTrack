@@ -29,9 +29,9 @@ namespace StockTrack
 
         private void performSearch(int orderId)
         {
-            bool? isWorkOrder = null;
-            if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = true;
-            else if (cbIsWorkOrder.SelectedIndex == 2) isWorkOrder = false;
+            byte? isWorkOrder = null;
+            if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = 1;
+            else if (cbIsWorkOrder.SelectedIndex == 2) isWorkOrder = 2;
             SortDescription sdPrimary = new SortDescription("ShippingDate", ListSortDirection.Ascending);
             if (dgOrders.Items.SortDescriptions.Count > 0)
             {
@@ -80,6 +80,16 @@ namespace StockTrack
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
+            addNewOrder(1);
+        }
+
+        private void btnNewTentative_Click(object sender, RoutedEventArgs e)
+        {
+            addNewOrder(2);
+        }
+
+        private void addNewOrder(byte isWorkOrder)
+        {
             Name n = new Name();
             n.Owner = this;
             n.CustomTitle = "Enter New Order Number:";
@@ -94,7 +104,11 @@ namespace StockTrack
                     if (MessageBox.Show("The order already exists. Do you want to add another order under the same order number?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                         return;
                 }
-                int orderId = DataAccess.AddNewWorkOrder(n.Input);
+                int orderId = 0;
+                if (isWorkOrder == 1)
+                    orderId = DataAccess.AddNewWorkOrder(n.Input);
+                else
+                    orderId = DataAccess.AddNewTentativeOrder(n.Input);
                 if (orderId > 0)
                 {
                     OrderDetails od = new OrderDetails();
@@ -116,7 +130,7 @@ namespace StockTrack
         {
             foreach (Order o in dgOrders.SelectedItems)
             {
-                o.IsWorkOrder = false;
+                o.IsWorkOrder = 0;
                 OrderHistory h = new OrderHistory();
                 h.OrderId = o.OrderId;
                 h.HistoryDate = DateTime.Now;
@@ -172,5 +186,7 @@ namespace StockTrack
             Utilities.ChangeDate(sender as DatePicker, e.Delta);
             e.Handled = true;
         }
+
+
     }
 }

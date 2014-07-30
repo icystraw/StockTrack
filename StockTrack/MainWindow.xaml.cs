@@ -260,12 +260,36 @@ namespace StockTrack
                 {
                     h.Action = "Return";
                 }
-                i.Quantity += h.Quantity;
-                if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity < 0)
+                if (h.OrderId > 0)
                 {
-                    h.Comments = "On backorder";
+                    Order o = DataAccess.GetOrderById(h.OrderId);
+                    if (null == o) return;
+                    if (o.IsWorkOrder < 2)
+                    {
+                        i.Quantity += h.Quantity;
+                        if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity < 0)
+                        {
+                            h.Comments = "On backorder";
+                        }
+                        DataAccess.UpdateItem(i);
+                    }
+                    else
+                    {
+                        if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity <= 0)
+                        {
+                            h.Comments = "On backorder";
+                        }
+                    }
                 }
-                DataAccess.UpdateItem(i);
+                else
+                {
+                    i.Quantity += h.Quantity;
+                    if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity < 0)
+                    {
+                        h.Comments = "On backorder";
+                    }
+                    DataAccess.UpdateItem(i);
+                }
                 DataAccess.InsertHistory(h);
             }
             populateItemHistory((dgItems.SelectedItem as Item).ItemId);
@@ -301,10 +325,15 @@ namespace StockTrack
             if (dgHistory.SelectedItem == null || dgItems.SelectedItem == null) return;
             if (MessageBox.Show("Sure?", "Please confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
             History h = dgHistory.SelectedItem as History;
+            Order o = DataAccess.GetOrderById(h.OrderId);
+            if (null == o) return;
             Item i = dgItems.SelectedItem as Item;
-            i.Quantity -= h.Quantity;
+            if (o.IsWorkOrder < 2)
+            {
+                i.Quantity -= h.Quantity;
+                DataAccess.UpdateItem(i);
+            }
             DataAccess.DeleteHistoryById(h.HistoryId);
-            DataAccess.UpdateItem(i);
             populateItemHistory(i.ItemId);
             dgItems.Items.Refresh();
         }
