@@ -257,7 +257,7 @@ namespace StockTrack
                     OrderHistory oh = new OrderHistory();
                     oh.OrderId = o.OrderId;
                     oh.HistoryDate = DateTime.Now;
-                    oh.Comments = "Order marked as tentative order.";
+                    oh.Comments = "Order marked as tentative.";
                     DataAccess.InsertOrderHistory(oh);
                     DataAccess.UpdateOrder(o);
                 }
