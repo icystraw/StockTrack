@@ -25,6 +25,8 @@
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
                 <ComboBoxItem>To be advised</ComboBoxItem>
+                <ComboBoxItem>Taken</ComboBoxItem>
+                <ComboBoxItem>Delivered</ComboBoxItem>
             </ComboBox>
             <Label>Shipping Date:</Label>
             <DatePicker Name="dtShippingDate" MouseWheel="dtShippingDate_MouseWheel"></DatePicker>
