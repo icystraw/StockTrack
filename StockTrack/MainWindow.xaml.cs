@@ -44,8 +44,18 @@ namespace StockTrack
                 i.CategoryId = c.CategoryId;
                 i.ItemName = n.Input;
                 i.Quantity = 0;
-                DataAccess.AddItem(i);
+                int newItemId = DataAccess.AddItem(i);
+                if (0 == newItemId) return;
                 loadCategoryItems(c.CategoryId);
+                foreach (Item _i in dgItems.Items)
+                {
+                    if (_i.ItemId == newItemId)
+                    {
+                        dgItems.SelectedItem = _i;
+                        dgItems.ScrollIntoView(_i);
+                        break;
+                    }
+                }
             }
         }
 

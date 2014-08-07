@@ -108,15 +108,16 @@ namespace StockTrack
             return items;
         }
 
-        public static void AddItem(Item i)
+        public static int AddItem(Item i)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("insert into [item] ([categoryid], [itemname], [quantity]) values (@categoryid, @itemname, 0)", con);
-            con.Open();
+            SqlCommand cmd = new SqlCommand("insert into [item] ([categoryid], [itemname], [quantity]) values (@categoryid, @itemname, 0); select @@identity;", con);
             cmd.Parameters.Add(new SqlParameter("@categoryid", i.CategoryId));
             cmd.Parameters.Add(new SqlParameter("@itemname", i.ItemName));
-            cmd.ExecuteNonQuery();
+            con.Open();
+            int retVal = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
+            return retVal;
         }
 
         public static void DeleteItem(int itemId)
