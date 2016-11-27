@@ -29,7 +29,7 @@
             </StackPanel>
         </Expander>
         <DockPanel DockPanel.Dock="Top">
-            <Label>For:</Label>
+            <Label>Look For:</Label>
             <TextBox Name="txtKeyword" Width="100"></TextBox>
             <Label DockPanel.Dock="Left">Type:</Label>
             <ComboBox Name="cbIsWorkOrder" DockPanel.Dock="Left" SelectionChanged="cbIsWorkOrder_SelectionChanged">
