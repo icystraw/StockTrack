@@ -330,7 +330,9 @@ namespace StockTrack
             {
                 cmd.CommandText += " and [comments] like N'%' + @keyword + N'%'";
             }
-            cmd.CommandText += " order by [historydate] desc) as [progress] from [order] where 1 = 1";
+            cmd.CommandText += " order by [historydate] desc) as [progress],";
+            cmd.CommandText += " (select top 1 [i].[itemname] from [item] as [i], [history] as [h] where [h].[itemid] = [i].[itemid] and [h].[orderid] = [order].[orderid]) as [itemname]";
+            cmd.CommandText += " from [order] where 1 = 1";
             if (startDate != null)
             {
                 cmd.CommandText += " and [order].[orderdate] >= @startdate";
@@ -359,7 +361,7 @@ namespace StockTrack
             cmd.CommandText += ") as [temptable]";
             if (!string.IsNullOrEmpty(keyword))
             {
-                cmd.CommandText += " where [shipping] like N'%' + @keyword + N'%' or [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
+                cmd.CommandText += " where [itemname] like N'%' + @keyword + N'%' or [shipping] like N'%' + @keyword + N'%' or [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
             con.Open();
