@@ -95,12 +95,12 @@ namespace StockTrack
             set { folder = value; }
         }
 
-        private string latestProgress;
+        private string progress;
 
-        public string LatestProgress
+        public string Progress
         {
-            get { return latestProgress; }
-            set { latestProgress = value; }
+            get { return progress; }
+            set { progress = value; }
         }
 
         public double Balance

@@ -319,18 +319,18 @@ namespace StockTrack
             return os;
         }
 
-        public static List<Order> SearchOrder(string orderNo, string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, byte? isWorkOrder)
+        public static List<Order> SearchOrder(string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, byte? isWorkOrder)
         {
             List<Order> orders = new List<Order>();
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "select * from (select [order].*, (select top 1 isnull([comments], N'') from [orderhistory] where [orderid] = [order].[orderid] order by [historydate] desc) as [latestprogress] from [order] where 1 = 1";
-            if (!string.IsNullOrEmpty(orderNo))
+            cmd.CommandText = "select * from (select [order].*, (select top 1 isnull([comments], N'') from [orderhistory] where [orderid] = [order].[orderid]";
+            if (!string.IsNullOrEmpty(keyword))
             {
-                cmd.CommandText += " and [order].[orderno] like N'%' + @orderno + N'%'";
-                cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
+                cmd.CommandText += " and [comments] like N'%' + @keyword + N'%'";
             }
+            cmd.CommandText += " order by [historydate] desc) as [progress] from [order] where 1 = 1";
             if (!string.IsNullOrEmpty(shipping))
             {
                 cmd.CommandText += " and [order].[shipping] like N'%' + @shipping + N'%'";
@@ -364,7 +364,7 @@ namespace StockTrack
             cmd.CommandText += ") as [temptable]";
             if (!string.IsNullOrEmpty(keyword))
             {
-                cmd.CommandText += " where [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [latestprogress] like N'%' + @keyword + N'%'";
+                cmd.CommandText += " where [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
             con.Open();
@@ -384,7 +384,7 @@ namespace StockTrack
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
-                o.LatestProgress = rd["latestprogress"].ToString();
+                o.Progress = rd["progress"].ToString();
                 orders.Add(o);
             }
             rd.Close();

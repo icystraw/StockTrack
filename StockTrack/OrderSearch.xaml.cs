@@ -33,7 +33,7 @@ namespace StockTrack
             byte? isWorkOrder = null;
             if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = 1;
             else if (cbIsWorkOrder.SelectedIndex == 2) isWorkOrder = 2;
-            SortDescription sdPrimary = new SortDescription("ShippingDate", ListSortDirection.Ascending);
+            SortDescription sdPrimary = new SortDescription("ShippingDate", ListSortDirection.Descending);
             if (dgOrders.Items.SortDescriptions.Count > 0)
             {
                 sdPrimary = dgOrders.Items.SortDescriptions[0];
@@ -45,7 +45,7 @@ namespace StockTrack
                 Order o = dgOrders.SelectedItem as Order;
                 selectedOrderId = o.OrderId;
             }
-            dgOrders.ItemsSource = DataAccess.SearchOrder(txtOrderNo.Text.Trim(), txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
+            dgOrders.ItemsSource = DataAccess.SearchOrder(txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
             dgOrders.Items.SortDescriptions.Add(sdPrimary);
             if (selectedOrderId == 0 && orderId == 0) return;
             foreach (Order o in dgOrders.Items)
