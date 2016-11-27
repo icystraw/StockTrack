@@ -325,7 +325,7 @@ namespace StockTrack
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "select * from (select [order].*, (select top 1 isnull([comments], N'Open to Reveal') from [orderhistory] where [orderid] = [order].[orderid]";
+            cmd.CommandText = "select * from (select [order].*, (select top 1 [comments] from [orderhistory] where [orderid] = [order].[orderid]";
             if (!string.IsNullOrEmpty(keyword))
             {
                 cmd.CommandText += " and [comments] like N'%' + @keyword + N'%'";
@@ -385,6 +385,8 @@ namespace StockTrack
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
                 o.Progress = rd["progress"].ToString();
+                if (string.IsNullOrEmpty(o.Progress) && !string.IsNullOrEmpty(keyword))
+                    o.Progress = "No match found in history";
                 orders.Add(o);
             }
             rd.Close();
