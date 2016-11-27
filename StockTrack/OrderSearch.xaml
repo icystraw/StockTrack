@@ -106,7 +106,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Progress" IsReadOnly="True" Binding="{Binding Path=Progress}"></DataGridTextColumn>
+                <DataGridTextColumn Header="History" IsReadOnly="True" Binding="{Binding Path=Progress}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
