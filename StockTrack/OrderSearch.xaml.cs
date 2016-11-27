@@ -45,7 +45,7 @@ namespace StockTrack
                 Order o = dgOrders.SelectedItem as Order;
                 selectedOrderId = o.OrderId;
             }
-            dgOrders.ItemsSource = DataAccess.SearchOrder(txtKeyword.Text.Trim(), cbShipping.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
+            dgOrders.ItemsSource = DataAccess.SearchOrder(txtKeyword.Text.Trim(), dtOrderDate1.SelectedDate, dtOrderDate2.SelectedDate, dtShippingDate1.SelectedDate, dtShippingDate2.SelectedDate, isWorkOrder);
             dgOrders.Items.SortDescriptions.Add(sdPrimary);
             if (selectedOrderId == 0 && orderId == 0) return;
             foreach (Order o in dgOrders.Items)

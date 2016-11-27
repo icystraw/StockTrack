@@ -6,18 +6,6 @@
     <DockPanel>
         <Expander Header="Expand to show more search criteria..." ExpandDirection="Down" DockPanel.Dock="Top">
             <StackPanel Margin="3" Orientation="Horizontal">
-                <Label>Shipping:</Label>
-                <ComboBox Name="cbShipping" IsEditable="True" Width="120">
-                    <ComboBoxItem>Pick up</ComboBoxItem>
-                    <ComboBoxItem>Delivery</ComboBoxItem>
-                    <ComboBoxItem>Installation</ComboBoxItem>
-                    <ComboBoxItem>Pick up on-call</ComboBoxItem>
-                    <ComboBoxItem>Delivery on-call</ComboBoxItem>
-                    <ComboBoxItem>To be advised</ComboBoxItem>
-                    <ComboBoxItem>Taken</ComboBoxItem>
-                    <ComboBoxItem>Delivered</ComboBoxItem>
-                    <ComboBoxItem>Installed</ComboBoxItem>
-                </ComboBox>
                 <Label>Order Date:</Label>
                 <DatePicker Name="dtOrderDate1" MouseWheel="dtDate_MouseWheel"></DatePicker>
                 <Label>to</Label>

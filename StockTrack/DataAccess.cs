@@ -319,7 +319,7 @@ namespace StockTrack
             return os;
         }
 
-        public static List<Order> SearchOrder(string keyword, string shipping, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, byte? isWorkOrder)
+        public static List<Order> SearchOrder(string keyword, DateTime? startDate, DateTime? endDate, DateTime? startSDate, DateTime? endSDate, byte? isWorkOrder)
         {
             List<Order> orders = new List<Order>();
             SqlConnection con = new SqlConnection(conStr);
@@ -331,11 +331,6 @@ namespace StockTrack
                 cmd.CommandText += " and [comments] like N'%' + @keyword + N'%'";
             }
             cmd.CommandText += " order by [historydate] desc) as [progress] from [order] where 1 = 1";
-            if (!string.IsNullOrEmpty(shipping))
-            {
-                cmd.CommandText += " and [order].[shipping] like N'%' + @shipping + N'%'";
-                cmd.Parameters.Add(new SqlParameter("@shipping", shipping));
-            }
             if (startDate != null)
             {
                 cmd.CommandText += " and [order].[orderdate] >= @startdate";
@@ -364,7 +359,7 @@ namespace StockTrack
             cmd.CommandText += ") as [temptable]";
             if (!string.IsNullOrEmpty(keyword))
             {
-                cmd.CommandText += " where [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
+                cmd.CommandText += " where [shipping] like N'%' + @keyword + N'%' or [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
             con.Open();
