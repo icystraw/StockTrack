@@ -4,10 +4,8 @@
         xml:lang="en-AU"
         Title="Order Tracking" Height="660" Width="1000" Background="#FFE1E1E1" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
-        <Expander Header="Expand this to show more search criteria. Click on the order number in the data grid to edit order details and progression." ExpandDirection="Down" DockPanel.Dock="Top">
+        <Expander Header="Expand to show more search criteria..." ExpandDirection="Down" DockPanel.Dock="Top">
             <StackPanel Margin="3" Orientation="Horizontal">
-                <Label>For:</Label>
-                <TextBox Name="txtKeyword" Width="100"></TextBox>
                 <Label>Shipping:</Label>
                 <ComboBox Name="cbShipping" IsEditable="True" Width="120">
                     <ComboBoxItem>Pick up</ComboBoxItem>
@@ -31,17 +29,19 @@
             </StackPanel>
         </Expander>
         <DockPanel DockPanel.Dock="Top">
-            <Label DockPanel.Dock="Left">Order Type:</Label>
+            <Label>For:</Label>
+            <TextBox Name="txtKeyword" Width="100"></TextBox>
+            <Label DockPanel.Dock="Left">Type:</Label>
             <ComboBox Name="cbIsWorkOrder" DockPanel.Dock="Left" SelectionChanged="cbIsWorkOrder_SelectionChanged">
                 <ComboBoxItem>All</ComboBoxItem>
                 <ComboBoxItem IsSelected="True">Work</ComboBoxItem>
                 <ComboBoxItem>Tentative</ComboBoxItem>
             </ComboBox>
-            <Button Name="btnSearch" Width="120" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Refresh</Button>
+            <Button Name="btnSearch" Width="100" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Refresh</Button>
             <Button Name="btnNew" Width="120" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work Order</Button>
             <Button Name="btnNewTentative" Width="150" Margin="3" DockPanel.Dock="Left" Click="btnNewTentative_Click">New Tentative Order</Button>
-            <Button Name="btnAddItem" Width="120" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
-            <Button Name="btnNormal" Width="120" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Go Mini</Button>
+            <Button Name="btnAddItem" Width="100" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
+            <Button Name="btnNormal" Width="100" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Go Mini</Button>
             <Label></Label>
         </DockPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="1"
