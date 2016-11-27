@@ -1,0 +1,22 @@
+select * from
+(select [order].*,
+ (select top 1 [comments] from [orderhistory] where [orderid] = [order].[orderid]
+  and [comments] like N'%' + @keyword + N'%' order by [historydate] desc) as [progress],
+ (select top 1 [i].[itemname] from [item] as [i], [history] as [h]
+  where [h].[itemid] = [i].[itemid] and [h].[orderid] = [order].[orderid]) as [itemname]
+ from [order]
+ where
+  [order].[orderdate] >= @startdate
+  and [order].[orderdate] < @enddate
+  and [order].[shippingdate] >= @startsdate
+  and [order].[shippingdate] < @endsdate
+  and [order].[isworkorder] = @isworkorder
+) as [temptable]
+where
+ [itemname] like N'%' + @keyword + N'%'
+ or [shipping] like N'%' + @keyword + N'%'
+ or [orderno] like N'%' + @keyword + N'%'
+ or [customername] like N'%' + @keyword + N'%'
+ or [contactno] like N'%' + @keyword + N'%'
+ or [comments] like N'%' + @keyword + N'%'
+ or [progress] like N'%' + @keyword + N'%'

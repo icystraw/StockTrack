@@ -331,7 +331,14 @@ namespace StockTrack
                 cmd.CommandText += " and [comments] like N'%' + @keyword + N'%'";
             }
             cmd.CommandText += " order by [historydate] desc) as [progress],";
-            cmd.CommandText += " (select top 1 [i].[itemname] from [item] as [i], [history] as [h] where [h].[itemid] = [i].[itemid] and [h].[orderid] = [order].[orderid]) as [itemname]";
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                cmd.CommandText += " (select top 1 [i].[itemname] from [item] as [i], [history] as [h] where [h].[itemid] = [i].[itemid] and [h].[orderid] = [order].[orderid] and [i].[itemname] like N'%' + @keyword + N'%') as [itemname]";
+            }
+            else
+            {
+                cmd.CommandText += " N'' as [itemname]";
+            }
             cmd.CommandText += " from [order] where 1 = 1";
             if (startDate != null)
             {
