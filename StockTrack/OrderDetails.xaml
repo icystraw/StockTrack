@@ -22,11 +22,13 @@
             <ComboBox Name="cbShipping" IsEditable="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
                 <ComboBoxItem>Delivery</ComboBoxItem>
+                <ComboBoxItem>Installation</ComboBoxItem>
                 <ComboBoxItem>Pick up on-call</ComboBoxItem>
                 <ComboBoxItem>Delivery on-call</ComboBoxItem>
                 <ComboBoxItem>To be advised</ComboBoxItem>
                 <ComboBoxItem>Taken</ComboBoxItem>
                 <ComboBoxItem>Delivered</ComboBoxItem>
+                <ComboBoxItem>Installed</ComboBoxItem>
             </ComboBox>
             <Label>Shipping Date:</Label>
             <DatePicker Name="dtShippingDate" MouseWheel="dtShippingDate_MouseWheel"></DatePicker>
@@ -89,8 +91,9 @@
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Delete Sales Item" Click="mnuUndoAction_Click" />
+                        <MenuItem Name="mnuAddOrderComments" IsEnabled="False" Header="Add to Order Comments" Click="mnuAddOrderComments_Click" />
                         <MenuItem Command="Copy"></MenuItem>
+                        <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Delete Sales Item" Click="mnuUndoAction_Click" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>

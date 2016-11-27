@@ -141,7 +141,7 @@ namespace StockTrack
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mnuUndoAction.IsEnabled = !(null == dgHistory.SelectedItem);
+            mnuUndoAction.IsEnabled = mnuAddOrderComments.IsEnabled = !(null == dgHistory.SelectedItem);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -305,6 +305,18 @@ namespace StockTrack
         private void dtShippingDate_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
             Utilities.ChangeDate(dtShippingDate, e.Delta);
+        }
+
+        private void mnuAddOrderComments_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgHistory.SelectedItem == null) return;
+            foreach (History h in dgHistory.SelectedItems)
+            {
+                if (!string.IsNullOrEmpty(txtComments.Text.Trim()))
+                    txtComments.Text += " " + h.ItemName;
+                else
+                    txtComments.Text += h.ItemName;
+            }
         }
     }
 }
