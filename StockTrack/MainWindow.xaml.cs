@@ -199,6 +199,14 @@ namespace StockTrack
             }
             else
             {
+                if (dgItems.SelectedItems.Count == 2)
+                {
+                    mnuMergeItem.IsEnabled = true;
+                }
+                else
+                {
+                    mnuMergeItem.IsEnabled = false;
+                }
                 btnSave.IsEnabled = true;
                 mnuDeleteItem.IsEnabled = true;
                 mnuMoveItem.IsEnabled = true;
@@ -560,6 +568,11 @@ namespace StockTrack
         private void dtHistoryDate_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
             Utilities.ChangeDate(dtHistoryDate, e.Delta);
+        }
+
+        private void mnuMergeItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
