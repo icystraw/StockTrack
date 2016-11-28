@@ -123,6 +123,19 @@ namespace StockTrack
 
         private void dgOrders_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Cancel)
+            {
+                Order or = e.Row.Item as Order;
+                or.Comments = tempOrder.Comments;
+                or.ContactNo = tempOrder.ContactNo;
+                or.CustomerName = tempOrder.CustomerName;
+                or.OrderDate = tempOrder.OrderDate;
+                or.PaidToday = tempOrder.PaidToday;
+                or.Shipping = tempOrder.Shipping;
+                or.ShippingDate = tempOrder.ShippingDate;
+                or.TotalAmount = tempOrder.TotalAmount;
+                return;
+            }
             Order o = e.Row.Item as Order;
             DataAccess.UpdateOrder(o);
         }
@@ -263,6 +276,22 @@ namespace StockTrack
                 }
             }
             performSearch(0);
+        }
+
+        private Order tempOrder = null;
+
+        private void dgOrders_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            tempOrder = new Order();
+            Order o = e.Row.Item as Order;
+            tempOrder.TotalAmount = o.TotalAmount;
+            tempOrder.ShippingDate = o.ShippingDate;
+            tempOrder.Shipping = o.Shipping;
+            tempOrder.PaidToday = o.PaidToday;
+            tempOrder.OrderDate = o.OrderDate;
+            tempOrder.CustomerName = o.CustomerName;
+            tempOrder.ContactNo = o.ContactNo;
+            tempOrder.Comments = o.Comments;
         }
     }
 }
