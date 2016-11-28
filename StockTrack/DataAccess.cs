@@ -371,6 +371,7 @@ namespace StockTrack
                 cmd.CommandText += " where [itemname] like N'%' + @keyword + N'%' or [shipping] like N'%' + @keyword + N'%' or [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
+            cmd.CommandText += " OPTION (RECOMPILE)";
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (rd.Read())
