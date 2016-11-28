@@ -40,11 +40,11 @@ namespace StockTrack
             {
                 if (cbItems.SelectedIndex == i)
                 {
-                    to = (cbItems.SelectedItem as Item).ItemId;
+                    to = (cbItems.Items[i] as Item).ItemId;
                 }
                 else
                 {
-                    from = (cbItems.SelectedItem as Item).ItemId;
+                    from = (cbItems.Items[i] as Item).ItemId;
                 }
             }
             if (from > 0 && to > 0)

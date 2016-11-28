@@ -546,9 +546,19 @@ namespace StockTrack
             return dt;
         }
 
-        public static void MergeItems(int from, int to)
+        public static void MergeItems(int fromId, int toId)
         {
-
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "declare @totalqty int = 0;";
+            cmd.CommandText += "select @totalqty = sum([quantity]) from [item] where [itemid] = " + fromId + " or [itemid] = " + toId + ";";
+            cmd.CommandText += "update [item] set [quantity] = @totalqty where [itemid] = " + toId + ";";
+            cmd.CommandText += "update [history] set [itemid] = " + toId + " where [itemid] = " + fromId + ";";
+            cmd.CommandText += "delete from [item] where [itemid] = " + fromId + ";";
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }
