@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockTrack
 {
-    class Item
+    public class Item
     {
         private int itemId;
 

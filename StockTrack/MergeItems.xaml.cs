@@ -24,12 +24,19 @@ namespace StockTrack
             InitializeComponent();
         }
 
+        public List<Item> ItemList;
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            this.DialogResult = false;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

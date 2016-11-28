@@ -572,7 +572,14 @@ namespace StockTrack
 
         private void mnuMergeItem_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dgItems.SelectedItems.Count != 2) return;
+            MergeItems mi = new MergeItems();
+            mi.Owner = this;
+            mi.ItemList = dgItems.SelectedItems as List<Item>;
+            if (mi.ShowDialog() == true)
+            {
+                refreshItems();
+            }
         }
     }
 }
