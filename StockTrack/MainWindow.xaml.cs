@@ -75,6 +75,12 @@ namespace StockTrack
 
         private void dgCats_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Cancel)
+            {
+                Category ca = e.Row.Item as Category;
+                ca.CategoryName = tempCategory.CategoryName;
+                return;
+            }
             Category c = dgCats.SelectedItem as Category;
             DataAccess.UpdateCategory(c);
         }
@@ -102,12 +108,25 @@ namespace StockTrack
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Cancel)
+            {
+                History hi = e.Row.Item as History;
+                hi.Comments = tempHistory.Comments;
+                return;
+            }
             History h = e.Row.Item as History;
             DataAccess.UpdateHistoryComments(h);
         }
 
         private void dgItems_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Cancel)
+            {
+                Item i = e.Row.Item as Item;
+                i.ItemName = tempItem.ItemName;
+                i.Quantity = tempItem.Quantity;
+                return;
+            }
             Item itemEditing = e.Row.Item as Item;
             if (e.Column.Header.ToString() == "Name")
             {
@@ -582,6 +601,34 @@ namespace StockTrack
             {
                 refreshItems();
             }
+        }
+
+        private Item tempItem = null;
+
+        private void dgItems_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            tempItem = new Item();
+            Item i = e.Row.Item as Item;
+            tempItem.ItemName = i.ItemName;
+            tempItem.Quantity = i.Quantity;
+        }
+
+        private History tempHistory = null;
+
+        private void dgHistory_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            tempHistory = new History();
+            History h = e.Row.Item as History;
+            tempHistory.Comments = h.Comments;
+        }
+
+        private Category tempCategory = null;
+
+        private void dgCats_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            tempCategory = new Category();
+            Category c = e.Row.Item as Category;
+            tempCategory.CategoryName = c.CategoryName;
         }
     }
 }

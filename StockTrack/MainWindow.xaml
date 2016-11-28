@@ -18,7 +18,7 @@
             <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
             <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="5" Click="btnAddCat_Click">New Category</Button>
             <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="5" Click="btnAddItem_Click">New Item</Button>
-            <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
+            <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" BeginningEdit="dgCats_BeginningEdit"
                       CanUserDeleteRows="False" CanUserAddRows="False" CellEditEnding="dgCats_CellEditEnding" SelectionChanged="dgCats_SelectionChanged" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
@@ -53,7 +53,7 @@
             <Label DockPanel.Dock="Top" Margin="5" Name="lblItemCount">0 item(s):</Label>
             <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="170"
                       Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
-                      SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding"
+                      SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding" BeginningEdit="dgHistory_BeginningEdit"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgHistory_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}">
@@ -83,7 +83,7 @@
             </DataGrid>
             <DataGrid Name="dgItems" Margin="5" AutoGenerateColumns="False"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
-                      CellEditEnding="dgItems_CellEditEnding"
+                      CellEditEnding="dgItems_CellEditEnding" BeginningEdit="dgItems_BeginningEdit"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgItems_SelectionChanged" FontSize="14">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
