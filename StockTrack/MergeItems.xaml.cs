@@ -33,7 +33,24 @@ namespace StockTrack
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (txtConfirm.Text != "merge") return;
+            if (txtConfirm.Text != "merge" || cbItems.SelectedIndex == (-1)) return;
+            int from = 0;
+            int to = 0;
+            for (int i = 0; i < cbItems.Items.Count; i++)
+            {
+                if (cbItems.SelectedIndex == i)
+                {
+                    to = (cbItems.SelectedItem as Item).ItemId;
+                }
+                else
+                {
+                    from = (cbItems.SelectedItem as Item).ItemId;
+                }
+            }
+            if (from > 0 && to > 0)
+            {
+                DataAccess.MergeItems(from, to);
+            }
             this.DialogResult = true;
         }
 

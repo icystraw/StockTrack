@@ -545,5 +545,10 @@ namespace StockTrack
             con.Close();
             return dt;
         }
+
+        public static void MergeItems(int from, int to)
+        {
+
+        }
     }
 }
