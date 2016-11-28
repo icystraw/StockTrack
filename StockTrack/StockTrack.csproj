@@ -84,6 +84,9 @@
     <Compile Include="Iconised.xaml.cs">
       <DependentUpon>Iconised.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MergeItems.xaml.cs">
+      <DependentUpon>MergeItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Mini.xaml.cs">
       <DependentUpon>Mini.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MergeItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Mini.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
