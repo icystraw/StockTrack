@@ -33,12 +33,14 @@ namespace StockTrack
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
+            if (txtConfirm.Text != "merge") return;
             this.DialogResult = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            cbItems.ItemsSource = ItemList;
+            cbItems.DisplayMemberPath = "ItemName";
         }
     }
 }

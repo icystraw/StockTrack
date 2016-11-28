@@ -575,7 +575,9 @@ namespace StockTrack
             if (dgItems.SelectedItems.Count != 2) return;
             MergeItems mi = new MergeItems();
             mi.Owner = this;
-            mi.ItemList = dgItems.SelectedItems as List<Item>;
+            mi.ItemList = new List<Item>();
+            foreach (Item i in dgItems.SelectedItems)
+                mi.ItemList.Add(i);
             if (mi.ShowDialog() == true)
             {
                 refreshItems();
