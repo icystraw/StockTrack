@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockTrack"
         mc:Ignorable="d"
-        Title="Merge Items" Height="300" Width="370" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Background="#FFE1E1E1">
-    <DockPanel>
-        
-        <Button Name="btnCancel" Content="Cancel" DockPanel.Dock="Right" Margin="5" Width="75" Click="btnCancel_Click" IsCancel="True" VerticalAlignment="Center"/>
-        <Button Name="btnOK" Content="OK" Margin="5" DockPanel.Dock="Right" Width="50" Click="btnOK_Click" IsDefault="True" VerticalAlignment="Center"/>
-        <TextBox Name="txtInput" Margin="5" VerticalAlignment="Center"/>
-    </DockPanel>
+        Title="Merge Items" Height="240" Width="400" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Background="#FFE1E1E1">
+    <StackPanel Orientation="Vertical">
+        <Label Margin="5">Which item to merge to?</Label>
+        <ComboBox Margin="5" Name="cbItems"></ComboBox>
+        <TextBlock Margin="5" TextWrapping="Wrap" Foreground="Red">Please type "merge" into below text box to confirm. Stock Track will not ask for further confirmation.</TextBlock>
+        <TextBox Name="txtConfirm" Margin="5"></TextBox>
+        <Button Margin="5" Name="btnCancel" Content="Cancel" IsCancel="True" IsDefault="True" Click="btnCancel_Click" />
+        <Button Margin="5" Name="btnOK" Content="OK" Click="btnOK_Click" />
+    </StackPanel>
 </Window>
