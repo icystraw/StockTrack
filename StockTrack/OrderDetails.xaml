@@ -61,7 +61,7 @@
                 <StackPanel>
                     <Label Margin="0,5,0,0">Order progression:</Label>
                     <DataGrid Height="150" Name="dgProgression" Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
-                        SelectionUnit="FullRow" CanUserDeleteRows="False"
+                        SelectionUnit="FullRow" CanUserDeleteRows="False" BeginningEdit="dgProgression_BeginningEdit"
                         CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=HistoryDate, StringFormat={}{0:d}}"></DataGridTextColumn>
@@ -80,7 +80,7 @@
             </DockPanel>
             <DataGrid Name="dgHistory"
                   Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
-                  SelectionUnit="FullRow" CanUserDeleteRows="False"
+                  SelectionUnit="FullRow" CanUserDeleteRows="False" BeginningEdit="dgHistory_BeginningEdit"
                   CanUserAddRows="False" CellEditEnding="dgHistory_CellEditEnding" SelectionChanged="dgHistory_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=ActionDate, StringFormat={}{0:d}}"></DataGridTextColumn>

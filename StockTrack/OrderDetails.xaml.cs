@@ -36,6 +36,12 @@ namespace StockTrack
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Cancel)
+            {
+                History hi = e.Row.Item as History;
+                hi.Comments = tempHistory.Comments;
+                return;
+            }
             History h = e.Row.Item as History;
             DataAccess.UpdateHistoryComments(h);
         }
@@ -179,6 +185,12 @@ namespace StockTrack
 
         private void dgProgression_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Cancel)
+            {
+                OrderHistory o = e.Row.Item as OrderHistory;
+                o.Comments = tempOrderHistory.Comments;
+                return;
+            }
             OrderHistory h = e.Row.Item as OrderHistory;
             DataAccess.UpdateOrderHistoryComments(h);
         }
@@ -317,6 +329,22 @@ namespace StockTrack
                 else
                     txtComments.Text += h.ItemName;
             }
+        }
+
+        private OrderHistory tempOrderHistory = null;
+
+        private void dgProgression_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            tempOrderHistory = new OrderHistory();
+            tempOrderHistory.Comments = (e.Row.Item as OrderHistory).Comments;
+        }
+
+        private History tempHistory = null;
+
+        private void dgHistory_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            tempHistory = new History();
+            tempHistory.Comments = (e.Row.Item as History).Comments;
         }
     }
 }
