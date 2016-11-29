@@ -352,7 +352,8 @@ namespace StockTrack
             if (this.Owner != null)
             {
                 this.Owner.Show();
-                this.Owner.Activate();
+                this.Owner.Topmost = true;
+                this.Owner.Topmost = false;
             }
         }
     }
