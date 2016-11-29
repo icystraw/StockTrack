@@ -471,6 +471,7 @@ namespace StockTrack
             OrderDetails o = new OrderDetails();
             o.OrderId = (dgHistory.SelectedItem as History).OrderId;
             o.Owner = this;
+            this.Hide();
             o.ShowDialog();
             refreshItems();
             foreach (Item i in dgItems.Items)
@@ -545,6 +546,7 @@ namespace StockTrack
             OrderDetails o = new OrderDetails();
             o.OrderId = (dgOrders.SelectedItem as Order).OrderId;
             o.Owner = this;
+            this.Hide();
             o.ShowDialog();
             refreshItems();
             if (selectedItemId > 0)

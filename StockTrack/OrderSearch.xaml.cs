@@ -115,6 +115,7 @@ namespace StockTrack
                     OrderDetails od = new OrderDetails();
                     od.OrderId = orderId;
                     od.Owner = this;
+                    this.Hide();
                     od.ShowDialog();
                     performSearch(orderId);
                 }
@@ -184,6 +185,7 @@ namespace StockTrack
                 OrderDetails od = new OrderDetails();
                 od.OrderId = o.OrderId;
                 od.Owner = this;
+                this.Hide();
                 od.ShowDialog();
                 performSearch(0);
             }

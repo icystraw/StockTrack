@@ -346,5 +346,11 @@ namespace StockTrack
             tempHistory = new History();
             tempHistory.Comments = (e.Row.Item as History).Comments;
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (this.Owner != null)
+                this.Owner.Show();
+        }
     }
 }
