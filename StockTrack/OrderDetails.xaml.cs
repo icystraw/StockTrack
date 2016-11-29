@@ -350,7 +350,10 @@ namespace StockTrack
         private void Window_Closed(object sender, EventArgs e)
         {
             if (this.Owner != null)
+            {
                 this.Owner.Show();
+                this.Owner.Activate();
+            }
         }
     }
 }
