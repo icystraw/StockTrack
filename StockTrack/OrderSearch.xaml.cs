@@ -25,14 +25,12 @@ namespace StockTrack
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            performSearch(0);
+            _isWorkOrder = 1;
+            performSearch(0, _isWorkOrder);
         }
 
-        private void performSearch(int orderId)
+        private void performSearch(int orderId, byte? isWorkOrder)
         {
-            byte? isWorkOrder = null;
-            if (cbIsWorkOrder.SelectedIndex == 1) isWorkOrder = 1;
-            else if (cbIsWorkOrder.SelectedIndex == 2) isWorkOrder = 2;
             SortDescription sdPrimary = new SortDescription("ShippingDate", ListSortDirection.Descending);
             if (dgOrders.Items.SortDescriptions.Count > 0)
             {
@@ -76,7 +74,8 @@ namespace StockTrack
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            performSearch(0);
+            _isWorkOrder = 1;
+            performSearch(0, _isWorkOrder);
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -117,7 +116,7 @@ namespace StockTrack
                     od.Owner = this;
                     this.Hide();
                     od.ShowDialog();
-                    performSearch(orderId);
+                    performSearch(orderId, isWorkOrder);
                 }
             }
         }
@@ -187,7 +186,7 @@ namespace StockTrack
                 od.Owner = this;
                 this.Hide();
                 od.ShowDialog();
-                performSearch(0);
+                performSearch(0, _isWorkOrder);
             }
         }
 
@@ -207,12 +206,6 @@ namespace StockTrack
             e.Handled = true;
         }
 
-        private void cbIsWorkOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.IsLoaded)
-                performSearch(0);
-        }
-
         private void mnuMark_Click(object sender, RoutedEventArgs e)
         {
             foreach (Order o in dgOrders.SelectedItems)
@@ -226,7 +219,7 @@ namespace StockTrack
                 DataAccess.InsertOrderHistory(h);
                 DataAccess.UpdateOrder(o);
             }
-            performSearch(0);
+            performSearch(0, _isWorkOrder);
         }
 
         private void mnuConvertWorkOrder_Click(object sender, RoutedEventArgs e)
@@ -252,7 +245,7 @@ namespace StockTrack
                 DataAccess.InsertOrderHistory(oh);
                 DataAccess.UpdateOrder(o);
             }
-            performSearch(0);
+            performSearch(0, _isWorkOrder);
         }
 
         private void mnuConvertTentative_Click(object sender, RoutedEventArgs e)
@@ -277,7 +270,7 @@ namespace StockTrack
                     DataAccess.UpdateOrder(o);
                 }
             }
-            performSearch(0);
+            performSearch(0, _isWorkOrder);
         }
 
         private Order tempOrder = null;
@@ -294,6 +287,20 @@ namespace StockTrack
             tempOrder.CustomerName = o.CustomerName;
             tempOrder.ContactNo = o.ContactNo;
             tempOrder.Comments = o.Comments;
+        }
+
+        private byte? _isWorkOrder = null;
+
+        private void btnSearchAll_Click(object sender, RoutedEventArgs e)
+        {
+            _isWorkOrder = null;
+            performSearch(0, _isWorkOrder);
+        }
+
+        private void btnSearchTentative_Click(object sender, RoutedEventArgs e)
+        {
+            _isWorkOrder = 2;
+            performSearch(0, _isWorkOrder);
         }
     }
 }

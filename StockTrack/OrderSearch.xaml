@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xml:lang="en-AU"
-        Title="Order Tracking" Height="660" Width="1000" Background="#FFF0FAFF" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="Orders" Height="660" Width="1000" Background="#FFF0FAFF" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
         <Expander Header="Expand to show more search criteria..." ExpandDirection="Down" DockPanel.Dock="Top">
             <StackPanel Margin="3" Orientation="Horizontal">
@@ -20,16 +20,13 @@
             <Label>Look For:</Label>
             <TextBox Name="txtKeyword" Width="100"></TextBox>
             <Label DockPanel.Dock="Left">Type:</Label>
-            <ComboBox Name="cbIsWorkOrder" DockPanel.Dock="Left" SelectionChanged="cbIsWorkOrder_SelectionChanged">
-                <ComboBoxItem>All</ComboBoxItem>
-                <ComboBoxItem IsSelected="True">Work</ComboBoxItem>
-                <ComboBoxItem>Tentative</ComboBoxItem>
-            </ComboBox>
-            <Button Name="btnSearch" Width="100" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Refresh</Button>
-            <Button Name="btnNew" Width="120" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work Order</Button>
-            <Button Name="btnNewTentative" Width="150" Margin="3" DockPanel.Dock="Left" Click="btnNewTentative_Click">New Tentative Order</Button>
-            <Button Name="btnAddItem" Width="100" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
-            <Button Name="btnNormal" Width="100" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Go Mini</Button>
+            <Button Name="btnSearch" Width="100" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Search Work</Button>
+            <Button Name="btnSearchAll" Width="90" Margin="3" DockPanel.Dock="Left" Click="btnSearchAll_Click">Search All</Button>
+            <Button Name="btnSearchTentative" Width="110" Margin="3" DockPanel.Dock="Left" Click="btnSearchTentative_Click">Search Tentative</Button>
+            <Button Name="btnNew" Width="100" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work</Button>
+            <Button Name="btnNewTentative" Width="100" Margin="3" DockPanel.Dock="Left" Click="btnNewTentative_Click">New Tentative</Button>
+            <Button Name="btnAddItem" Width="90" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
+            <Button Name="btnNormal" Width="60" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Mini</Button>
             <Label></Label>
         </DockPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="1" BeginningEdit="dgOrders_BeginningEdit"
