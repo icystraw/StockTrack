@@ -81,6 +81,9 @@
     <Compile Include="Advanced.xaml.cs">
       <DependentUpon>Advanced.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategorySelection.xaml.cs">
+      <DependentUpon>CategorySelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Iconised.xaml.cs">
       <DependentUpon>Iconised.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
     </Compile>
     <Compile Include="Utilities.cs" />
     <Page Include="Advanced.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategorySelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

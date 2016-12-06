@@ -164,6 +164,7 @@ namespace StockTrack
         {
             dgItems.ItemsSource = DataAccess.SearchItems(cbSearch.Text);
             if (dgItems.Items.Count > 0) dgItems.SelectedIndex = 0;
+            btnQuickAdd.IsEnabled = !string.IsNullOrEmpty(cbSearch.Text.Trim());
         }
 
         private void btnDeleteOrder_Click(object sender, RoutedEventArgs e)
@@ -355,6 +356,11 @@ namespace StockTrack
                 this.Owner.Topmost = true;
                 this.Owner.Topmost = false;
             }
+        }
+
+        private void btnQuickAdd_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

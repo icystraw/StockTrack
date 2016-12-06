@@ -42,12 +42,13 @@
         <DockPanel Margin="5">
             <Label DockPanel.Dock="Top">Items in order:</Label>
             <DockPanel DockPanel.Dock="Bottom">
-                <StackPanel DockPanel.Dock="Right" Width="380" Margin="5,0,0,0">
+                <StackPanel DockPanel.Dock="Right" Width="420" Margin="5,0,0,0">
                     <DockPanel Margin="0,5,0,0">
-                        <Button DockPanel.Dock="Right" Name="btnSave" IsEnabled="False" Width="90" Margin="2,0,0,0" VerticalAlignment="Center" Click="btnSave_Click">Add to Order</Button>
-                        <TextBox DockPanel.Dock="Right" Name="txtQuantity" Width="30" Text="1" VerticalAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
+                        <Button DockPanel.Dock="Right" Name="btnSave" IsEnabled="False" Width="90" Margin="2" Click="btnSave_Click">Add to Order</Button>
+                        <TextBox DockPanel.Dock="Right" Name="txtQuantity" Width="30" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
                         <Label Content="Qty" DockPanel.Dock="Right"></Label>
-                        <ComboBox Name="cbSearch" IsEditable="True" Text="Enter keyword or choose from list" VerticalAlignment="Center"></ComboBox>
+                        <Button DockPanel.Dock="Left" Width="50" Name="btnQuickAdd" IsEnabled="False" Margin="2" Click="btnQuickAdd_Click">Q+...</Button>
+                        <ComboBox Name="cbSearch" IsEditable="True" Text="Item name search" VerticalContentAlignment="Center"></ComboBox>
                     </DockPanel>
                     <DataGrid Name="dgItems" AutoGenerateColumns="False" Height="225" Margin="0,5,0,0"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
@@ -59,7 +60,7 @@
                     </DataGrid>
                 </StackPanel>
                 <StackPanel>
-                    <Label Margin="0,5,0,0">Order progression:</Label>
+                    <Label Margin="0,5,0,0">Order comments:</Label>
                     <DataGrid Height="150" Name="dgProgression" Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                         SelectionUnit="FullRow" CanUserDeleteRows="False" BeginningEdit="dgProgression_BeginningEdit"
                         CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
@@ -75,7 +76,7 @@
                         </DataGrid.ContextMenu>
                     </DataGrid>
                     <TextBox Height="40" Name="txtProgress" Margin="0,5,0,0" AcceptsReturn="True"></TextBox>
-                    <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add new progress" Click="btnAddProgress_Click"></Button>
+                    <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add new comments" Click="btnAddProgress_Click"></Button>
                </StackPanel>
             </DockPanel>
             <DataGrid Name="dgHistory"
