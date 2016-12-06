@@ -12,19 +12,21 @@
         <KeyBinding Command="Find" Key="F" Modifiers="Control"></KeyBinding>
     </Window.InputBindings>
     <DockPanel>
-        <DockPanel DockPanel.Dock="Left" Width="150">
-            <Button Name="btnAdvanced" Margin="5" DockPanel.Dock="Bottom" Click="btnAdvanced_Click">Advanced</Button>
-            <Button Name="btnStats" Margin="5" DockPanel.Dock="Bottom" Click="btnStats_Click">Past Item Sales</Button>
-            <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
-            <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="5" Click="btnAddCat_Click">New Category</Button>
-            <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="5" Click="btnAddItem_Click">New Item</Button>
-            <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" BeginningEdit="dgCats_BeginningEdit"
+        <Expander ExpandDirection="Right" DockPanel.Dock="Left">
+            <DockPanel Width="150">
+                <Button Name="btnAdvanced" Margin="5" DockPanel.Dock="Bottom" Click="btnAdvanced_Click">Advanced</Button>
+                <Button Name="btnStats" Margin="5" DockPanel.Dock="Bottom" Click="btnStats_Click">Past Item Sales</Button>
+                <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
+                <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="5" Click="btnAddCat_Click">New Category</Button>
+                <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="5" Click="btnAddItem_Click">New Item</Button>
+                <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" BeginningEdit="dgCats_BeginningEdit"
                       CanUserDeleteRows="False" CanUserAddRows="False" CellEditEnding="dgCats_CellEditEnding" SelectionChanged="dgCats_SelectionChanged" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </DockPanel>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </Expander>
         <StackPanel DockPanel.Dock="Right" Margin="5" Width="200">
             <TextBlock Margin="0,5,0,0" TextWrapping="Wrap">Enter item sales here. To create new order or add to existing order, please specify order number below.</TextBlock>
             <Label Margin="0,5,0,0">Comments:</Label>
