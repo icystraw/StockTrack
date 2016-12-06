@@ -28,12 +28,27 @@ namespace StockTrack
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            List<Category> cs = DataAccess.GetAllCategories();
+            dgCats.ItemsSource = cs;
         }
 
         private void dgCats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            btnOK.IsEnabled = !(dgCats.SelectedItem == null);
+        }
 
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgCats.SelectedItem != null)
+            {
+                CategoryId = (dgCats.SelectedItem as Category).CategoryId;
+            }
+            this.DialogResult = true;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
         }
     }
 }
