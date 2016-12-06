@@ -360,7 +360,16 @@ namespace StockTrack
 
         private void btnQuickAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            CategorySelection cs = new CategorySelection();
+            if (true == cs.ShowDialog())
+            {
+                Item i = new Item();
+                i.ItemName = cbSearch.Text.Trim();
+                i.Quantity = 0;
+                i.CategoryId = cs.CategoryId;
+                DataAccess.AddItem(i);
+                cbSearch_TextChanged(this, null);
+            }
         }
     }
 }

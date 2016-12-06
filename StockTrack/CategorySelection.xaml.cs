@@ -23,5 +23,7 @@ namespace StockTrack
         {
             InitializeComponent();
         }
+
+        public int CategoryId = 0;
     }
 }
