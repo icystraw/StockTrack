@@ -167,6 +167,7 @@ namespace StockTrack
         {
             dtEntryDate.SelectedDate = DateTime.Today;
             refreshCategories();
+            txtSearch.Focus();
         }
 
         private void refreshCategories()
@@ -269,7 +270,7 @@ namespace StockTrack
             foreach (Item i in dgItems.SelectedItems)
             {
                 History h = new History();
-                h.Comments = txtComments.Text.Trim();
+                h.Comments = string.Empty;
                 h.ItemId = i.ItemId;
                 if (string.IsNullOrEmpty(txtOrderNo.Text.Trim()))
                     h.OrderNo = DateTime.Today.ToString("ddMMyyyy");
