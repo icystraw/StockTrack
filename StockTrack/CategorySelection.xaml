@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockTrack"
         mc:Ignorable="d"
-        Title="CategorySelection" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        xml:lang="en-AU"
+        Title="Select Category" Height="250" Width="370" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Background="#FFE1E1E1">
+    <DockPanel>
+        <Button Name="btnCancel" Content="Cancel" DockPanel.Dock="Right" Margin="5" Width="75" Click="btnCancel_Click" IsCancel="True" VerticalAlignment="Center"/>
+        <Button Name="btnOK" Content="OK" Margin="5" DockPanel.Dock="Right" Width="50" Click="btnOK_Click" IsDefault="True" VerticalAlignment="Center" IsEnabled="False"/>
+        <DataGrid Name="dgCats" Margin="5" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="dgCats_SelectionChanged"
+                      CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Category" Binding="{Binding Path=CategoryName}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
 </Window>

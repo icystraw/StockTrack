@@ -25,5 +25,15 @@ namespace StockTrack
         }
 
         public int CategoryId = 0;
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dgCats_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
