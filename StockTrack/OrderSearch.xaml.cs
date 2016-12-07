@@ -187,6 +187,7 @@ namespace StockTrack
                 this.Hide();
                 od.ShowDialog();
                 performSearch(0, _isWorkOrder);
+                dgOrders.Focus();
             }
         }
 

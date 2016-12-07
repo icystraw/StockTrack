@@ -361,6 +361,7 @@ namespace StockTrack
         private void btnQuickAdd_Click(object sender, RoutedEventArgs e)
         {
             CategorySelection cs = new CategorySelection();
+            cs.Owner = this;
             if (true == cs.ShowDialog())
             {
                 Item i = new Item();

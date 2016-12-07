@@ -492,6 +492,7 @@ namespace StockTrack
                 }
             }
             refreshOrder();
+            dgHistory.Focus();
         }
 
         private void refreshOrder()
