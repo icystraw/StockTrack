@@ -214,6 +214,8 @@ namespace StockTrack
                 btnSave.IsEnabled = false;
                 mnuDeleteItem.IsEnabled = false;
                 mnuMoveItem.IsEnabled = false;
+                mnuMergeItem.IsEnabled = false;
+                mnuRelatedItems.IsEnabled = false;
                 historyDisplaying = new List<History>();
                 dgHistory.ItemsSource = historyDisplaying;
             }
@@ -230,6 +232,7 @@ namespace StockTrack
                 btnSave.IsEnabled = true;
                 mnuDeleteItem.IsEnabled = true;
                 mnuMoveItem.IsEnabled = true;
+                mnuRelatedItems.IsEnabled = true;
                 populateItemHistory((dgItems.SelectedItem as Item).ItemId);
             }
         }
@@ -633,6 +636,11 @@ namespace StockTrack
             tempCategory = new Category();
             Category c = e.Row.Item as Category;
             tempCategory.CategoryName = c.CategoryName;
+        }
+
+        private void mnuRelatedItems_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

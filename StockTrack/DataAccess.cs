@@ -113,7 +113,7 @@ namespace StockTrack
             List<Item> items = new List<Item>();
 
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select i.[itemid], i.[itemname], i.[quantity], count(i.[itemid]) as [frequence] from [item] i, [history] h where h.[itemid] = i.[itemid] and h.[orderid] in (select distinct o.[orderid] from [order] o inner join [history] h on o.[orderid] = h.[orderid] where h.[itemid] = @itemid) group by i.[itemid], i.[itemname], i.[quantity] order by [frequence] desc", con);
+            SqlCommand cmd = new SqlCommand("select top 25 i.[itemid], i.[itemname], i.[quantity], count(i.[itemid]) as [frequence] from [item] i, [history] h where h.[itemid] = i.[itemid] and h.[action] = N'Purchase' and h.[orderid] in (select distinct o.[orderid] from [order] o inner join [history] h on o.[orderid] = h.[orderid] where h.[itemid] = @itemid and h.[action] = N'Purchase') group by i.[itemid], i.[itemname], i.[quantity] order by [frequence] desc", con);
             cmd.Parameters.Add(new SqlParameter("@itemid", itemId));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);

@@ -95,6 +95,7 @@
                         <MenuItem Name="mnuMoveItem" Header="Move To" IsEnabled="False" Click="mnuMoveItem_Click" />
                         <MenuItem Command="Copy"></MenuItem>
                         <MenuItem Name="mnuMergeItem" IsEnabled="False" Header="Merge Items" Click="mnuMergeItem_Click" />
+                        <MenuItem Name="mnuRelatedItems" IsEnabled="False" Header="View Items Frequently Bought Together" Click="mnuRelatedItems_Click" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
