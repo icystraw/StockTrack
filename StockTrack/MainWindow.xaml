@@ -58,9 +58,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center">Item name:</Label>
-                <TextBox Name="txtSearch" Width="120" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" />
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="5,5,5,0">
                 <Label VerticalContentAlignment="Center">Order No:</Label>
                 <TextBox Name="txtOrderNo" VerticalContentAlignment="Center" Width="50" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
                 <DataGrid Name="dgOrders" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
@@ -70,13 +68,17 @@
                         <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label VerticalContentAlignment="Center">Quantity:</Label>
-                <TextBox Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
-                <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="5,0,5,0" Width="70">Enter Sale</Button>
                 <Label VerticalContentAlignment="Center">Date:</Label>
                 <DatePicker Name="dtEntryDate" MouseWheel="dtEntryDate_MouseWheel" VerticalContentAlignment="Center"/>
-                <Button Name="btnGoOrders" Click="btnGoOrders_Click" Margin="5,0,5,0" Width="70">Go Orders</Button>
-                <Button Name="btnMini" Click="btnMini_Click" Margin="5,0,5,0" Width="65">Go Mini</Button>
+                <Button Name="btnGoOrders" Click="btnGoOrders_Click" Margin="5,0,5,0" Width="60">Orders</Button>
+                <Button Name="btnMini" Click="btnMini_Click" Margin="5,0,5,0" Width="50">Mini</Button>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="5,0,5,0">
+                <Label VerticalContentAlignment="Center">Item name:</Label>
+                <TextBox Name="txtSearch" Width="120" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" />
+                <Label VerticalContentAlignment="Center">Quantity:</Label>
+                <TextBox Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
+                <Button Name="btnSave" IsEnabled="False" Command="Save" Width="70" Margin="5,0,0,0">Enter Sale</Button>
             </StackPanel>
             <DataGrid Name="dgItems" Margin="5" AutoGenerateColumns="False"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
