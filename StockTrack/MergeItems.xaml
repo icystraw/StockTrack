@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockTrack"
         mc:Ignorable="d"
-        Title="Merge Items" Height="240" Width="400" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Background="#FFE1E1E1" Loaded="Window_Loaded">
+        Title="Merge Items" Height="240" Width="400" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Background="PowderBlue" Loaded="Window_Loaded">
     <StackPanel Orientation="Vertical">
         <Label Margin="5">Which item to merge to?</Label>
         <ComboBox Margin="5" Name="cbItems"></ComboBox>

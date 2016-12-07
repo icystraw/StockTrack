@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:StockTrack"
         mc:Ignorable="d"
         xml:lang="en-AU"
-        Title="Select Category" Height="250" Width="370" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Background="#FFE1E1E1">
+        Title="Select Category" Height="250" Width="370" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Background="PowderBlue">
     <DockPanel>
         <Button Name="btnCancel" Content="Cancel" DockPanel.Dock="Right" Margin="5" Width="75" Click="btnCancel_Click" IsCancel="True" VerticalAlignment="Center"/>
         <Button Name="btnOK" Content="OK" Margin="5" DockPanel.Dock="Right" Width="50" Click="btnOK_Click" IsDefault="True" VerticalAlignment="Center" IsEnabled="False"/>

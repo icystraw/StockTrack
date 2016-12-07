@@ -115,7 +115,7 @@ namespace StockTrack
                 if (this.shippingDate >= DateTime.Today && this.shippingDate < DateTime.Today.AddDays(1))
                     return new SolidColorBrush(Colors.Pink);
                 else if (this.shippingDate >= DateTime.Today.AddDays(-6) && this.shippingDate <= DateTime.Today.AddDays(6))
-                    return new SolidColorBrush(Colors.PaleGreen);
+                    return new SolidColorBrush(Colors.PowderBlue);
                 return new SolidColorBrush(Colors.White);
             }
         }
