@@ -108,6 +108,29 @@ namespace StockTrack
             return items;
         }
 
+        public static List<Item> GetRelatedItems(int itemId)
+        {
+            List<Item> items = new List<Item>();
+
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("select i.[itemid], i.[itemname], i.[quantity], count(i.[itemid]) as [frequence] from [item] i, [history] h where h.[itemid] = i.[itemid] and h.[orderid] in (select distinct o.[orderid] from [order] o inner join [history] h on o.[orderid] = h.[orderid] where h.[itemid] = @itemid) group by i.[itemid], i.[itemname], i.[quantity] order by [frequence] desc", con);
+            cmd.Parameters.Add(new SqlParameter("@itemid", itemId));
+            con.Open();
+            IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (rd.Read())
+            {
+                Item i = new Item();
+                i.ItemId = Convert.ToInt32(rd["itemid"]);
+                i.CategoryId = Convert.ToInt32(rd["categoryid"]);
+                i.Quantity = Convert.ToDouble(rd["quantity"]);
+                i.ItemName = rd["itemname"].ToString();
+                items.Add(i);
+            }
+            rd.Close();
+
+            return items;
+        }
+
         public static int AddItem(Item i)
         {
             SqlConnection con = new SqlConnection(conStr);
