@@ -27,29 +27,7 @@
                 </DataGrid>
             </DockPanel>
         </Expander>
-        <StackPanel DockPanel.Dock="Left" Margin="5" Width="180">
-            <Label Margin="0,5,0,0">Date:</Label>
-            <DatePicker Name="dtEntryDate" Margin="0,5,0,0" MouseWheel="dtEntryDate_MouseWheel"/>
-            <Label Margin="0,5,0,0">Order No:</Label>
-            <TextBox Name="txtOrderNo" Margin="0,5,0,0" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
-            <DataGrid Name="dgOrders" MaxHeight="150" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
-                       HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Total" Binding="{Binding Path=TotalAmount, StringFormat={}{0:c}}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Label Margin="0,5,0,0">Quantity:</Label>
-            <TextBox Name="txtQuantity" Text="1" Margin="0,5,0,0" MouseWheel="txtQuantity_MouseWheel" />
-            <Label Margin="0,5,0,0">Item name search:</Label>
-            <TextBox Name="txtSearch" Margin="0,5,0,0" TextChanged="txtSearch_TextChanged" />
-            <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="0,5,0,0" Height="50">Enter Sale (Ctrl+S)</Button>
-            <Button Name="btnGoOrders" Margin="0,5,0,0" Click="btnGoOrders_Click">Go Orders</Button>
-            <Button Name="btnMini" Margin="0,5,0,0" Click="btnMini_Click">Go Mini</Button>
-        </StackPanel>
         <DockPanel>
-            <Label DockPanel.Dock="Top" Margin="5" Name="lblItemCount">0 item(s):</Label>
             <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="250"
                       Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding" BeginningEdit="dgHistory_BeginningEdit"
@@ -80,6 +58,26 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center">Item name:</Label>
+                <TextBox Name="txtSearch" Width="120" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" />
+                <Label VerticalContentAlignment="Center">Order No:</Label>
+                <TextBox Name="txtOrderNo" VerticalContentAlignment="Center" Width="50" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
+                <DataGrid Name="dgOrders" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
+                       HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label VerticalContentAlignment="Center">Quantity:</Label>
+                <TextBox Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
+                <Button Name="btnSave" IsEnabled="False" Command="Save" Margin="5,0,5,0" Width="70">Enter Sale</Button>
+                <Label VerticalContentAlignment="Center">Date:</Label>
+                <DatePicker Name="dtEntryDate" MouseWheel="dtEntryDate_MouseWheel" VerticalContentAlignment="Center"/>
+                <Button Name="btnGoOrders" Click="btnGoOrders_Click" Margin="5,0,5,0" Width="70">Go Orders</Button>
+                <Button Name="btnMini" Click="btnMini_Click" Margin="5,0,5,0" Width="65">Go Mini</Button>
+            </StackPanel>
             <DataGrid Name="dgItems" Margin="5" AutoGenerateColumns="False"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       CellEditEnding="dgItems_CellEditEnding" BeginningEdit="dgItems_BeginningEdit"

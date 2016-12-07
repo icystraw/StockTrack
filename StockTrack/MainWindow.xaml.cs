@@ -181,14 +181,14 @@ namespace StockTrack
         {
             itemsDisplaying = DataAccess.GetAllCategoryItems(categoryId);
             dgItems.ItemsSource = itemsDisplaying;
-            lblItemCount.Content = dgItems.Items.Count + " item(s):";
+            this.Title = dgItems.Items.Count + " item(s)";
         }
 
         private void loadSearchItems(string keyword)
         {
             itemsDisplaying = DataAccess.SearchItems(keyword);
             dgItems.ItemsSource = itemsDisplaying;
-            lblItemCount.Content = dgItems.Items.Count + " item(s):";
+            this.Title = dgItems.Items.Count + " item(s)";
             if (dgItems.Items.Count > 0)
             {
                 dgItems.SelectedIndex = 0;
@@ -199,7 +199,7 @@ namespace StockTrack
         {
             itemsDisplaying = DataAccess.GetRelatedItems(itemId);
             dgItems.ItemsSource = itemsDisplaying;
-            lblItemCount.Content = dgItems.Items.Count + " item(s):";
+            this.Title = dgItems.Items.Count + " item(s)";
         }
 
         private void btnDeleteCat_Click(object sender, RoutedEventArgs e)
