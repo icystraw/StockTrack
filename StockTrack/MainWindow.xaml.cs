@@ -104,6 +104,7 @@ namespace StockTrack
                 dgItems.ItemsSource = itemsDisplaying;
                 lblItemCount.Content = "0 item(s):";
             }
+            relatedItemId = 0;
         }
 
         private void dgHistory_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -160,6 +161,7 @@ namespace StockTrack
             {
                 dgCats.SelectedItem = null;
                 loadSearchItems(txtSearch.Text);
+                relatedItemId = 0;
             }
         }
 
@@ -194,6 +196,13 @@ namespace StockTrack
             {
                 dgItems.SelectedIndex = 0;
             }
+        }
+
+        private void loadRelatedItems(int itemId)
+        {
+            itemsDisplaying = DataAccess.GetRelatedItems(itemId);
+            dgItems.ItemsSource = itemsDisplaying;
+            lblItemCount.Content = dgItems.Items.Count + " item(s):";
         }
 
         private void btnDeleteCat_Click(object sender, RoutedEventArgs e)
@@ -349,9 +358,15 @@ namespace StockTrack
             }
         }
 
+        private int relatedItemId = 0;
+
         private void refreshItems()
         {
-            if (dgCats.SelectedItem == null)
+            if (relatedItemId > 0)
+            {
+                loadRelatedItems(relatedItemId);
+            }
+            else if (dgCats.SelectedItem == null)
             {
                 loadSearchItems(txtSearch.Text);
             }
@@ -640,7 +655,12 @@ namespace StockTrack
 
         private void mnuRelatedItems_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dgItems.SelectedItem != null)
+            {
+                Item i = dgItems.SelectedItem as Item;
+                relatedItemId = i.ItemId;
+                refreshItems();
+            }
         }
     }
 }
