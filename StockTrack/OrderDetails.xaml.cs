@@ -67,12 +67,13 @@ namespace StockTrack
                 dtShippingDate.SelectedDate = o.ShippingDate;
                 txtComments.Text = o.Comments;
                 txtFolder.Text = o.Folder;
+                dataChanged = false;
             }
         }
 
         private bool saveOrderDetails()
         {
-            if (o != null)
+            if (o != null && dataChanged)
             {
                 o.OrderNo = txtOrderNo.Text.Trim();
                 o.CustomerName = txtCustomerName.Text.Trim();
@@ -105,6 +106,7 @@ namespace StockTrack
                 o.Folder = txtFolder.Text.Trim();
 
                 DataAccess.UpdateOrder(o);
+                dataChanged = false;
             }
             return true;
         }
@@ -158,6 +160,7 @@ namespace StockTrack
             cbSearch.ItemsSource = DataAccess.GetAllCategories();
             cbSearch.DisplayMemberPath = "CategoryName";
             cbSearch.AddHandler(TextBoxBase.TextChangedEvent, new RoutedEventHandler(cbSearch_TextChanged));
+            cbShipping.AddHandler(TextBoxBase.TextChangedEvent, new RoutedEventHandler(cbShipping_TextChanged));
         }
 
         private void cbSearch_TextChanged(object sender, RoutedEventArgs e)
@@ -179,6 +182,7 @@ namespace StockTrack
                 if (o != null)
                 {
                     DataAccess.DeleteOrderById(o.OrderId);
+                    dataChanged = false;
                     this.Close();
                 }
             }
@@ -371,6 +375,79 @@ namespace StockTrack
                 DataAccess.AddItem(i);
                 cbSearch_TextChanged(this, null);
             }
+        }
+
+        private bool dataChanged = false;
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (dataChanged)
+            {
+                if (MessageBox.Show("Data Changed. Sure to exit?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void txtOrderNo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void dtOrderDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtCustomerName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtContactNo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtTotalAmount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtPaidToday_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void dtShippingDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtComments_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtFolder_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void cbShipping_TextChanged(object sender, RoutedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void cbIsWorkOrder_Checked(object sender, RoutedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void cbIsWorkOrder_Unchecked(object sender, RoutedEventArgs e)
+        {
+            dataChanged = true;
         }
     }
 }

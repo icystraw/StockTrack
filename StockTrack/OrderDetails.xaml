@@ -2,22 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xml:lang="en-AU"
-        Title="Order Details" Height="690" Width="850" Background="PowderBlue" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Closed="Window_Closed" ShowInTaskbar="True">
+        Title="Order Details" Height="690" Width="850" Background="PowderBlue" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Closed="Window_Closed" ShowInTaskbar="True" Closing="Window_Closing">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="150" Margin="5">
             <Label>Order Number:</Label>
-            <TextBox Name="txtOrderNo"></TextBox>
-            <CheckBox Name="cbIsWorkOrder" Margin="0,5,0,0">Is Work Order</CheckBox>
+            <TextBox Name="txtOrderNo" TextChanged="txtOrderNo_TextChanged"></TextBox>
+            <CheckBox Name="cbIsWorkOrder" Margin="0,5,0,0" Checked="cbIsWorkOrder_Checked" Unchecked="cbIsWorkOrder_Unchecked">Is Work Order</CheckBox>
             <Label>Order Date:</Label>
-            <DatePicker Name="dtOrderDate" MouseWheel="dtOrderDate_MouseWheel"></DatePicker>
+            <DatePicker Name="dtOrderDate" MouseWheel="dtOrderDate_MouseWheel" SelectedDateChanged="dtOrderDate_SelectedDateChanged"></DatePicker>
             <Label>Customer Name:</Label>
-            <TextBox Name="txtCustomerName"></TextBox>
+            <TextBox Name="txtCustomerName" TextChanged="txtCustomerName_TextChanged"></TextBox>
             <Label>Contact Number:</Label>
-            <TextBox Name="txtContactNo"></TextBox>
+            <TextBox Name="txtContactNo" TextChanged="txtContactNo_TextChanged"></TextBox>
             <Label>Total Amount (AUD):</Label>
-            <TextBox Name="txtTotalAmount"></TextBox>
+            <TextBox Name="txtTotalAmount" TextChanged="txtTotalAmount_TextChanged"></TextBox>
             <Label>Paid Today (AUD):</Label>
-            <TextBox Name="txtPaidToday"></TextBox>
+            <TextBox Name="txtPaidToday" TextChanged="txtPaidToday_TextChanged"></TextBox>
             <Label>Shipping Method:</Label>
             <ComboBox Name="cbShipping" IsEditable="True">
                 <ComboBoxItem>Pick up</ComboBoxItem>
@@ -31,11 +31,11 @@
                 <ComboBoxItem>Installed</ComboBoxItem>
             </ComboBox>
             <Label>Shipping Date:</Label>
-            <DatePicker Name="dtShippingDate" MouseWheel="dtShippingDate_MouseWheel"></DatePicker>
+            <DatePicker Name="dtShippingDate" MouseWheel="dtShippingDate_MouseWheel" SelectedDateChanged="dtShippingDate_SelectedDateChanged"></DatePicker>
             <Label>Comments:</Label>
-            <TextBox Name="txtComments"></TextBox>
+            <TextBox Name="txtComments" TextChanged="txtComments_TextChanged"></TextBox>
             <Label>Folder:</Label>
-            <TextBox Name="txtFolder"></TextBox>
+            <TextBox Name="txtFolder" TextChanged="txtFolder_TextChanged"></TextBox>
             <Button Name="btnClose" Content="SAVE AND CLOSE" Click="btnClose_Click" Margin="0,5,0,0" Height="50"/>
             <Button Margin="0,5,0,0" Name="btnDeleteOrder" Content="Delete this order" Click="btnDeleteOrder_Click"></Button>
         </StackPanel>
