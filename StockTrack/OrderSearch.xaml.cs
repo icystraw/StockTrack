@@ -185,8 +185,8 @@ namespace StockTrack
                 od.OrderId = o.OrderId;
                 od.Owner = this;
                 this.Hide();
-                od.ShowDialog();
-                performSearch(0, _isWorkOrder);
+                if (od.ShowDialog() == true)
+                    performSearch(0, _isWorkOrder);
                 dgOrders.Focus();
             }
         }

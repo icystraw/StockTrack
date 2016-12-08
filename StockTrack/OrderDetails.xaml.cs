@@ -234,7 +234,7 @@ namespace StockTrack
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             if (saveOrderDetails())
-                this.Close();
+                this.DialogResult = true;
         }
 
         private void txtQuantity_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
