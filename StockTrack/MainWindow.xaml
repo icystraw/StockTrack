@@ -58,28 +58,31 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="5,5,5,0">
-                <Label VerticalContentAlignment="Center">Order No:</Label>
-                <TextBox Name="txtOrderNo" VerticalContentAlignment="Center" Width="50" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
-                <DataGrid Name="dgOrders" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
+            <DockPanel DockPanel.Dock="Bottom" Margin="5,5,5,0">
+                <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Order No:</Label>
+                <TextBox Name="txtOrderNo" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="50" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
+                <DataGrid Name="dgOrders" DockPanel.Dock="Left" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                        HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding Path=OrderDate, StringFormat={}{0:d}}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label VerticalContentAlignment="Center">Date:</Label>
-                <DatePicker Name="dtEntryDate" MouseWheel="dtEntryDate_MouseWheel" VerticalContentAlignment="Center"/>
-                <Button Name="btnGoOrders" Click="btnGoOrders_Click" Margin="5,0,5,0" Width="60">Orders</Button>
-                <Button Name="btnMini" Click="btnMini_Click" Margin="5,0,5,0" Width="50">Mini</Button>
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="5,0,5,0">
-                <Label VerticalContentAlignment="Center">Item name:</Label>
-                <TextBox Name="txtSearch" Width="120" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" />
-                <Label VerticalContentAlignment="Center">Quantity:</Label>
-                <TextBox Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
-                <Button Name="btnSave" IsEnabled="False" Command="Save" Width="70" Margin="5,0,0,0">Enter Sale</Button>
-            </StackPanel>
+                <Label DockPanel.Dock="Left" VerticalContentAlignment="Center">Qty:</Label>
+                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
+                <Button Name="btnSave" IsEnabled="False" Command="Save" Width="140" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>
+                <Button Name="btnMini" DockPanel.Dock="Right" Click="btnMini_Click" Margin="5,0,0,0" Width="50">Mini</Button>
+                <Button Name="btnGoOrders" DockPanel.Dock="Right" Click="btnGoOrders_Click" Margin="5,0,0,0" Width="60">Orders</Button>
+                <CheckBox Name="chkTopMost" DockPanel.Dock="Right" VerticalContentAlignment="Center" Checked="chkTopMost_Checked" Unchecked="chkTopMost_Unchecked">Topmost</CheckBox>
+                <Label></Label>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Bottom" Margin="5,0,5,0">
+                <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Item name:</Label>
+                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="120" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" />
+                <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Date:</Label>
+                <DatePicker Name="dtEntryDate" DockPanel.Dock="Left" MouseWheel="dtEntryDate_MouseWheel" VerticalContentAlignment="Center"/>
+                <Label></Label>
+            </DockPanel>
             <DataGrid Name="dgItems" Margin="5" AutoGenerateColumns="False"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       CellEditEnding="dgItems_CellEditEnding" BeginningEdit="dgItems_BeginningEdit"
@@ -94,7 +97,7 @@
                         <MenuItem Name="mnuMoveItem" Header="Move To" IsEnabled="False" Click="mnuMoveItem_Click" />
                         <MenuItem Command="Copy"></MenuItem>
                         <MenuItem Name="mnuMergeItem" IsEnabled="False" Header="Merge Items" Click="mnuMergeItem_Click" />
-                        <MenuItem Name="mnuRelatedItems" IsEnabled="False" Header="View Items Frequently Bought Together" Click="mnuRelatedItems_Click" />
+                        <MenuItem Name="mnuRelatedItems" IsEnabled="False" Header="Related Items" Click="mnuRelatedItems_Click" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
