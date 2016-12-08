@@ -449,5 +449,13 @@ namespace StockTrack
         {
             dataChanged = true;
         }
+
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape && !(e.OriginalSource is DataGridCell))
+            {
+                this.Close();
+            }
+        }
     }
 }
