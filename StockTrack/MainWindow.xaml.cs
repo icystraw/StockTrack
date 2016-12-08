@@ -314,7 +314,7 @@ namespace StockTrack
                     if (o.IsWorkOrder < 2)
                     {
                         i.Quantity += h.Quantity;
-                        if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity < 0)
+                        if (h.Quantity < 0 && i.Quantity < 0)
                         {
                             h.Comments = "On backorder";
                         }
@@ -322,7 +322,7 @@ namespace StockTrack
                     }
                     else
                     {
-                        if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity <= 0)
+                        if (h.Quantity < 0 && i.Quantity <= 0)
                         {
                             h.Comments = "On backorder";
                         }
@@ -331,7 +331,7 @@ namespace StockTrack
                 else
                 {
                     i.Quantity += h.Quantity;
-                    if (h.Comments == string.Empty && h.Quantity < 0 && i.Quantity < 0)
+                    if (h.Quantity < 0 && i.Quantity < 0)
                     {
                         h.Comments = "On backorder";
                     }
