@@ -87,6 +87,9 @@
     <Compile Include="Iconised.xaml.cs">
       <DependentUpon>Iconised.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemInsight.xaml.cs">
+      <DependentUpon>ItemInsight.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MergeItems.xaml.cs">
       <DependentUpon>MergeItems.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Iconised.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemInsight.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
