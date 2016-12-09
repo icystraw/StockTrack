@@ -342,6 +342,8 @@ namespace StockTrack
             populateItemHistory((dgItems.SelectedItem as Item).ItemId);
             dgItems.Items.Refresh();
             refreshOrder();
+            txtSearch.Focus();
+            txtSearch.SelectAll();
         }
 
         private void mnuDeleteItem_Click(object sender, RoutedEventArgs e)
