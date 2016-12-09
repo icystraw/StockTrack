@@ -17,8 +17,8 @@
             </StackPanel>
         </Expander>
         <DockPanel DockPanel.Dock="Top">
-            <Label>Look For:</Label>
-            <TextBox Name="txtKeyword" Width="80" Margin="3"></TextBox>
+            <Label DockPanel.Dock="Left">Look For:</Label>
+            <TextBox Name="txtKeyword" Width="80" Margin="3" DockPanel.Dock="Left"></TextBox>
             <Button Name="btnSearch" Width="100" Margin="3" Click="btnSearch_Click" IsDefault="True" DockPanel.Dock="Left">Search Work</Button>
             <Button Name="btnSearchAll" Width="90" Margin="3" DockPanel.Dock="Left" Click="btnSearchAll_Click">Search All</Button>
             <Button Name="btnSearchTentative" Width="110" Margin="3" DockPanel.Dock="Left" Click="btnSearchTentative_Click">Search Tentative</Button>
