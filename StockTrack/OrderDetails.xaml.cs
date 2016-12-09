@@ -381,7 +381,7 @@ namespace StockTrack
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (dataChanged)
+            if (dataChanged || txtProgress.Text != string.Empty)
             {
                 if (MessageBox.Show("Data Changed. Sure to exit?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
