@@ -239,7 +239,7 @@ namespace StockTrack
                 mnuDeleteItem.IsEnabled = true;
                 mnuMoveItem.IsEnabled = true;
                 mnuRelatedItems.IsEnabled = true;
-                populateItemHistory((dgItems.SelectedItem as Item).ItemId);
+                if (dgItems.SelectedItems.Count == 1) populateItemHistory((dgItems.SelectedItem as Item).ItemId);
             }
         }
 
