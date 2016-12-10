@@ -23,6 +23,8 @@ namespace StockTrack
             this.Top = Properties.Settings.Default.osYpos;
         }
 
+        public string searchKeyword = string.Empty;
+
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             _isWorkOrder = 1;
@@ -76,6 +78,7 @@ namespace StockTrack
         {
             _isWorkOrder = 1;
             performSearch(0, _isWorkOrder);
+            if (!string.IsNullOrEmpty(searchKeyword)) txtKeyword.Text = searchKeyword;
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
