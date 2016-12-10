@@ -25,5 +25,16 @@ namespace StockTrack
         }
 
         public int itemId = 0;
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (0 == itemId) return;
+            Item i = DataAccess.GetItemById(itemId);
+            if (null == i) return;
+            lblItemName.Content = i.ItemName;
+            lblQuantity.Content = "Quantity on hand: " + i.Quantity;
+            dgItems.ItemsSource = DataAccess.GetRelatedItemsForItemInsight(itemId).DefaultView;
+            dgSales.ItemsSource = DataAccess.GetItemMonthlySales(itemId).DefaultView;
+        }
     }
 }

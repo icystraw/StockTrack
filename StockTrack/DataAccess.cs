@@ -131,6 +131,31 @@ namespace StockTrack
             return items;
         }
 
+        public static DataTable GetRelatedItemsForItemInsight(int itemId)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlDataAdapter da = new SqlDataAdapter("declare @totalsales float = 0; select @totalsales = count(*) from [history] where [itemid] = @itemid and [action] = N'Purchase'; select top 50 i.[itemid], i.[itemname], count(i.[itemid]) / @totalsales as [frequence] from [item] i, [history] h where h.[itemid] = i.[itemid] and h.[action] = N'Purchase' and h.[orderid] in (select distinct o.[orderid] from [order] o inner join [history] h on o.[orderid] = h.[orderid] where h.[itemid] = @itemid and h.[action] = N'Purchase') group by i.[itemid], i.[itemname] order by [frequence] desc", con);
+            da.SelectCommand.Parameters.Add(new SqlParameter("@itemid", itemId));
+            con.Open();
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            if (dt.Rows.Count > 0) dt.Rows.RemoveAt(0);
+            return dt;
+        }
+
+        public static DataTable GetItemMonthlySales(int itemId)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlDataAdapter da = new SqlDataAdapter("select month([actiondate]) as [month], year([actiondate]) as [year], sum(0 - [quantity]) as [quantity] from [history] where [action] <> N'Adjust' and [itemid] = @itemid group by month([actiondate]), year([actiondate]) order by [year] desc, [month] desc", con);
+            da.SelectCommand.Parameters.Add(new SqlParameter("@itemid", itemId));
+            con.Open();
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            return dt;
+        }
+
         public static int AddItem(Item i)
         {
             SqlConnection con = new SqlConnection(conStr);
