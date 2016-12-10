@@ -598,6 +598,10 @@ namespace StockTrack
         private void btnGoOrders_Click(object sender, RoutedEventArgs e)
         {
             OrderSearch os = new OrderSearch();
+            if (dgItems.SelectedItem != null)
+            {
+                os.searchKeyword = (dgItems.SelectedItem as Item).ItemName;
+            }
             os.Show();
             this.Close();
         }
