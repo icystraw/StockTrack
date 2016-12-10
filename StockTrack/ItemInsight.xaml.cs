@@ -31,8 +31,10 @@ namespace StockTrack
             if (0 == itemId) return;
             Item i = DataAccess.GetItemById(itemId);
             if (null == i) return;
-            lblItemName.Content = i.ItemName;
+            lblItemName.Text = i.ItemName;
             lblQuantity.Content = "Quantity on hand: " + i.Quantity;
+            lblQuantityW.Content = "Quantity held in work orders: " + DataAccess.QtyInWork(itemId, 1);
+            lblQuantityT.Content = "Quantity quoted to tentative orders: " + DataAccess.QtyInWork(itemId, 2);
             dgItems.ItemsSource = DataAccess.GetRelatedItemsForItemInsight(itemId).DefaultView;
             dgSales.ItemsSource = DataAccess.GetItemMonthlySales(itemId).DefaultView;
         }

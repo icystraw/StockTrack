@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockTrack"
         mc:Ignorable="d"
-        Title="Item Insight" Height="400" Width="750" Background="PowderBlue" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" KeyUp="Window_KeyUp">
+        Title="Item Insight" Height="450" Width="750" Background="PowderBlue" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" KeyUp="Window_KeyUp">
     <DockPanel>
-        <Label FontSize="24" Name="lblItemName" DockPanel.Dock="Top" FontFamily="Segoe UI Light" HorizontalContentAlignment="Right">Item Name</Label>
-        <Label Name="lblQuantity" DockPanel.Dock="Top" HorizontalContentAlignment="Right">Quantity on hand:</Label>
+        <TextBox FontSize="24" Name="lblItemName" DockPanel.Dock="Top" FontFamily="Segoe UI Light" TextAlignment="Right" IsReadOnly="True" Background="PowderBlue" BorderThickness="0">Item Name</TextBox>
+        <Label Name="lblQuantity" DockPanel.Dock="Top">Quantity on hand:</Label>
+        <Label Name="lblQuantityW" DockPanel.Dock="Top">Quantity held in work orders:</Label>
+        <Label Name="lblQuantityT" DockPanel.Dock="Top">Quantity quoted to tentative orders:</Label>
         <Separator DockPanel.Dock="Top" />
         <DockPanel>
             <DockPanel DockPanel.Dock="Left" Width="210">

@@ -168,6 +168,22 @@ namespace StockTrack
             return retVal;
         }
 
+        public static double QtyInWork(int itemId, byte isWorkOrder)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand("select 0 - sum([quantity]) as [quantity] from [history], [order] where [order].[orderid] = [history].[orderid] and [history].[action] <> N'Adjust' and [order].[isworkorder] = " + isWorkOrder + " and [history].[itemid] = @itemid", con);
+            cmd.Parameters.Add(new SqlParameter("@itemid", itemId));
+            con.Open();
+            double retVal = 0;
+            try
+            {
+                retVal = Convert.ToDouble(cmd.ExecuteScalar());
+            }
+            catch { }
+            con.Close();
+            return retVal;
+        }
+
         public static void DeleteItem(int itemId)
         {
             SqlConnection con = new SqlConnection(conStr);
