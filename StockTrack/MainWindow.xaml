@@ -98,6 +98,7 @@
                         <MenuItem Command="Copy"></MenuItem>
                         <MenuItem Name="mnuMergeItem" IsEnabled="False" Header="Merge Items" Click="mnuMergeItem_Click" />
                         <MenuItem Name="mnuRelatedItems" IsEnabled="False" Header="Related Items" Click="mnuRelatedItems_Click" />
+                        <MenuItem Name="mnuItemInsight" IsEnabled="False" Header="Item Insight" Click="mnuItemInsight_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>

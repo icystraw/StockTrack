@@ -222,6 +222,7 @@ namespace StockTrack
                 mnuMoveItem.IsEnabled = false;
                 mnuMergeItem.IsEnabled = false;
                 mnuRelatedItems.IsEnabled = false;
+                mnuItemInsight.IsEnabled = false;
                 historyDisplaying = new List<History>();
                 dgHistory.ItemsSource = historyDisplaying;
             }
@@ -239,6 +240,7 @@ namespace StockTrack
                 mnuDeleteItem.IsEnabled = true;
                 mnuMoveItem.IsEnabled = true;
                 mnuRelatedItems.IsEnabled = true;
+                mnuItemInsight.IsEnabled = true;
                 if (dgItems.SelectedItems.Count == 1) populateItemHistory((dgItems.SelectedItem as Item).ItemId);
             }
         }
@@ -670,6 +672,13 @@ namespace StockTrack
         private void chkTopMost_Unchecked(object sender, RoutedEventArgs e)
         {
             this.Topmost = false;
+        }
+
+        private void mnuItemInsight_Click(object sender, RoutedEventArgs e)
+        {
+            ItemInsight ii = new ItemInsight();
+            ii.itemId = (dgItems.SelectedItem as Item).ItemId;
+            ii.Show();
         }
     }
 }
