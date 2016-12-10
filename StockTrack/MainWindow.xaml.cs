@@ -678,6 +678,7 @@ namespace StockTrack
         {
             ItemInsight ii = new ItemInsight();
             ii.itemId = (dgItems.SelectedItem as Item).ItemId;
+            ii.Owner = this;
             ii.Show();
         }
     }
