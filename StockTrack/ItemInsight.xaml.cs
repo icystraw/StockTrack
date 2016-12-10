@@ -36,5 +36,13 @@ namespace StockTrack
             dgItems.ItemsSource = DataAccess.GetRelatedItemsForItemInsight(itemId).DefaultView;
             dgSales.ItemsSource = DataAccess.GetItemMonthlySales(itemId).DefaultView;
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
