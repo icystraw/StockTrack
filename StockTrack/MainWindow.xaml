@@ -48,6 +48,8 @@
                             </Style>
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
+                    <DataGridTextColumn Header="Customer" IsReadOnly="True" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Contact" IsReadOnly="True" Binding="{Binding Path=ContactNo}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>

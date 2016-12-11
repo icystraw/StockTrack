@@ -90,6 +90,22 @@ namespace StockTrack
             set { comments = value; }
         }
 
+        private string customerName;
+
+        public string CustomerName
+        {
+            get { return customerName; }
+            set { customerName = value; }
+        }
+
+        private string contactNo;
+
+        public string ContactNo
+        {
+            get { return contactNo; }
+            set { contactNo = value; }
+        }
+
         public Brush OrderColor
         {
             get
