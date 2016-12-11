@@ -52,10 +52,10 @@
                     </DockPanel>
                     <DataGrid Name="dgItems" AutoGenerateColumns="False" Height="225" Margin="0,5,0,0"
                       SelectionMode="Extended" SelectionUnit="FullRow" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
-                      CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgItems_SelectionChanged">
+                      IsReadOnly="True" SelectionChanged="dgItems_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="Item Name" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
-                            <DataGridTextColumn IsReadOnly="True" Header="Quantity" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Item Name" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

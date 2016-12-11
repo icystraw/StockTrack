@@ -60,10 +60,12 @@ namespace StockTrack
                     DataAccess.UpdateItem(i);
                     foreach (Item _i in dgItems.Items)
                     {
-                        if (_i.ItemId == i.ItemId) _i.Quantity = i.Quantity;
-                        break;
+                        if (_i.ItemId == i.ItemId)
+                        {
+                            _i.Quantity = i.Quantity;
+                            break;
+                        }
                     }
-                    dgItems.Items.Refresh();
                 }
             }
             else
@@ -166,12 +168,14 @@ namespace StockTrack
                     DataAccess.UpdateItem(i);
                     foreach (Item _i in dgItems.Items)
                     {
-                        if (_i.ItemId == i.ItemId) _i.Quantity = i.Quantity;
-                        break;
+                        if (_i.ItemId == i.ItemId)
+                        {
+                            _i.Quantity = i.Quantity;
+                            break;
+                        }
                     }
                 }
             }
-            dgItems.Items.Refresh();
             getOrderHistory();
         }
 
@@ -338,7 +342,6 @@ namespace StockTrack
                 }
                 DataAccess.InsertHistory(h);
             }
-            dgItems.Items.Refresh();
             getOrderHistory();
         }
 

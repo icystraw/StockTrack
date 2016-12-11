@@ -133,7 +133,6 @@ namespace StockTrack
                 DataAccess.InsertHistory(h);
             }
             populateItemHistory((dgItems.SelectedItem as Item).ItemId);
-            dgItems.Items.Refresh();
         }
 
         private void lblTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
