@@ -100,6 +100,7 @@ namespace StockTrack
                 cbShipping.Text = o.Shipping;
                 txtTotalAmount.Text = o.TotalAmount.ToString();
                 txtPaidToday.Text = o.PaidToday.ToString();
+                cbIsWorkOrder.IsEnabled = true;
                 if (o.IsWorkOrder == 0)
                     cbIsWorkOrder.IsChecked = false;
                 else if (o.IsWorkOrder == 1)

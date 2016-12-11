@@ -717,7 +717,8 @@ namespace StockTrack
             List<int> orderIds = new List<int>();
             foreach (History h in dgHistory.Items)
             {
-                orderIds.Add(h.OrderId);
+                if (!orderIds.Contains(h.OrderId))
+                    orderIds.Add(h.OrderId);
             }
             return orderIds;
         }
