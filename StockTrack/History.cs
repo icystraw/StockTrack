@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Windows.Media;
 
 namespace StockTrack
 {
-    class History
+    class History : INotifyPropertyChanged
     {
         private int historyId;
 
@@ -50,14 +51,14 @@ namespace StockTrack
         public string Action
         {
             get { return action; }
-            set { action = value; }
+            set { action = value; OnPropertyChanged("Action"); }
         }
         private double quantity;
 
         public double Quantity
         {
             get { return quantity; }
-            set { quantity = value; }
+            set { quantity = value; OnPropertyChanged("Quantity"); OnPropertyChanged("Action"); }
         }
         private string orderNo;
 
@@ -99,6 +100,13 @@ namespace StockTrack
                     return new SolidColorBrush(Colors.LightGray);
                 return new SolidColorBrush(Colors.White);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -39,7 +39,7 @@
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Net" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Net" Binding="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                     <DataGridTextColumn Header="O/N" IsReadOnly="True" Binding="{Binding Path=OrderNo}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">

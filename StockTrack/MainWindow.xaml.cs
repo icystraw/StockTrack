@@ -110,10 +110,33 @@ namespace StockTrack
             {
                 History hi = e.Row.Item as History;
                 hi.Comments = tempHistory.Comments;
+                hi.Quantity = tempHistory.Quantity;
                 return;
             }
             History h = e.Row.Item as History;
-            DataAccess.UpdateHistoryComments(h);
+            if (h.Quantity != 0)
+            {
+                if (h.Action != "Adjust")
+                {
+                    if (h.Quantity <= 0) h.Action = "Purchase";
+                    else h.Action = "Return";
+                }
+                DataAccess.UpdateHistory(h);
+                double qtyChange = h.Quantity - tempHistory.Quantity;
+                if (qtyChange != 0)
+                {
+                    Item i = DataAccess.GetItemById(h.ItemId);
+                    i.Quantity += qtyChange;
+                    DataAccess.UpdateItem(i);
+                    (dgItems.SelectedItem as Item).Quantity = i.Quantity;
+                    dgItems.Items.Refresh();
+                }
+            }
+            else
+            {
+                h.Quantity = tempHistory.Quantity;
+            }
+
         }
 
         private void dgItems_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -647,6 +670,7 @@ namespace StockTrack
             tempHistory = new History();
             History h = e.Row.Item as History;
             tempHistory.Comments = h.Comments;
+            tempHistory.Quantity = h.Quantity;
         }
 
         private Category tempCategory = null;

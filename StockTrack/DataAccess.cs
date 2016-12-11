@@ -246,11 +246,13 @@ namespace StockTrack
             con.Close();
         }
 
-        public static void UpdateHistoryComments(History h)
+        public static void UpdateHistory(History h)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("update [history] set [comments] = @comments where [historyid] = @historyid", con);
+            SqlCommand cmd = new SqlCommand("update [history] set [comments] = @comments, [action] = @action, [quantity] = @quantity where [historyid] = @historyid", con);
             cmd.Parameters.Add(new SqlParameter("@comments", h.Comments));
+            cmd.Parameters.Add(new SqlParameter("@action", h.Action));
+            cmd.Parameters.Add(new SqlParameter("@quantity", h.Quantity));
             cmd.Parameters.Add(new SqlParameter("@historyid", h.HistoryId));
             con.Open();
             cmd.ExecuteNonQuery();

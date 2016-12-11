@@ -43,7 +43,7 @@ namespace StockTrack
                 return;
             }
             History h = e.Row.Item as History;
-            DataAccess.UpdateHistoryComments(h);
+            DataAccess.UpdateHistory(h);
         }
 
         private void getOrderDetails()
