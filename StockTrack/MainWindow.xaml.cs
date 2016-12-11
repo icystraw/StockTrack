@@ -509,6 +509,7 @@ namespace StockTrack
             int selectedHistoryId = (dgHistory.SelectedItem as History).HistoryId;
             OrderDetails o = new OrderDetails();
             o.OrderId = (dgHistory.SelectedItem as History).OrderId;
+            o.OrderCandidates = getListOfOrders();
             o.Owner = this;
             this.Hide();
             o.ShowDialog();
@@ -709,6 +710,16 @@ namespace StockTrack
         private void TextBlock_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             mnuOrderSearch_Click(this, null);
+        }
+
+        private List<int> getListOfOrders()
+        {
+            List<int> orderIds = new List<int>();
+            foreach (History h in dgHistory.Items)
+            {
+                orderIds.Add(h.OrderId);
+            }
+            return orderIds;
         }
     }
 }

@@ -186,6 +186,7 @@ namespace StockTrack
                 Order o = dgOrders.SelectedItem as Order;
                 OrderDetails od = new OrderDetails();
                 od.OrderId = o.OrderId;
+                od.OrderCandidates = getListOfOrders();
                 od.Owner = this;
                 this.Hide();
                 od.ShowDialog();
@@ -306,6 +307,16 @@ namespace StockTrack
         {
             _isWorkOrder = 2;
             performSearch(0, _isWorkOrder);
+        }
+
+        private List<int> getListOfOrders()
+        {
+            List<int> orderIds = new List<int>();
+            foreach (Order o in dgOrders.Items)
+            {
+                orderIds.Add(o.OrderId);
+            }
+            return orderIds;
         }
     }
 }

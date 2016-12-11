@@ -29,6 +29,13 @@ namespace StockTrack
             }
         }
 
+        private List<int> orderCandidates = null;
+
+        public List<int> OrderCandidates
+        {
+            set { this.orderCandidates = value; }
+        }
+
         private bool formResult = false;
 
         public bool FormResult
@@ -520,6 +527,7 @@ namespace StockTrack
 
         private void btnPrev_Click(object sender, RoutedEventArgs e)
         {
+            if (null == this.orderCandidates) return;
             if (!canMoveOn()) return;
             dataChanged = false;
             MessageBox.Show("Not Implemented.");
@@ -527,6 +535,7 @@ namespace StockTrack
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            if (null == this.orderCandidates) return;
             if (!canMoveOn()) return;
             dataChanged = false;
             MessageBox.Show("Not Implemented.");
