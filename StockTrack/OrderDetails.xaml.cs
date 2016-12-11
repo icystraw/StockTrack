@@ -29,6 +29,13 @@ namespace StockTrack
             }
         }
 
+        private bool formResult = false;
+
+        public bool FormResult
+        {
+            get { return formResult; }
+        }
+
         private List<History> hs = new List<History>();
         private List<OrderHistory> ohs = new List<OrderHistory>();
         private Order o = null;
@@ -186,13 +193,18 @@ namespace StockTrack
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            getOrderDetails();
-            getOrderHistory();
-            getOrderProgression();
+            prepareOrder();
             cbSearch.ItemsSource = DataAccess.GetAllCategories();
             cbSearch.DisplayMemberPath = "CategoryName";
             cbSearch.AddHandler(TextBoxBase.TextChangedEvent, new RoutedEventHandler(cbSearch_TextChanged));
             cbShipping.AddHandler(TextBoxBase.TextChangedEvent, new RoutedEventHandler(cbShipping_TextChanged));
+        }
+
+        private void prepareOrder()
+        {
+            getOrderDetails();
+            getOrderHistory();
+            getOrderProgression();
         }
 
         private void cbSearch_TextChanged(object sender, RoutedEventArgs e)
@@ -215,6 +227,7 @@ namespace StockTrack
                 {
                     DataAccess.DeleteOrderById(o.OrderId);
                     dataChanged = false;
+                    formResult = true;
                     this.Close();
                 }
             }
@@ -255,6 +268,7 @@ namespace StockTrack
                 DataAccess.InsertOrderHistory(h);
                 getOrderProgression();
                 txtProgress.Clear();
+                this.formResult = true;
             }
         }
 
@@ -266,7 +280,10 @@ namespace StockTrack
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             if (saveOrderDetails())
-                this.DialogResult = true;
+            {
+                this.formResult = true;
+                this.Close();
+            }
         }
 
         private void txtQuantity_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
@@ -413,13 +430,19 @@ namespace StockTrack
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            e.Cancel = !canMoveOn();
+        }
+
+        private bool canMoveOn()
+        {
             if (dataChanged || txtProgress.Text != string.Empty)
             {
-                if (MessageBox.Show("Data Changed. Sure to exit?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                if (MessageBox.Show("Data Changed. Continue?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
-                    e.Cancel = true;
+                    return false;
                 }
             }
+            return true;
         }
 
         private void txtOrderNo_TextChanged(object sender, TextChangedEventArgs e)
@@ -488,6 +511,23 @@ namespace StockTrack
             {
                 this.Close();
             }
+        }
+
+        private void btnSaveOrder_Click(object sender, RoutedEventArgs e)
+        {
+            this.formResult = saveOrderDetails();
+        }
+
+        private void btnPrev_Click(object sender, RoutedEventArgs e)
+        {
+            if (!canMoveOn()) return;
+            MessageBox.Show("Not Implemented.");
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (!canMoveOn()) return;
+            MessageBox.Show("Not Implemented.");
         }
     }
 }

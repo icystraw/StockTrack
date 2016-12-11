@@ -37,7 +37,10 @@
             <Label>Folder:</Label>
             <TextBox Name="txtFolder" TextChanged="txtFolder_TextChanged"></TextBox>
             <Button Name="btnClose" Content="SAVE AND CLOSE" Click="btnClose_Click" Margin="0,5,0,0" Height="50"/>
+            <Button Name="btnSaveOrder" Content="Save" Margin="0,5,0,0" Click="btnSaveOrder_Click"></Button>
             <Button Margin="0,5,0,0" Name="btnDeleteOrder" Content="Delete this order" Click="btnDeleteOrder_Click"></Button>
+            <Button Name="btnPrev" Content="Previous Order" Margin="0,5,0,0" Click="btnPrev_Click"></Button>
+            <Button Name="btnNext" Content="Next Order" Margin="0,5,0,0" Click="btnNext_Click"></Button>
         </StackPanel>
         <DockPanel Margin="5">
             <Label DockPanel.Dock="Top">Items in order:</Label>
