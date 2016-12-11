@@ -129,7 +129,6 @@ namespace StockTrack
                     i.Quantity += qtyChange;
                     DataAccess.UpdateItem(i);
                     (dgItems.SelectedItem as Item).Quantity = i.Quantity;
-                    dgItems.Items.Refresh();
                 }
             }
             else
@@ -364,7 +363,6 @@ namespace StockTrack
                 DataAccess.InsertHistory(h);
             }
             populateItemHistory((dgItems.SelectedItem as Item).ItemId);
-            dgItems.Items.Refresh();
             refreshOrder();
             txtSearch.Focus();
             txtSearch.SelectAll();
@@ -414,7 +412,6 @@ namespace StockTrack
             }
             DataAccess.DeleteHistoryById(h.HistoryId);
             populateItemHistory(i.ItemId);
-            dgItems.Items.Refresh();
         }
 
         private void mnuMoveItem_Click(object sender, RoutedEventArgs e)

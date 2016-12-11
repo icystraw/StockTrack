@@ -378,6 +378,7 @@ namespace StockTrack
         {
             tempHistory = new History();
             tempHistory.Comments = (e.Row.Item as History).Comments;
+            tempHistory.Quantity = (e.Row.Item as History).Quantity;
         }
 
         private void Window_Closed(object sender, EventArgs e)
