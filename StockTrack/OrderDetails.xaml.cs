@@ -529,16 +529,36 @@ namespace StockTrack
         {
             if (null == this.orderCandidates) return;
             if (!canMoveOn()) return;
-            dataChanged = false;
-            MessageBox.Show("Not Implemented.");
+            int position = 0;
+            for (int i = 0; i < orderCandidates.Count; i++)
+            {
+                if (orderCandidates[i] == this.orderId)
+                {
+                    position = i;
+                    break;
+                }
+            }
+            if (position == 0) return;
+            this.orderId = orderCandidates[position - 1];
+            prepareOrder();
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             if (null == this.orderCandidates) return;
             if (!canMoveOn()) return;
-            dataChanged = false;
-            MessageBox.Show("Not Implemented.");
+            int position = 0;
+            for (int i = 0; i < orderCandidates.Count; i++)
+            {
+                if (orderCandidates[i] == this.orderId)
+                {
+                    position = i;
+                    break;
+                }
+            }
+            if (position == orderCandidates.Count - 1) return;
+            this.orderId = orderCandidates[position + 1];
+            prepareOrder();
         }
     }
 }
