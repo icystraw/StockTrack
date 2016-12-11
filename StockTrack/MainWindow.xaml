@@ -40,14 +40,13 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Action" IsReadOnly="True" Binding="{Binding Path=Action}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Net" Binding="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="O/N" IsReadOnly="True" Binding="{Binding Path=OrderNo}">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="Background" Value="{Binding Path=OrderColor}"></Setter>
-                                <Setter Property="Foreground" Value="Black"></Setter>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
+                    <DataGridTemplateColumn IsReadOnly="True" Header="O/N" CanUserSort="True" SortMemberPath="OrderNo" ClipboardContentBinding="{Binding Path=OrderNo}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=OrderNo}" Background="{Binding Path=OrderColor}" Foreground="Black" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Customer" IsReadOnly="True" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Contact" IsReadOnly="True" Binding="{Binding Path=ContactNo}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>

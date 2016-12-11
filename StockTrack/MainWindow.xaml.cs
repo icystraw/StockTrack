@@ -705,5 +705,10 @@ namespace StockTrack
             ii.Owner = this;
             ii.Show();
         }
+
+        private void TextBlock_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            mnuOrderSearch_Click(this, null);
+        }
     }
 }
