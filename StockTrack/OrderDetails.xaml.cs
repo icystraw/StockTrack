@@ -521,12 +521,14 @@ namespace StockTrack
         private void btnPrev_Click(object sender, RoutedEventArgs e)
         {
             if (!canMoveOn()) return;
+            dataChanged = false;
             MessageBox.Show("Not Implemented.");
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             if (!canMoveOn()) return;
+            dataChanged = false;
             MessageBox.Show("Not Implemented.");
         }
     }
