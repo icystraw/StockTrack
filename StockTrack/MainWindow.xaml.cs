@@ -136,7 +136,6 @@ namespace StockTrack
             {
                 h.Quantity = tempHistory.Quantity;
             }
-
         }
 
         private void dgItems_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
