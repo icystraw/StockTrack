@@ -5,6 +5,11 @@
         Title="Order Details" Height="690" Width="850" Background="PowderBlue" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Closed="Window_Closed" ShowInTaskbar="True" Closing="Window_Closing" KeyUp="Window_KeyUp">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="150" Margin="5">
+            <ToolBar>
+                <Button Name="btnPrev" Content="Prev" Click="btnPrev_Click" Width="40"></Button>
+                <Button Name="btnNext" Content="Next" Click="btnNext_Click" Width="40"></Button>
+                <Button Name="btnSaveOrder" Content="Save" Click="btnSaveOrder_Click" Width="40"></Button>
+            </ToolBar>
             <Label>Order Number:</Label>
             <TextBox Name="txtOrderNo" TextChanged="txtOrderNo_TextChanged"></TextBox>
             <CheckBox Name="cbIsWorkOrder" Margin="0,5,0,0" Checked="cbIsWorkOrder_Checked" Unchecked="cbIsWorkOrder_Unchecked">Is Work Order</CheckBox>
@@ -37,10 +42,7 @@
             <Label>Folder:</Label>
             <TextBox Name="txtFolder" TextChanged="txtFolder_TextChanged"></TextBox>
             <Button Name="btnClose" Content="SAVE AND CLOSE" Click="btnClose_Click" Margin="0,5,0,0" Height="50"/>
-            <Button Name="btnSaveOrder" Content="Save" Margin="0,5,0,0" Click="btnSaveOrder_Click"></Button>
             <Button Margin="0,5,0,0" Name="btnDeleteOrder" Content="Delete this order" Click="btnDeleteOrder_Click"></Button>
-            <Button Name="btnPrev" Content="Previous Order" Margin="0,5,0,0" Click="btnPrev_Click"></Button>
-            <Button Name="btnNext" Content="Next Order" Margin="0,5,0,0" Click="btnNext_Click"></Button>
         </StackPanel>
         <DockPanel Margin="5">
             <Label DockPanel.Dock="Top">Items in order:</Label>
@@ -80,7 +82,7 @@
                     </DataGrid>
                     <TextBox Height="40" Name="txtProgress" Margin="0,5,0,0" AcceptsReturn="True"></TextBox>
                     <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add new comments" Click="btnAddProgress_Click"></Button>
-               </StackPanel>
+                </StackPanel>
             </DockPanel>
             <DataGrid Name="dgHistory"
                   Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
