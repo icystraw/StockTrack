@@ -79,6 +79,8 @@ namespace StockTrack
             _isWorkOrder = 1;
             performSearch(0, _isWorkOrder);
             if (!string.IsNullOrEmpty(searchKeyword)) txtKeyword.Text = searchKeyword;
+            txtKeyword.Focus();
+            txtKeyword.SelectAll();
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)

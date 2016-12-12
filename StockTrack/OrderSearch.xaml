@@ -24,8 +24,8 @@
             <Button Name="btnSearchTentative" Width="110" Margin="3" DockPanel.Dock="Left" Click="btnSearchTentative_Click">Search Tentative</Button>
             <Button Name="btnNew" Width="100" Click="btnNew_Click" Margin="3" DockPanel.Dock="Left">New Work</Button>
             <Button Name="btnNewTentative" Width="100" Margin="3" DockPanel.Dock="Left" Click="btnNewTentative_Click">New Tentative</Button>
-            <Button Name="btnAddItem" Width="90" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Left">Go Items</Button>
             <Button Name="btnNormal" Width="60" Click="btnNormal_Click" Margin="3" DockPanel.Dock="Right">Mini</Button>
+            <Button Name="btnAddItem" Width="60" Click="btnAddItem_Click" Margin="3" DockPanel.Dock="Right">Items</Button>
             <Label></Label>
         </DockPanel>
         <DataGrid Name="dgOrders" Margin="3" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" FrozenColumnCount="1" BeginningEdit="dgOrders_BeginningEdit"
