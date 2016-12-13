@@ -578,7 +578,14 @@ namespace StockTrack
 
         private void btnSendEmail_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                System.Diagnostics.Process.Start("mailto:" + txtEmail.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnMapAddress_Click(object sender, RoutedEventArgs e)
