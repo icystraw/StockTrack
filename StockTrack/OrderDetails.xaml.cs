@@ -111,6 +111,8 @@ namespace StockTrack
                 dtShippingDate.SelectedDate = o.ShippingDate;
                 txtComments.Text = o.Comments;
                 txtFolder.Text = o.Folder;
+                txtEmail.Text = o.Email;
+                txtAddress.Text = o.Address;
                 dataChanged = false;
             }
         }
@@ -148,6 +150,8 @@ namespace StockTrack
                 o.ShippingDate = (DateTime)dtShippingDate.SelectedDate;
                 o.Comments = txtComments.Text.Trim();
                 o.Folder = txtFolder.Text.Trim();
+                o.Email = txtEmail.Text.Trim();
+                o.Address = txtAddress.Text.Trim();
 
                 DataAccess.UpdateOrder(o);
                 dataChanged = false;
@@ -560,6 +564,26 @@ namespace StockTrack
             if (position == orderCandidates.Count - 1) return;
             this.orderId = orderCandidates[position + 1];
             prepareOrder();
+        }
+
+        private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void txtAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataChanged = true;
+        }
+
+        private void btnSendEmail_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMapAddress_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
