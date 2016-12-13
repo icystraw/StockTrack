@@ -94,6 +94,20 @@ namespace StockTrack
             get { return folder; }
             set { folder = value; }
         }
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+        private string address;
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
 
         private string progress;
 

@@ -351,6 +351,8 @@ namespace StockTrack
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
+                o.Email = rd["email"].ToString();
+                o.Address = rd["address"].ToString();
             }
             rd.Close();
 
@@ -380,6 +382,8 @@ namespace StockTrack
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
+                o.Email = rd["email"].ToString();
+                o.Address = rd["address"].ToString();
                 os.Add(o);
             }
             rd.Close();
@@ -436,7 +440,7 @@ namespace StockTrack
             cmd.CommandText += ") as [temptable]";
             if (!string.IsNullOrEmpty(keyword))
             {
-                cmd.CommandText += " where [itemname] like N'%' + @keyword + N'%' or [shipping] like N'%' + @keyword + N'%' or [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%'";
+                cmd.CommandText += " where [itemname] like N'%' + @keyword + N'%' or [shipping] like N'%' + @keyword + N'%' or [orderno] like N'%' + @keyword + N'%' or [customername] like N'%' + @keyword + N'%' or [contactno] like N'%' + @keyword + N'%' or [comments] like N'%' + @keyword + N'%' or [progress] like N'%' + @keyword + N'%' or [email] like N'%' + @keyword + N'%' or [address] like N'%' + @keyword + N'%'";
                 cmd.Parameters.Add(new SqlParameter("@keyword", keyword));
             }
             cmd.CommandText += " OPTION (RECOMPILE)";
@@ -457,6 +461,8 @@ namespace StockTrack
                 o.ShippingDate = Convert.ToDateTime(rd["shippingdate"]);
                 o.Comments = rd["comments"].ToString();
                 o.Folder = rd["folder"].ToString();
+                o.Email = rd["email"].ToString();
+                o.Address = rd["address"].ToString();
                 o.Progress = rd["progress"].ToString();
                 if (string.IsNullOrEmpty(o.Progress) && !string.IsNullOrEmpty(keyword))
                     o.Progress = "No match found in history";
@@ -470,7 +476,7 @@ namespace StockTrack
         public static void UpdateOrder(Order o)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("update [order] set [orderno] = @orderno, [customername] = @customername, [contactno] = @contactno, [shipping] = @shipping, [totalamount] = @totalamount, [paidtoday] = @paidtoday, [isworkorder] = @isworkorder, [orderdate] = @orderdate, [shippingdate] = @shippingdate, [comments] = @comments, [folder] = @folder where [orderid] = @orderid", con);
+            SqlCommand cmd = new SqlCommand("update [order] set [orderno] = @orderno, [customername] = @customername, [contactno] = @contactno, [shipping] = @shipping, [totalamount] = @totalamount, [paidtoday] = @paidtoday, [isworkorder] = @isworkorder, [orderdate] = @orderdate, [shippingdate] = @shippingdate, [comments] = @comments, [folder] = @folder, [email] = @email, [address] = @address where [orderid] = @orderid", con);
             cmd.Parameters.Add(new SqlParameter("@orderno", o.OrderNo));
             cmd.Parameters.Add(new SqlParameter("@customername", o.CustomerName));
             cmd.Parameters.Add(new SqlParameter("@contactno", o.ContactNo));
@@ -482,6 +488,8 @@ namespace StockTrack
             cmd.Parameters.Add(new SqlParameter("@shippingdate", o.ShippingDate));
             cmd.Parameters.Add(new SqlParameter("@comments", o.Comments));
             cmd.Parameters.Add(new SqlParameter("@folder", o.Folder));
+            cmd.Parameters.Add(new SqlParameter("@email", o.Email));
+            cmd.Parameters.Add(new SqlParameter("@address", o.Address));
             cmd.Parameters.Add(new SqlParameter("@orderid", o.OrderId));
             con.Open();
             cmd.ExecuteNonQuery();
@@ -534,7 +542,7 @@ namespace StockTrack
         public static int AddNewWorkOrder(string orderNo)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments], [folder]) values (@orderno, N'', N'', N'', 0, 0, 1, GETDATE(), GETDATE(), N'', N''); select @@identity;", con);
+            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments], [folder], [email], [address]) values (@orderno, N'', N'', N'', 0, 0, 1, GETDATE(), GETDATE(), N'', N'', N'', N''); select @@identity;", con);
             cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
             con.Open();
             int retVal = 0;
@@ -546,7 +554,7 @@ namespace StockTrack
         public static int AddNewTentativeOrder(string orderNo)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments], [folder]) values (@orderno, N'', N'', N'', 0, 0, 2, GETDATE(), GETDATE(), N'', N''); select @@identity;", con);
+            SqlCommand cmd = new SqlCommand("insert into [order] ([orderno], [customername], [contactno], [shipping], [totalamount], [paidtoday], [isworkorder], [orderdate], [shippingdate], [comments], [folder], [email], [address]) values (@orderno, N'', N'', N'', 0, 0, 2, GETDATE(), GETDATE(), N'', N'', N'', N''); select @@identity;", con);
             cmd.Parameters.Add(new SqlParameter("@orderno", orderNo));
             con.Open();
             int retVal = 0;
