@@ -99,14 +99,14 @@ namespace StockTrack
         public string Email
         {
             get { return email; }
-            set { email = value; }
+            set { email = value; OnPropertyChanged("Email"); }
         }
         private string address;
 
         public string Address
         {
             get { return address; }
-            set { address = value; }
+            set { address = value; OnPropertyChanged("Address"); }
         }
 
         private string progress;
