@@ -583,7 +583,14 @@ namespace StockTrack
 
         private void btnMapAddress_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.google.com.au/maps/search/" + System.Web.HttpUtility.UrlEncode(txtAddress.Text.Trim()));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
