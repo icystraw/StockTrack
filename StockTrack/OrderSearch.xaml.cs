@@ -139,6 +139,8 @@ namespace StockTrack
                 or.Shipping = tempOrder.Shipping;
                 or.ShippingDate = tempOrder.ShippingDate;
                 or.TotalAmount = tempOrder.TotalAmount;
+                or.Email = tempOrder.Email;
+                or.Address = tempOrder.Address;
                 return;
             }
             Order o = e.Row.Item as Order;
@@ -295,6 +297,8 @@ namespace StockTrack
             tempOrder.CustomerName = o.CustomerName;
             tempOrder.ContactNo = o.ContactNo;
             tempOrder.Comments = o.Comments;
+            tempOrder.Email = o.Email;
+            tempOrder.Address = o.Address;
         }
 
         private byte? _isWorkOrder = null;
