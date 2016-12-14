@@ -141,22 +141,19 @@ namespace StockTrack
         {
             if (e.EditAction == DataGridEditAction.Cancel)
             {
-                Item i = e.Row.Item as Item;
-                i.ItemName = tempItem.ItemName;
-                i.Quantity = tempItem.Quantity;
+                Item it = e.Row.Item as Item;
+                it.ItemName = tempItem.ItemName;
+                it.Quantity = tempItem.Quantity;
                 return;
             }
             Item itemEditing = e.Row.Item as Item;
-            if (e.Column.Header.ToString() == "Name")
+
+            Item i = DataAccess.GetItemById(itemEditing.ItemId);
+            if (null == i) return;
+
+            double difference = itemEditing.Quantity - i.Quantity;
+            if (0 != difference)
             {
-                DataAccess.UpdateItem(itemEditing);
-            }
-            else if (e.Column.Header.ToString() == "Quantity")
-            {
-                Item i = DataAccess.GetItemById(itemEditing.ItemId);
-                if (null == i) return;
-                double difference = itemEditing.Quantity - i.Quantity;
-                if (0 == difference) return;
                 History h = new History();
                 h.EntryDate = DateTime.Now;
                 h.ActionDate = DateTime.Now;
@@ -165,10 +162,11 @@ namespace StockTrack
                 h.ItemId = itemEditing.ItemId;
                 h.OrderNo = "ADJ" + DateTime.Today.ToString("ddMMyyyy");
                 h.Quantity = difference;
-                DataAccess.UpdateItem(itemEditing);
                 DataAccess.InsertHistory(h);
                 populateItemHistory(itemEditing.ItemId);
             }
+
+            DataAccess.UpdateItem(itemEditing);
         }
 
         private bool triggerCatSelChange = true;
