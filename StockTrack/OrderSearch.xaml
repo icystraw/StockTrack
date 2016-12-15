@@ -101,6 +101,8 @@
                     <MenuItem Name="mnuConvertTentative" IsEnabled="False" Header="Mark as Tentative Order" Click="mnuConvertTentative_Click"></MenuItem>
                     <MenuItem Command="Copy"></MenuItem>
                     <MenuItem Name="mnuLink" IsEnabled="False" Click="mnuLink_Click" Header="Open Folder"></MenuItem>
+                    <MenuItem Name="mnuSendEmail" IsEnabled="False" Header="Send Email" Click="mnuSendEmail_Click"></MenuItem>
+                    <MenuItem Name="mnuMapAddress" IsEnabled="False" Header="Map Address" Click="mnuMapAddress_Click"></MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

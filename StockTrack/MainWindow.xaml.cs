@@ -730,5 +730,10 @@ namespace StockTrack
         {
             if (dgItems.SelectedItems.Count > 0) populateItemHistory((dgItems.SelectedItem as Item).ItemId);
         }
+
+        private void btnViewRelated_Click(object sender, RoutedEventArgs e)
+        {
+            mnuRelatedItems_Click(sender, e);
+        }
     }
 }

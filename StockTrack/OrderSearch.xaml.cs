@@ -149,11 +149,13 @@ namespace StockTrack
 
         private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mnuConvertTentative.IsEnabled = mnuConvertWorkOrder.IsEnabled = mnuMark.IsEnabled = mnuLink.IsEnabled = false;
+            mnuConvertTentative.IsEnabled = mnuConvertWorkOrder.IsEnabled = mnuMark.IsEnabled = mnuLink.IsEnabled = mnuSendEmail.IsEnabled = mnuMapAddress.IsEnabled = false;
             Order o = dgOrders.SelectedItem as Order;
             if (o != null)
             {
                 mnuLink.IsEnabled = true;
+                mnuSendEmail.IsEnabled = true;
+                mnuMapAddress.IsEnabled = true;
                 if (o.IsWorkOrder == 0)
                 {
                     mnuConvertTentative.IsEnabled = true;
@@ -323,6 +325,30 @@ namespace StockTrack
                 orderIds.Add(o.OrderId);
             }
             return orderIds;
+        }
+
+        private void mnuSendEmail_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("mailto:" + (dgOrders.SelectedItem as Order).Email);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void mnuMapAddress_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.google.com.au/maps/search/" + System.Web.HttpUtility.UrlEncode((dgOrders.SelectedItem as Order).Address));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
