@@ -269,11 +269,16 @@ namespace StockTrack
             con.Close();
         }
 
-        public static List<History> GetHistoryByItemId(int itemId)
+        public static List<History> GetHistoryByItemId(int itemId, bool showWorkOnly)
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select [history].*, [order].[orderno], [order].[isworkorder], [order].[customername], [order].[contactno] from [history] inner join [order] on [order].[orderid] = [history].[orderid] where [itemid] = @itemid order by [entrydate] desc", con);
+            SqlCommand cmd = new SqlCommand("select [history].*, [order].[orderno], [order].[isworkorder], [order].[customername], [order].[contactno] from [history] inner join [order] on [order].[orderid] = [history].[orderid] where [itemid] = @itemid", con);
+            if (showWorkOnly)
+            {
+                cmd.CommandText += " and ([order].[isworkorder] = 1 or [order].[isworkorder] = 2)";
+            }
+            cmd.CommandText += " order by [entrydate] desc";
             cmd.Parameters.Add(new SqlParameter("@itemid", itemId));
             con.Open();
             IDataReader rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);

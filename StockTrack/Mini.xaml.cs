@@ -83,7 +83,7 @@ namespace StockTrack
 
         private void populateItemHistory(int itemId)
         {
-            dgHistory.ItemsSource = DataAccess.GetHistoryByItemId(itemId);
+            dgHistory.ItemsSource = DataAccess.GetHistoryByItemId(itemId, false);
         }
 
         private void dgHistory_MouseUp(object sender, MouseButtonEventArgs e)

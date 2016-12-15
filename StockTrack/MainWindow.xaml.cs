@@ -266,7 +266,7 @@ namespace StockTrack
 
         private void populateItemHistory(int itemId)
         {
-            historyDisplaying = DataAccess.GetHistoryByItemId(itemId);
+            historyDisplaying = DataAccess.GetHistoryByItemId(itemId, (bool)chkShowWorkOnly.IsChecked);
             dgHistory.ItemsSource = historyDisplaying;
             refreshHistoryFilteredView();
         }
@@ -719,6 +719,16 @@ namespace StockTrack
                     orderIds.Add(h.OrderId);
             }
             return orderIds;
+        }
+
+        private void chkShowWorkOnly_Checked(object sender, RoutedEventArgs e)
+        {
+            if (dgItems.SelectedItems.Count > 0) populateItemHistory((dgItems.SelectedItem as Item).ItemId);
+        }
+
+        private void chkShowWorkOnly_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (dgItems.SelectedItems.Count > 0) populateItemHistory((dgItems.SelectedItem as Item).ItemId);
         }
     }
 }
