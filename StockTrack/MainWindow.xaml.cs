@@ -242,6 +242,7 @@ namespace StockTrack
                 mnuMergeItem.IsEnabled = false;
                 mnuRelatedItems.IsEnabled = false;
                 mnuItemInsight.IsEnabled = false;
+                mnuEmailOrder.IsEnabled = false;
                 historyDisplaying = new List<History>();
                 dgHistory.ItemsSource = historyDisplaying;
             }
@@ -260,6 +261,7 @@ namespace StockTrack
                 mnuMoveItem.IsEnabled = true;
                 mnuRelatedItems.IsEnabled = true;
                 mnuItemInsight.IsEnabled = true;
+                mnuEmailOrder.IsEnabled = true;
                 if (dgItems.SelectedItems.Count == 1) populateItemHistory((dgItems.SelectedItem as Item).ItemId);
             }
         }
@@ -734,6 +736,11 @@ namespace StockTrack
         private void btnViewRelated_Click(object sender, RoutedEventArgs e)
         {
             mnuRelatedItems_Click(sender, e);
+        }
+
+        private void mnuEmailOrder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
