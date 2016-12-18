@@ -6,6 +6,8 @@ using System.Windows.Documents;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.IO;
+using System.Net.Mail;
 
 namespace StockTrack
 {
@@ -740,7 +742,29 @@ namespace StockTrack
 
         private void mnuEmailOrder_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                using (StreamReader sr = new StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + "\\OrderTemplate.html"))
+                {
+                    String line = sr.ReadToEnd();
+                    line = line.Replace("[#date]", DateTime.Now.ToString("dd/MM/yyyy")).Replace("[#itemname]", (dgItems.SelectedItem as Item).ItemName);
 
+                    MailMessage m = new MailMessage("stocktrack@localhost", "stocktrack@localhost");
+                    m.Subject = "Purchase Order";
+                    m.IsBodyHtml = true;
+                    m.Body = line;
+                    m.Headers.Add("X-Unsent", "1");
+
+                    SmtpClient c = new SmtpClient();
+                    c.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    c.PickupDirectoryLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    c.Send(m);
+                }
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }
