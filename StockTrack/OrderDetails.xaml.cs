@@ -200,7 +200,7 @@ namespace StockTrack
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mnuUndoAction.IsEnabled = mnuAddOrderComments.IsEnabled = !(null == dgHistory.SelectedItem);
+            mnuEmailOrder.IsEnabled = mnuUndoAction.IsEnabled = mnuAddOrderComments.IsEnabled = !(null == dgHistory.SelectedItem);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -598,6 +598,11 @@ namespace StockTrack
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void mnuEmailOrder_Click(object sender, RoutedEventArgs e)
+        {
+            Utilities.EmailOrder((dgHistory.SelectedItem as History).ItemName, 0 - (dgHistory.SelectedItem as History).Quantity, o.OrderNo);
         }
     }
 }

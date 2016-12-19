@@ -104,6 +104,7 @@
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Name="mnuAddOrderComments" IsEnabled="False" Header="Add to Order Comments" Click="mnuAddOrderComments_Click" />
+                        <MenuItem Name="mnuEmailOrder" IsEnabled="False" Header="Order by Email" Click="mnuEmailOrder_Click"></MenuItem>
                         <MenuItem Command="Copy"></MenuItem>
                         <MenuItem Name="mnuUndoAction" IsEnabled="False" Header="Delete Sales Item" Click="mnuUndoAction_Click" />
                     </ContextMenu>

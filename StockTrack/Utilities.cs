@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -9,6 +11,33 @@ namespace StockTrack
 {
     class Utilities
     {
+        public static void EmailOrder(string itemName, double quantity, string orderNo)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + "\\OrderTemplate.html"))
+                {
+                    String line = sr.ReadToEnd();
+                    line = line.Replace("[#date]", DateTime.Now.ToString("dd/MM/yyyy")).Replace("[#itemname]", itemName).Replace("[#orderno]", orderNo).Replace("[#quantity]", quantity.ToString());
+
+                    MailMessage m = new MailMessage("stocktrack@localhost", "stocktrack@localhost");
+                    m.Subject = "Purchase Order #" + orderNo;
+                    m.IsBodyHtml = true;
+                    m.Body = line;
+                    m.Headers.Add("X-Unsent", "1");
+
+                    SmtpClient c = new SmtpClient();
+                    c.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    c.PickupDirectoryLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    c.Send(m);
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         public static void ChangeDate(DatePicker dp, int delta)
         {
             if (dp.SelectedDate != null)

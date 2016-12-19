@@ -277,7 +277,7 @@ namespace StockTrack
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            mnuOrderSearch.IsEnabled = mnuUndoAction.IsEnabled = !(null == dgHistory.SelectedItem);
+            mnuEmailOrder2.IsEnabled = mnuOrderSearch.IsEnabled = mnuUndoAction.IsEnabled = !(null == dgHistory.SelectedItem);
         }
 
         private void btnStats_Click(object sender, RoutedEventArgs e)
@@ -742,29 +742,12 @@ namespace StockTrack
 
         private void mnuEmailOrder_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                using (StreamReader sr = new StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + "\\OrderTemplate.html"))
-                {
-                    String line = sr.ReadToEnd();
-                    line = line.Replace("[#date]", DateTime.Now.ToString("dd/MM/yyyy")).Replace("[#itemname]", (dgItems.SelectedItem as Item).ItemName);
+            Utilities.EmailOrder((dgItems.SelectedItem as Item).ItemName, 1, string.Empty);
+        }
 
-                    MailMessage m = new MailMessage("stocktrack@localhost", "stocktrack@localhost");
-                    m.Subject = "Purchase Order";
-                    m.IsBodyHtml = true;
-                    m.Body = line;
-                    m.Headers.Add("X-Unsent", "1");
-
-                    SmtpClient c = new SmtpClient();
-                    c.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                    c.PickupDirectoryLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    c.Send(m);
-                }
-            }
-            catch
-            {
-                return;
-            }
+        private void mnuEmailOrder2_Click(object sender, RoutedEventArgs e)
+        {
+            Utilities.EmailOrder((dgItems.SelectedItem as Item).ItemName, 0 - (dgHistory.SelectedItem as History).Quantity, (dgHistory.SelectedItem as History).OrderNo);
         }
     }
 }
