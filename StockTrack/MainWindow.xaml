@@ -62,10 +62,10 @@
             </DataGrid>
             <DockPanel DockPanel.Dock="Bottom" Margin="5,5,5,0">
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Item name:</Label>
-                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" />
+                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" TabIndex="0" />
                 <Label DockPanel.Dock="Left" VerticalContentAlignment="Center">Qty:</Label>
-                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" />
-                <Button Name="btnSave" IsEnabled="False" Command="Save" Width="120" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>
+                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="1" />
+                <Button Name="btnSave" TabIndex="3" IsEnabled="False" Command="Save" Width="120" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>
                 <Button Name="btnMini" DockPanel.Dock="Right" Click="btnMini_Click" Margin="5,0,0,0" Width="50">Mini</Button>
                 <Button Name="btnGoOrders" DockPanel.Dock="Right" Click="btnGoOrders_Click" Margin="5,0,0,0" Width="60">Orders</Button>
                 <CheckBox Name="chkBring" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center">Bring item over</CheckBox>
@@ -75,7 +75,7 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" Margin="5,0,5,0">
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Order No:</Label>
-                <TextBox Name="txtOrderNo" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="70" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
+                <TextBox Name="txtOrderNo" TabIndex="2" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="70" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
                 <DataGrid Name="dgOrders" DockPanel.Dock="Left" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                        HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
                     <DataGrid.Columns>
