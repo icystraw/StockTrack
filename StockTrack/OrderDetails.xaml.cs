@@ -604,5 +604,10 @@ namespace StockTrack
         {
             Utilities.EmailOrder((dgHistory.SelectedItem as History).ItemName, 0 - (dgHistory.SelectedItem as History).Quantity, o.OrderNo);
         }
+
+        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            btnAddProgress_Click(this, null);
+        }
     }
 }

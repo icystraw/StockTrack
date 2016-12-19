@@ -3,6 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xml:lang="en-AU"
         Title="Order Details" Height="750" Width="850" Background="PowderBlue" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Closed="Window_Closed" ShowInTaskbar="True" Closing="Window_Closing" KeyUp="Window_KeyUp">
+    <Window.CommandBindings>
+        <CommandBinding Command="Save" Executed="CommandBinding_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="Save" Key="Return" Modifiers="Control"></KeyBinding>
+    </Window.InputBindings>
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="150" Margin="5">
             <ToolBar>
@@ -87,7 +93,7 @@
                         </DataGrid.ContextMenu>
                     </DataGrid>
                     <TextBox Height="40" Name="txtProgress" Margin="0,5,0,0" AcceptsReturn="True"></TextBox>
-                    <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add new comments" Click="btnAddProgress_Click"></Button>
+                    <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add (Ctrl-Enter)" Click="btnAddProgress_Click"></Button>
                 </StackPanel>
             </DockPanel>
             <DataGrid Name="dgHistory"
