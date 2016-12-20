@@ -62,7 +62,7 @@
             </DataGrid>
             <DockPanel DockPanel.Dock="Bottom" Margin="5,5,5,0">
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Item name:</Label>
-                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" TabIndex="0" />
+                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" TabIndex="0" PreviewKeyDown="txtSearch_PreviewKeyDown" />
                 <Label DockPanel.Dock="Left" VerticalContentAlignment="Center">Qty:</Label>
                 <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="1" />
                 <Button Name="btnSave" TabIndex="3" IsEnabled="False" Command="Save" Width="120" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>

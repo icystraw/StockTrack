@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System.IO;
 using System.Net.Mail;
+using System.Windows.Input;
 
 namespace StockTrack
 {
@@ -748,6 +749,14 @@ namespace StockTrack
         private void mnuEmailOrder2_Click(object sender, RoutedEventArgs e)
         {
             Utilities.EmailOrder((dgItems.SelectedItem as Item).ItemName, 0 - (dgHistory.SelectedItem as History).Quantity, (dgHistory.SelectedItem as History).OrderNo);
+        }
+
+        private void txtSearch_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+            {
+                dgItems.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            }
         }
     }
 }
