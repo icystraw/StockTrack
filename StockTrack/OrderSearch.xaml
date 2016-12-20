@@ -98,7 +98,7 @@
                 <ContextMenu>
                     <Separator></Separator>
                     <TextBlock>Quick Items Overview:</TextBlock>
-                    <DataGrid Name="dgHistory" MaxHeight="120" MaxWidth="600" MouseUp="dgHistory_MouseUp"
+                    <DataGrid Name="dgHistory" MaxHeight="250" MaxWidth="600" MouseUp="dgHistory_MouseUp"
                         AutoGenerateColumns="False" HeadersVisibility="None" IsReadOnly="True" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" SelectionUnit="FullRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Item" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
