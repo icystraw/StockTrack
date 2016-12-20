@@ -150,6 +150,7 @@ namespace StockTrack
         private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             mnuConvertTentative.IsEnabled = mnuConvertWorkOrder.IsEnabled = mnuMark.IsEnabled = mnuLink.IsEnabled = mnuSendEmail.IsEnabled = mnuMapAddress.IsEnabled = false;
+            dgHistory.ItemsSource = null;
             Order o = dgOrders.SelectedItem as Order;
             if (o != null)
             {
@@ -170,6 +171,7 @@ namespace StockTrack
                 {
                     mnuConvertWorkOrder.IsEnabled = true;
                 }
+                dgHistory.ItemsSource = DataAccess.GetHistoryByOrderId(o.OrderId);
             }
         }
 
@@ -349,6 +351,11 @@ namespace StockTrack
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void dgHistory_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

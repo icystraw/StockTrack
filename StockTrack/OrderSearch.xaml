@@ -96,6 +96,18 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
+                    <Separator></Separator>
+                    <TextBlock>Quick Items Overview:</TextBlock>
+                    <DataGrid Name="dgHistory" MaxHeight="120" MaxWidth="600" MouseUp="dgHistory_MouseUp"
+                        AutoGenerateColumns="False" HeadersVisibility="None" IsReadOnly="True" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" SelectionUnit="FullRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Item" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Action" Binding="{Binding Path=Action}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Net" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Comments" Binding="{Binding Path=Comments}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Separator></Separator>
                     <MenuItem Name="mnuMark" IsEnabled="False" Click="mnuMark_Click" Header="Mark Complete"></MenuItem>
                     <MenuItem Name="mnuConvertWorkOrder" IsEnabled="False" Header="Mark as Work Order" Click="mnuConvertWorkOrder_Click"></MenuItem>
                     <MenuItem Name="mnuConvertTentative" IsEnabled="False" Header="Mark as Tentative Order" Click="mnuConvertTentative_Click"></MenuItem>
