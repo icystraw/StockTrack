@@ -609,5 +609,13 @@ namespace StockTrack
         {
             btnAddProgress_Click(this, null);
         }
+
+        private void CommandBinding_Executed_1(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            if (btnSave.IsEnabled)
+            {
+                btnSave_Click(this, null);
+            }
+        }
     }
 }
