@@ -404,16 +404,21 @@ namespace StockTrack
         {
             if (dgHistory.SelectedItem == null || dgItems.SelectedItem == null) return;
             if (MessageBox.Show("Sure?", "Please confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
-            History h = dgHistory.SelectedItem as History;
-            Order o = DataAccess.GetOrderById(h.OrderId);
-            if (null == o) return;
+
             Item i = dgItems.SelectedItem as Item;
-            if (o.IsWorkOrder < 2)
+
+            foreach (History h in dgHistory.SelectedItems)
             {
-                i.Quantity -= h.Quantity;
-                DataAccess.UpdateItem(i);
+                Order o = DataAccess.GetOrderById(h.OrderId);
+                if (null == o) return;
+                if (o.IsWorkOrder < 2)
+                {
+                    i.Quantity -= h.Quantity;
+                }
+                DataAccess.DeleteHistoryById(h.HistoryId);
             }
-            DataAccess.DeleteHistoryById(h.HistoryId);
+            DataAccess.UpdateItem(i);
+
             populateItemHistory(i.ItemId);
         }
 
