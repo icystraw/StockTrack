@@ -28,7 +28,7 @@
             </DockPanel>
         </Expander>
         <DockPanel>
-            <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="250"
+            <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="250" KeyUp="dgHistory_KeyUp"
                       Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding" BeginningEdit="dgHistory_BeginningEdit"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgHistory_SelectionChanged">

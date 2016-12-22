@@ -758,5 +758,13 @@ namespace StockTrack
                 dgItems.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             }
         }
+
+        private void dgHistory_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete && dgHistory.SelectedItem != null)
+            {
+                mnuUndoAction_Click(this, null);
+            }
+        }
     }
 }
