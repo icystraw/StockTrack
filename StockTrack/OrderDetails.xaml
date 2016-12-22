@@ -81,7 +81,7 @@
                 <StackPanel>
                     <Label Margin="0,5,0,0">Order comments:</Label>
                     <DataGrid Height="150" Name="dgProgression" Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
-                        SelectionUnit="FullRow" CanUserDeleteRows="False" BeginningEdit="dgProgression_BeginningEdit"
+                        SelectionUnit="FullRow" CanUserDeleteRows="False" BeginningEdit="dgProgression_BeginningEdit" KeyUp="dgProgression_KeyUp"
                         CanUserAddRows="False" CellEditEnding="dgProgression_CellEditEnding" SelectionChanged="dgProgression_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=HistoryDate, StringFormat={}{0:d}}"></DataGridTextColumn>
@@ -98,7 +98,7 @@
                     <Button Margin="5" Width="150" Name="btnAddProgress" Content="Add (Ctrl-Enter)" Click="btnAddProgress_Click"></Button>
                 </StackPanel>
             </DockPanel>
-            <DataGrid Name="dgHistory"
+            <DataGrid Name="dgHistory" KeyUp="dgHistory_KeyUp"
                   Margin="0,5,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                   SelectionUnit="FullRow" CanUserDeleteRows="False" BeginningEdit="dgHistory_BeginningEdit"
                   CanUserAddRows="False" CellEditEnding="dgHistory_CellEditEnding" SelectionChanged="dgHistory_SelectionChanged">
