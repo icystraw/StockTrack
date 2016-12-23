@@ -620,7 +620,7 @@ namespace StockTrack
 
         private void dgHistory_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Delete && dgHistory.SelectedItem != null)
+            if (e.Key == System.Windows.Input.Key.Delete && dgHistory.SelectedItem != null && !(e.OriginalSource is TextBox))
             {
                 mnuUndoAction_Click(this, null);
             }
@@ -628,7 +628,7 @@ namespace StockTrack
 
         private void dgProgression_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Delete && dgProgression.SelectedItem != null)
+            if (e.Key == System.Windows.Input.Key.Delete && dgProgression.SelectedItem != null && !(e.OriginalSource is TextBox))
             {
                 mnuDeleteEntry_Click(this, null);
             }

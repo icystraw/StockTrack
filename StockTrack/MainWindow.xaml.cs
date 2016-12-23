@@ -766,7 +766,7 @@ namespace StockTrack
 
         private void dgHistory_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Delete && dgHistory.SelectedItem != null)
+            if (e.Key == Key.Delete && dgHistory.SelectedItem != null && !(e.OriginalSource is TextBox))
             {
                 mnuUndoAction_Click(this, null);
             }
