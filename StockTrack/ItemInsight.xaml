@@ -11,11 +11,12 @@
         <Label Name="lblQuantity" DockPanel.Dock="Top">Quantity on hand:</Label>
         <Label Name="lblQuantityW" DockPanel.Dock="Top">Quantity held in work orders:</Label>
         <Label Name="lblQuantityT" DockPanel.Dock="Top">Quantity quoted to tentative orders:</Label>
+        <Label Name="lblTotalQty" DockPanel.Dock="Top">Total sales quantity selected:</Label>
         <Separator DockPanel.Dock="Top" />
         <DockPanel>
             <DockPanel DockPanel.Dock="Left" Width="210">
                 <Label DockPanel.Dock="Top">Monthly sales:</Label>
-                <DataGrid Name="dgSales" IsReadOnly="True" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
+                <DataGrid Name="dgSales" IsReadOnly="True" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" SelectionChanged="dgSales_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Year" Binding="{Binding Path=year}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Month" Binding="{Binding Path=month}"></DataGridTextColumn>

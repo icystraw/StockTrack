@@ -28,7 +28,7 @@
             </DockPanel>
         </Expander>
         <DockPanel>
-            <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="250" KeyUp="dgHistory_KeyUp"
+            <DataGrid Name="dgHistory" DockPanel.Dock="Bottom" Height="250" PreviewKeyDown="dgHistory_KeyUp"
                       Margin="5" AutoGenerateColumns="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray"
                       SelectionUnit="FullRow" CellEditEnding="dgHistory_CellEditEnding" BeginningEdit="dgHistory_BeginningEdit"
                       CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgHistory_SelectionChanged">
@@ -62,20 +62,20 @@
             </DataGrid>
             <DockPanel DockPanel.Dock="Bottom" Margin="5,5,5,0">
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Item name:</Label>
-                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" TabIndex="0" PreviewKeyDown="txtSearch_PreviewKeyDown" />
+                <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" TabIndex="1" PreviewKeyDown="txtSearch_PreviewKeyDown" />
                 <Label DockPanel.Dock="Left" VerticalContentAlignment="Center">Qty:</Label>
-                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="1" />
+                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="2" />
                 <Button Name="btnSave" TabIndex="3" IsEnabled="False" Command="Save" Width="120" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>
-                <Button Name="btnMini" DockPanel.Dock="Right" Click="btnMini_Click" Margin="5,0,0,0" Width="50">Mini</Button>
-                <Button Name="btnGoOrders" DockPanel.Dock="Right" Click="btnGoOrders_Click" Margin="5,0,0,0" Width="60">Orders</Button>
-                <CheckBox Name="chkBring" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center">Bring item over</CheckBox>
-                <CheckBox Name="chkTopMost" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center" Checked="chkTopMost_Checked" Unchecked="chkTopMost_Unchecked">Topmost</CheckBox>
-                <CheckBox Name="chkShowWorkOnly" DockPanel.Dock="Right" VerticalContentAlignment="Center" Checked="chkShowWorkOnly_Checked" Unchecked="chkShowWorkOnly_Unchecked">Show work/tentative only</CheckBox>
+                <Button TabIndex="9" Name="btnMini" DockPanel.Dock="Right" Click="btnMini_Click" Margin="5,0,0,0" Width="50">Mini</Button>
+                <Button TabIndex="8" Name="btnGoOrders" DockPanel.Dock="Right" Click="btnGoOrders_Click" Margin="5,0,0,0" Width="60">Orders</Button>
+                <CheckBox TabIndex="7" Name="chkBring" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center">Bring item over</CheckBox>
+                <CheckBox TabIndex="6" Name="chkTopMost" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center" Checked="chkTopMost_Checked" Unchecked="chkTopMost_Unchecked">Topmost</CheckBox>
+                <CheckBox TabIndex="5" Name="chkShowWorkOnly" DockPanel.Dock="Right" VerticalContentAlignment="Center" Checked="chkShowWorkOnly_Checked" Unchecked="chkShowWorkOnly_Unchecked">Show work/tentative only</CheckBox>
                 <Label></Label>
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" Margin="5,0,5,0">
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Order No:</Label>
-                <TextBox Name="txtOrderNo" TabIndex="2" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="70" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
+                <TextBox Name="txtOrderNo" TabIndex="0" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="70" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
                 <DataGrid Name="dgOrders" DockPanel.Dock="Left" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                        HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
                     <DataGrid.Columns>
@@ -84,7 +84,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Date:</Label>
-                <DatePicker Name="dtEntryDate" DockPanel.Dock="Left" MouseWheel="dtEntryDate_MouseWheel" VerticalContentAlignment="Center"/>
+                <DatePicker Name="dtEntryDate" DockPanel.Dock="Left" MouseWheel="dtEntryDate_MouseWheel" VerticalContentAlignment="Center" TabIndex="4"/>
                 <Label></Label>
             </DockPanel>
             <DataGrid Name="dgItems" Margin="5" AutoGenerateColumns="False"

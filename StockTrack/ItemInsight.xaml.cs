@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,19 @@ namespace StockTrack
             if (e.Key == System.Windows.Input.Key.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private void dgSales_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgSales.SelectedItem != null)
+            {
+                double quantity = 0;
+                foreach (DataRowView dr in dgSales.SelectedItems)
+                {
+                    quantity += Convert.ToDouble(dr["quantity"]);
+                }
+                lblTotalQty.Content = "Total sales quantity selected: " + quantity;
             }
         }
     }
