@@ -357,5 +357,20 @@ namespace StockTrack
         {
             e.Handled = true;
         }
+
+        private void txtKeyword_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (Keyboard.IsKeyDown(Key.RightCtrl))
+                {
+                    btnSearchAll_Click(this, null);
+                }
+                else
+                {
+                    btnSearch_Click(this, null);
+                }
+            }
+        }
     }
 }

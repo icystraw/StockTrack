@@ -64,7 +64,7 @@
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Item name:</Label>
                 <TextBox DockPanel.Dock="Left" Name="txtSearch" Width="80" VerticalContentAlignment="Center" TextChanged="txtSearch_TextChanged" TabIndex="1" PreviewKeyDown="txtSearch_PreviewKeyDown" />
                 <Label DockPanel.Dock="Left" VerticalContentAlignment="Center">Qty:</Label>
-                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="2" />
+                <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="2" PreviewKeyDown="txtOrderNo_PreviewKeyDown" />
                 <Button Name="btnSave" TabIndex="3" IsEnabled="False" Command="Save" Width="120" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>
                 <Button TabIndex="9" Name="btnMini" DockPanel.Dock="Right" Click="btnMini_Click" Margin="5,0,0,0" Width="50">Mini</Button>
                 <Button TabIndex="8" Name="btnGoOrders" DockPanel.Dock="Right" Click="btnGoOrders_Click" Margin="5,0,0,0" Width="60">Orders</Button>
