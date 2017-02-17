@@ -60,6 +60,13 @@ namespace StockTrack
             get { return quantity; }
             set { quantity = value; OnPropertyChanged("Quantity"); OnPropertyChanged("Action"); }
         }
+        private double itemQuantity;
+
+        public double ItemQuantity
+        {
+            get { return itemQuantity; }
+            set { itemQuantity = value; }
+        }
         private string orderNo;
 
         public string OrderNo

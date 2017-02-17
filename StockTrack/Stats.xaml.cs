@@ -33,5 +33,11 @@ namespace StockTrack
             cbCategories.DisplayMemberPath = "CategoryName";
             cbCategories.SelectedIndex = 0;
         }
+
+        private void sliDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            dt1.SelectedDate = DateTime.Today.AddDays(0 - sliDate.Value);
+            dt2.SelectedDate = DateTime.Today.AddDays(1);
+        }
     }
 }

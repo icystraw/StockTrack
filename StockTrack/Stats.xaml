@@ -13,12 +13,14 @@
             <ComboBox Name="cbCategories" Margin="5" />
             <Button Name="btnGet" Margin="5" Width="100" Click="btnGet_Click">Get Sales Stats</Button>
         </StackPanel>
+        <Slider DockPanel.Dock="Top" Minimum="30" Maximum="360" TickFrequency="15" TickPlacement="BottomRight" Name="sliDate" IsSnapToTickEnabled="True" ValueChanged="sliDate_ValueChanged"></Slider>
         <DataGrid Name="dgHistory" Margin="10,10" AutoGenerateColumns="False"
                   SelectionUnit="FullRow"
                   CanUserAddRows="False" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Item" IsReadOnly="True" Binding="{Binding Path=ItemName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Total Sales" IsReadOnly="True" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Quantity on Hand" IsReadOnly="True" Binding="{Binding Path=ItemQuantity}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

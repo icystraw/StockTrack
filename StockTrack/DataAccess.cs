@@ -594,12 +594,12 @@ namespace StockTrack
         {
             List<History> histories = new List<History>();
             SqlConnection con = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand("select [item].[itemname], sum(0 - [history].[quantity]) as [quantity] from [history] inner join [item] on [item].[itemid] = [history].[itemid] inner join [order] on [order].[orderid] = [history].[orderid] where [history].[action] <> N'Adjust' and [history].[actiondate] >= @dt1 and [history].[actiondate] <= @dt2 and [order].[isworkorder] <> 2", con);
+            SqlCommand cmd = new SqlCommand("select [item].[itemname], [item].[quantity] as [itemquantity], sum(0 - [history].[quantity]) as [quantity] from [history] inner join [item] on [item].[itemid] = [history].[itemid] inner join [order] on [order].[orderid] = [history].[orderid] where [history].[action] <> N'Adjust' and [history].[actiondate] >= @dt1 and [history].[actiondate] <= @dt2 and [order].[isworkorder] <> 2", con);
             if (c.CategoryId > 0)
             {
                 cmd.CommandText += " and [item].[categoryid] = " + c.CategoryId;
             }
-            cmd.CommandText += " group by [item].[itemname] order by [quantity] desc";
+            cmd.CommandText += " group by [item].[itemname], [item].[quantity] order by [quantity] desc";
             cmd.Parameters.Add(new SqlParameter("@dt1", dt1));
             cmd.Parameters.Add(new SqlParameter("@dt2", dt2));
             con.Open();
@@ -609,6 +609,7 @@ namespace StockTrack
                 History h = new History();
                 h.ItemName = rd["itemname"].ToString();
                 h.Quantity = Convert.ToDouble(rd["quantity"]);
+                h.ItemQuantity = Convert.ToDouble(rd["itemquantity"]);
                 histories.Add(h);
             }
             rd.Close();
