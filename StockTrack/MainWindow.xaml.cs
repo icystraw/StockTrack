@@ -762,6 +762,11 @@ namespace StockTrack
             {
                 dgItems.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             }
+            if (e.Key == Key.Enter)
+            {
+                txtQuantity.Focus();
+                txtQuantity.SelectAll();
+            }
         }
 
         private void dgHistory_KeyUp(object sender, KeyEventArgs e)
@@ -769,6 +774,14 @@ namespace StockTrack
             if (e.Key == Key.Delete && dgHistory.SelectedItem != null && !(e.OriginalSource is TextBox))
             {
                 mnuUndoAction_Click(this, null);
+            }
+        }
+
+        private void txtOrderNo_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CommandBinding_Executed_1(this, null);
             }
         }
     }

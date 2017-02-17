@@ -75,7 +75,7 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" Margin="5,0,5,0">
                 <Label VerticalContentAlignment="Center" DockPanel.Dock="Left">Order No:</Label>
-                <TextBox Name="txtOrderNo" TabIndex="0" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="70" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" />
+                <TextBox Name="txtOrderNo" TabIndex="0" DockPanel.Dock="Left" VerticalContentAlignment="Center" Width="70" MouseWheel="txtOrderNo_MouseWheel" TextChanged="txtOrderNo_TextChanged" PreviewKeyDown="txtOrderNo_PreviewKeyDown" />
                 <DataGrid Name="dgOrders" DockPanel.Dock="Left" MaxHeight="100" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow"
                        HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" HeadersVisibility="None" MouseDoubleClick="dgOrders_MouseDoubleClick">
                     <DataGrid.Columns>
