@@ -783,6 +783,14 @@ namespace StockTrack
             {
                 CommandBinding_Executed_1(this, null);
             }
+            if (e.Key == Key.Up)
+            {
+                Utilities.ChangeTextFieldNumber(sender as TextBox, 1);
+            }
+            if (e.Key == Key.Down)
+            {
+                Utilities.ChangeTextFieldNumber(sender as TextBox, (-1));
+            }
         }
     }
 }
