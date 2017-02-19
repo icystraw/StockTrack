@@ -134,7 +134,7 @@ namespace StockTrack
         public static DataTable GetRelatedItemsForItemInsight(int itemId)
         {
             SqlConnection con = new SqlConnection(conStr);
-            SqlDataAdapter da = new SqlDataAdapter("declare @totalsales float = 0; select @totalsales = count(*) from [history] where [itemid] = @itemid and [action] = N'Purchase'; select top 50 i.[itemid], i.[itemname], count(i.[itemid]) / @totalsales as [frequence] from [item] i, [history] h where h.[itemid] = i.[itemid] and h.[action] = N'Purchase' and h.[orderid] in (select distinct o.[orderid] from [order] o inner join [history] h on o.[orderid] = h.[orderid] where h.[itemid] = @itemid and h.[action] = N'Purchase') group by i.[itemid], i.[itemname] order by [frequence] desc", con);
+            SqlDataAdapter da = new SqlDataAdapter("declare @totalsales float = 0; select @totalsales = count(*) from [history] where [itemid] = @itemid and [action] = N'Purchase'; select top 50 i.[itemid], i.[itemname], i.[quantity], count(i.[itemid]) / @totalsales as [frequence] from [item] i, [history] h where h.[itemid] = i.[itemid] and h.[action] = N'Purchase' and h.[orderid] in (select distinct o.[orderid] from [order] o inner join [history] h on o.[orderid] = h.[orderid] where h.[itemid] = @itemid and h.[action] = N'Purchase') group by i.[itemid], i.[itemname], i.[quantity] order by [frequence] desc", con);
             da.SelectCommand.Parameters.Add(new SqlParameter("@itemid", itemId));
             con.Open();
             DataTable dt = new DataTable();

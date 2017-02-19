@@ -30,6 +30,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Item Name" Binding="{Binding Path=itemname}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Chance of buying together" Binding="{Binding Path=frequence, StringFormat={}{0:P}}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Quantity on Hand" Binding="{Binding Path=quantity}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
