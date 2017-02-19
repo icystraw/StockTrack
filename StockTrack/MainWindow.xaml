@@ -15,7 +15,7 @@
         <Expander ExpandDirection="Left" DockPanel.Dock="Right">
             <DockPanel Width="150">
                 <Button Name="btnAdvanced" Margin="5" DockPanel.Dock="Bottom" Click="btnAdvanced_Click">Advanced</Button>
-                <Button Name="btnStats" Margin="5" DockPanel.Dock="Bottom" Click="btnStats_Click">Past Item Sales</Button>
+                <Button Name="btnMini" DockPanel.Dock="Bottom" Click="btnMini_Click" Margin="5">Mini</Button>
                 <Button Name="btnDeleteCat" IsEnabled="False" Visibility="Hidden" DockPanel.Dock="Bottom" Margin="5" Click="btnDeleteCat_Click">Delete Category</Button>
                 <Button Name="btnAddCat" DockPanel.Dock="Bottom" Margin="5" Click="btnAddCat_Click">New Category</Button>
                 <Button Name="btnAddItem" DockPanel.Dock="Bottom" IsEnabled="False" Margin="5" Click="btnAddItem_Click">New Item</Button>
@@ -66,7 +66,7 @@
                 <Label DockPanel.Dock="Left" VerticalContentAlignment="Center">Qty:</Label>
                 <TextBox DockPanel.Dock="Left" Name="txtQuantity" Width="40" Text="1" VerticalContentAlignment="Center" MouseWheel="txtQuantity_MouseWheel" TabIndex="2" PreviewKeyDown="txtOrderNo_PreviewKeyDown" />
                 <Button Name="btnSave" TabIndex="3" IsEnabled="False" Command="Save" Width="120" Margin="5,0,0,0" DockPanel.Dock="Left">Enter Sale (Ctrl-S)</Button>
-                <Button TabIndex="9" Name="btnMini" DockPanel.Dock="Right" Click="btnMini_Click" Margin="5,0,0,0" Width="50">Mini</Button>
+                <Button Name="btnStats" TabIndex="9" Margin="5,0,0,0" DockPanel.Dock="Right" Click="btnStats_Click" Width="50">Stats</Button>
                 <Button TabIndex="8" Name="btnGoOrders" DockPanel.Dock="Right" Click="btnGoOrders_Click" Margin="5,0,0,0" Width="60">Orders</Button>
                 <CheckBox TabIndex="7" Name="chkBring" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center">Bring item over</CheckBox>
                 <CheckBox TabIndex="6" Name="chkTopMost" DockPanel.Dock="Right" Margin="5,0,0,0" VerticalContentAlignment="Center" Checked="chkTopMost_Checked" Unchecked="chkTopMost_Unchecked">Topmost</CheckBox>
